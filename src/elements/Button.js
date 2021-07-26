@@ -9,8 +9,10 @@ function Button(props) {
     borderRadius,
     backgroundColor,
     fontSize,
+    fontWeight,
     children,
     color,
+    margin,
   } = props;
   const styles = {
     width,
@@ -19,7 +21,9 @@ function Button(props) {
     borderRadius,
     backgroundColor,
     fontSize,
+    fontWeight,
     color,
+    margin,
   };
 
   return (
@@ -37,6 +41,7 @@ Button.defaultProps = {
   backgroundColor: "#1dc6d1",
   fontSize: "28px",
   color: "#fff",
+  margin: false,
 };
 
 const Btn = styled.button`
@@ -49,6 +54,7 @@ const Btn = styled.button`
   color: ${(props) => props.color};
   font-weight: 600;
   cursor: pointer;
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 
 export default Button;
