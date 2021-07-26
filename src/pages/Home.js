@@ -7,6 +7,9 @@ import Container from "../shared/Container";
 // elements
 import Button from "../elements/Button";
 
+// components
+import Background from "../components/Background";
+
 // css
 import "../css/home.scss";
 
@@ -14,6 +17,7 @@ function Home(props) {
   return (
     <>
       <Header />
+      <Background />
       <Container justifyContent="center" bgImg>
         <div className="title">
           <div>
