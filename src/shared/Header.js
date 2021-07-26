@@ -15,9 +15,15 @@ function Header(props) {
           내일 어디가?
         </div>
         <ul className={cx("header__menu", `${props.menuColor}`)}>
-          <li className="header__menu-item">Home</li>
-          <li className="header__menu-item">Explore</li>
-          <li className="header__menu-item">My Trip</li>
+          <li className="header__menu-item">
+            <div></div>Home
+          </li>
+          <li className="header__menu-item">
+            <div></div>Explore
+          </li>
+          <li className="header__menu-item">
+            <div></div>My Trip
+          </li>
         </ul>
       </div>
     </>
