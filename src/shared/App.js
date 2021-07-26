@@ -1,7 +1,14 @@
 import React from "react";
 
+// pages
+import Home from "../pages/Home";
+
 function App() {
-  return <>Hello</>;
+  return (
+    <>
+      <Home />
+    </>
+  );
 }
 
 export default App;
