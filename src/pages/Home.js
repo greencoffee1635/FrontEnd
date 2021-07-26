@@ -16,7 +16,7 @@ import "../css/home.scss";
 function Home(props) {
   return (
     <>
-      <Header />
+      <Header logoColor="mint" menuColor="white" />
       <Background />
       <Container justifyContent="center" bgImg>
         <div className="title">
