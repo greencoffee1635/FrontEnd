@@ -25,6 +25,9 @@ const ContainerBox = styled.div`
   justify-content: ${(props) => props.justifyContent};
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    justify-content: flex-start;
+  }
 `;
 
 export default Container;

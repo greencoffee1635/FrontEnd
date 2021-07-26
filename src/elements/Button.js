@@ -11,7 +11,10 @@ function Button(props) {
     fontSize,
     children,
     color,
+    mobileWidth,
+    mobileHeight,
   } = props;
+
   const styles = {
     width,
     height,
@@ -20,6 +23,8 @@ function Button(props) {
     backgroundColor,
     fontSize,
     color,
+    mobileWidth,
+    mobileHeight,
   };
 
   return (
@@ -49,6 +54,13 @@ const Btn = styled.button`
   color: ${(props) => props.color};
   font-weight: 600;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    width: ${(props) => props.mobileWidth};
+    height: ${(props) => props.mobileHeight};
+    position: absolute;
+    bottom: 130px;
+  }
 `;
 
 export default Button;
