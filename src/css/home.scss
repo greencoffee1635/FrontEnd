@@ -17,6 +17,16 @@
   }
 }
 
+.button {
+  width: 256px;
+  height: 74px;
+  border: none;
+  border-radius: 125px;
+  background-color: var(--main-color);
+  font-size: 28px;
+  color: var(--white);
+}
+
 @media screen and (max-width: 768px) {
   .title {
     text-align: left;
@@ -31,5 +41,17 @@
       line-height: 25px;
       width: 68vw;
     }
+  }
+
+  .button {
+    margin: 0 auto;
+    width: 86vw;
+    height: 7vh;
+    position: absolute;
+    bottom: 14vh;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    font-weight: 600;
   }
 }

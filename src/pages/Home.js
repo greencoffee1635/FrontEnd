@@ -4,9 +4,6 @@ import React from "react";
 import Header from "../shared/Header";
 import Layout from "../shared/Layout";
 
-// elements
-import Button from "../elements/Button";
-
 // components
 import Background from "../components/Background";
 
@@ -30,7 +27,7 @@ function Home(props) {
           <div>여행 계획 세우기는 귀찮지만 놀러는 가고 싶은 당신을 위해</div>
         </div>
         {/* <Button mobileWidth="90%" mobileHeight="52px"> */}
-        <Button>시작하기</Button>
+        <button className="button">시작하기</button>
       </Layout>
     </>
   );
