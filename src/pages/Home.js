@@ -2,7 +2,7 @@ import React from "react";
 
 // shared
 import Header from "../shared/Header";
-import Contents from "../shared/Contents";
+import Layout from "../shared/Layout";
 
 // elements
 import Button from "../elements/Button";
@@ -20,7 +20,7 @@ function Home(props) {
       <Header page="home" />
       <Background />
       {/* <Container justifyContent="center"> */}
-      <Contents>
+      <Layout>
         <div className="title">
           <div>
             1분만에 나만의 여행 계획표 받고
@@ -31,7 +31,7 @@ function Home(props) {
         </div>
         {/* <Button mobileWidth="90%" mobileHeight="52px"> */}
         <Button>시작하기</Button>
-      </Contents>
+      </Layout>
     </>
   );
 }

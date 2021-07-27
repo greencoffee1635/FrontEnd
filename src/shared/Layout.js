@@ -2,7 +2,7 @@ import React from "react";
 // import styled from "styled-components";
 
 // css
-import "../css/container.scss";
+import "../css/layout.scss";
 
 function Container(props) {
   // const { justifyContent, children } = props;
