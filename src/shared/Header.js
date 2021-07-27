@@ -10,11 +10,9 @@ const cx = classNames.bind(headerStyles);
 function Header(props) {
   return (
     <>
-      <div className="header">
-        <div className={cx("header__logo", `${props.logoColor}`)}>
-          내일 어디가?
-        </div>
-        <ul className={cx("header__menu", `${props.menuColor}`)}>
+      <div className={cx("header", `${props.page}`)}>
+        <div className="header__logo">내일 어디가?</div>
+        <ul className="header__menu">
           <li className="header__menu-item">
             <div></div>Home
           </li>

@@ -16,7 +16,8 @@ import "../css/home.scss";
 function Home(props) {
   return (
     <>
-      <Header logoColor="mint" menuColor="white" />
+      {/* page는 home 또는 detail. home은 메인페이지, detail은 나머지페이지 */}
+      <Header page="home" />
       <Background />
       <Container justifyContent="center">
         <div className="title">

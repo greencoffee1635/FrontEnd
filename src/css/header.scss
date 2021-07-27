@@ -12,18 +12,8 @@
   z-index: 99;
 
   & .header__logo {
-    // color: #1dc6d1;
     font-size: 22px;
     font-weight: 700;
-  }
-  & .mint {
-    color: #1dc6d1;
-  }
-  & .white {
-    color: #fff;
-  }
-  & .black {
-    color: #000;
   }
   & .header__menu {
     width: 520px;
@@ -35,6 +25,24 @@
       font-size: 22px;
       font-weight: 600;
     }
+  }
+}
+
+.home {
+  & .header__logo {
+    color: #1dc6d1;
+  }
+  & .header__menu {
+    color: #fff;
+  }
+}
+
+.detail {
+  & .header__logo {
+    color: #000;
+  }
+  & .header__menu {
+    color: #000;
   }
 }
 
