@@ -1,3 +1,5 @@
+@import "./color.scss";
+
 .title {
   text-align: center;
 
@@ -5,13 +7,13 @@
     font-size: 55px;
     font-weight: 700;
     line-height: 67px;
-    color: #fff;
+    color: var(--white);
   }
   & div:nth-child(2) {
     font-size: 24px;
     font-weight: 600;
     margin: 26px 0px 95px 0px;
-    color: #1dc6d1;
+    color: var(--main-color);
   }
 }
 

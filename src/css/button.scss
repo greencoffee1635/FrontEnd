@@ -1,11 +1,13 @@
+@import "./color.scss";
+
 .button {
   width: 256px;
   height: 74px;
   border: none;
   border-radius: 125px;
-  background-color: #1dc6d1;
+  background-color: var(--main-color);
   font-size: 28px;
-  color: #fff;
+  color: var(--white);
 }
 
 @media screen and (max-width: 768px) {
