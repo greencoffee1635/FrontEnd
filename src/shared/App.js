@@ -5,6 +5,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import Option01 from "../pages/Option01";
 import Option02 from "../pages/Option02";
+import Detail from "../pages/Detail";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Route exact path="/" component={Home} />
         {/* 옵션화면 Route */}
+        <Route exact path="/detail" component={Detail} />
       </BrowserRouter>
     </>
   );

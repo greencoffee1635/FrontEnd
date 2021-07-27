@@ -8,7 +8,7 @@ import Layout from "../shared/Layout";
 import Background from "../components/home/Background";
 
 // css
-import "../css/home.scss";
+import "../css/home/home.scss";
 
 function Home(props) {
   return (
@@ -17,7 +17,7 @@ function Home(props) {
       <Header page="home" />
       <Background />
       {/* <Container justifyContent="center"> */}
-      <Layout>
+      <Layout page="main">
         <div className="title">
           <div>
             1분만에 나만의 여행 계획표 받고
