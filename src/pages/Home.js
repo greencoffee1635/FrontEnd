@@ -17,7 +17,7 @@ function Home(props) {
       <Header page="home" />
       <Background />
       {/* <Container justifyContent="center"> */}
-      <Layout>
+      <Layout page="main">
         <div className="title">
           <div>
             1분만에 나만의 여행 계획표 받고
