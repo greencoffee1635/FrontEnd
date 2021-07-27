@@ -1,7 +1,7 @@
 import React from "react";
 
 // css
-import "../css/background.scss";
+import "../../css/home/background.scss";
 
 function Background(props) {
   return (
