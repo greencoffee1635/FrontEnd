@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, BrowserRouter } from "react-router-dom";
 
 // pages
 import Home from "../pages/Home";
@@ -8,9 +9,10 @@ import Option02 from "../pages/Option02";
 function App() {
   return (
     <>
-      {/* <Home /> */}
-      <Option01/>
-      {/* <Option02/> */}
+      <BrowserRouter>
+        <Route exact path="/" component={Home} />
+        {/* 옵션화면 Route */}
+      </BrowserRouter>
     </>
   );
 }

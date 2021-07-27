@@ -1,5 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
+
+// css
+import "../css/button.scss";
 
 function Button(props) {
   const {
@@ -28,7 +31,8 @@ function Button(props) {
 
   return (
     <>
-      <Btn {...styles}>{children}</Btn>
+      {/* <Btn {...styles}>{children}</Btn> */}
+      <button className="button">{props.children}</button>
     </>
   );
 }

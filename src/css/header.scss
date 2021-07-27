@@ -1,3 +1,5 @@
+@import "./color.scss";
+
 .header {
   // width: 1330px;
   position: fixed;
@@ -12,12 +14,11 @@
   z-index: 99;
 
   & .header__logo {
-    color: #1dc6d1;
     font-size: 22px;
     font-weight: 700;
   }
   & .header__menu {
-    width: 520px;
+    width: 40rem;
     display: flex;
     justify-content: space-between;
     & .header__menu-item {
@@ -25,6 +26,53 @@
       text-align: center;
       font-size: 22px;
       font-weight: 600;
+    }
+  }
+}
+
+.home {
+  & .header__logo {
+    color: var(--main-color);
+  }
+  & .header__menu {
+    color: #fff;
+  }
+}
+
+.detail {
+  & .header__logo {
+    color: #000;
+  }
+  & .header__menu {
+    color: #000;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    width: 90%;
+    display: inline;
+
+    & .header__logo {
+      font-size: 16px;
+    }
+    & .header__menu {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 83px;
+      background-color: #fff;
+      color: #000;
+      & .header__menu-item {
+        font-size: 10px;
+        & div {
+          width: 30px;
+          height: 28px;
+          background-color: #c4c4c4;
+          margin: 5px auto 5px;
+        }
+      }
     }
   }
 }
