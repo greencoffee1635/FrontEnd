@@ -1,3 +1,5 @@
+@import "./color.scss";
+
 .header {
   // width: 1330px;
   position: fixed;
@@ -16,7 +18,7 @@
     font-weight: 700;
   }
   & .header__menu {
-    width: 520px;
+    width: 40rem;
     display: flex;
     justify-content: space-between;
     & .header__menu-item {
@@ -30,7 +32,7 @@
 
 .home {
   & .header__logo {
-    color: #1dc6d1;
+    color: var(--main-color);
   }
   & .header__menu {
     color: #fff;
