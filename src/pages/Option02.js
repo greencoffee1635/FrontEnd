@@ -14,7 +14,7 @@ import Text from "../elements/Text";
 // css
 
 
-function Option01(props) {
+function Option06_0(props) {
   return (
     <>
       <Header />
@@ -87,4 +87,4 @@ function Option01(props) {
 }
 
   
-  export default Option01;
+  export default Option06_0;

@@ -20,32 +20,12 @@ function Option01(props) {
       <Header />
       <Container  justifyContent="center">
       
-        <Text bold size="20px" margin="35px">동행인이 있나요?</Text>
+        <Text bold size="20px" margin="35px">출발 예정일을 알려주세요</Text>
 
-        <Button 
-          width="300px" 
-          height="50px" 
-          margin="10px" 
-          fontSize="17px"
-          fontWeight="400"
-          color="black"
-          backgroundColor="#f5f6f7;"
-          >네 있습니다.
-          </Button>
+        <Text bold size="20px" margin="35px">정확한 날짜가 미정이라면 월만 정해주세요</Text>
         
         <Button 
-          width="300px" 
-          height="50px" 
-          margin="10px" 
-          fontSize="17px"
-          fontWeight="400"
-          color="black"
-          backgroundColor="#f5f6f7;"
-        >아니요 없습니다.
-        </Button>
-        
-        <Button 
-          width="300px" 
+          width="20vw" 
           height="50px" 
           margin="80px" 
           fontSize="18px"
