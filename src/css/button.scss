@@ -1,0 +1,23 @@
+.button {
+  width: 256px;
+  height: 74px;
+  border: none;
+  border-radius: 125px;
+  background-color: #1dc6d1;
+  font-size: 28px;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .button {
+    margin: 0 auto;
+    width: 90vw;
+    height: 52px;
+    position: absolute;
+    bottom: 130px;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

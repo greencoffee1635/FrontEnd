@@ -18,16 +18,16 @@
 @media screen and (max-width: 768px) {
   .title {
     text-align: left;
-    margin: 110px 0px 0px 29px;
+    margin: 15vh 0 0 5vw;
     & div:first-child {
       font-size: 32px;
       line-height: 43px;
-      width: 73%;
+      width: 70vw;
     }
     & div:nth-child(2) {
       font-size: 18px;
       line-height: 25px;
-      width: 73%;
+      width: 68vw;
     }
   }
 }
