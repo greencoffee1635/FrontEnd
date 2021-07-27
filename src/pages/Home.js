@@ -5,7 +5,7 @@ import Header from "../shared/Header";
 import Layout from "../shared/Layout";
 
 // components
-import Background from "../components/home/Background";
+import Background from "../components/Background";
 
 // css
 import "../css/home.scss";
