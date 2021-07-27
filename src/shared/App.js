@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, BrowserRouter } from "react-router-dom";
 
 // pages
 import Home from "../pages/Home";
@@ -6,7 +7,10 @@ import Home from "../pages/Home";
 function App() {
   return (
     <>
-      <Home />
+      <BrowserRouter>
+        <Route exact path="/" component={Home} />
+        {/* 옵션화면 Route */}
+      </BrowserRouter>
     </>
   );
 }
