@@ -16,6 +16,9 @@
     font-size: 22px;
     font-weight: 700;
     color: var(--main-color);
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

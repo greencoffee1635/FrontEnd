@@ -15,10 +15,10 @@ function Home(props) {
   return (
     <>
       {/* page는 home 또는 detail. home은 메인페이지, detail은 나머지페이지 */}
-      <Header page="main" />
+      <Header page="main" {...props} />
       <Background />
       {/* <Container justifyContent="center"> */}
-      <Layout page="main">
+      <Layout page="home">
         <div className="title">
           <div>
             1분만에 나만의 여행 계획표 받고

@@ -16,6 +16,9 @@
   & .header__logo {
     font-size: 22px;
     font-weight: 700;
+    &:hover {
+      cursor: pointer;
+    }
   }
   & .header__menu {
     width: 40rem;
@@ -36,7 +39,7 @@
   }
 }
 
-.home {
+.main {
   & .header__logo {
     color: var(--main-color);
   }
