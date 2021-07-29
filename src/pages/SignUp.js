@@ -10,7 +10,7 @@ import DetailHeader from "../shared/DetailHeader";
 function SignUp(props) {
   return (
     <React.Fragment>
-      <DetailHeader />
+      <DetailHeader {...props} />
       <SignUpForm />
     </React.Fragment>
   );

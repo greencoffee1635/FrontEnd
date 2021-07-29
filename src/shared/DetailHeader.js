@@ -4,10 +4,19 @@ import React from "react";
 import "../css/detailHeader.scss";
 
 function DetailHeader(props) {
+  const { history } = props;
+
   return (
     <>
       <div className="detailHeader">
-        <div className="header__logo">내일 어디가?</div>
+        <div
+          className="header__logo"
+          onClick={() => {
+            history.replace("/");
+          }}
+        >
+          내일 어디가?
+        </div>
       </div>
     </>
   );
