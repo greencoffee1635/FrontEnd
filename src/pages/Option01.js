@@ -5,10 +5,6 @@ import styled from "styled-components";
 import Header from "../shared/Header";
 import Layout from "../shared/Layout";
 
-// components
-
-// css
-
 function Option01(props) {
   return (
     <>

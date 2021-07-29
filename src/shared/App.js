@@ -14,6 +14,7 @@ function App() {
         <Route exact path="/option01" component={Option01} />
         <Route exact path="/detail" component={Detail} />
         {/* 옵션화면 Route */}
+        <Route exact path="/detail" component={Detail} />
       </BrowserRouter>
     </>
   );
