@@ -8,13 +8,13 @@ import Layout from "../shared/Layout";
 import Background from "../components/home/Background";
 
 // css
-import "../css/home.scss";
+import "../css/home/home.scss";
 
 function Home(props) {
   return (
     <>
       {/* page는 home 또는 detail. home은 메인페이지, detail은 나머지페이지 */}
-      <Header page="home" />
+      <Header page="main" />
       <Background />
       {/* <Container justifyContent="center"> */}
       <Layout>

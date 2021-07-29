@@ -1,0 +1,27 @@
+.question {
+  margin: 100px auto 0px;  
+  font-weight: bolder;
+  font-size: 2.5rem;
+  border: 1px soild black; 
+  width: 22vw;
+  height: 8vh;
+ 
+}
+
+.number{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--middleGray);
+  margin: 10px auto;
+}
+
+.center{
+
+  margin: 20px auto;
+  text-align:center;
+  display: flex; 
+  flex-direction: column;
+ 
+}
+
+
