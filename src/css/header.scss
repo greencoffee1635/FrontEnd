@@ -35,16 +35,16 @@
     color: var(--main-color);
   }
   & .header__menu {
-    color: #fff;
+    color: var(--white);
   }
 }
 
 .detail {
   & .header__logo {
-    color: #000;
+    color: var(--black);
   }
   & .header__menu {
-    color: #000;
+    color: var(--black);
   }
 }
 
