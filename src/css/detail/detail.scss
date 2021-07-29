@@ -88,7 +88,7 @@
   }
 }
 
-.tempbox {
+.temp-area {
   width: 40rem;
   display: flex;
   flex-direction: column;
@@ -104,7 +104,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: rgba(29, 198, 209);
+  background-color: var(--main-color);
   // background-color: #1dc6d1;
   border-radius: 0.4em;
   margin-right: 1.3rem;
@@ -120,7 +120,7 @@
   width: 0;
   height: 0;
   border: 20px solid transparent;
-  border-top-color: rgba(29, 198, 209);
+  border-top-color: var(--main-color);
   border-bottom: 0;
   margin-left: -20px;
   margin-bottom: -20px;
@@ -164,10 +164,6 @@
     align-self: flex-end;
     margin-right: 1rem;
   }
-}
-
-.mapbox {
-  width: 160.5rem;
 }
 
 .videolist {

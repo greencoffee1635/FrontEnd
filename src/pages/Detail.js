@@ -1,17 +1,18 @@
 import React from "react";
-import styled from "styled-components";
 
 // shared
 import Header from "../shared/Header";
 import Layout from "../shared/Layout";
 
 import "../css/detail/detail.scss";
+import VideoSwiper from "../components/detail/Swiper";
 
 function Detail(props) {
   return (
     <>
       <Header page="home" />
       <div className="headimage" alt="WTGT"></div>
+
       <Layout page="detail">
         <section className="first-box">
           <h1 className="hello">
@@ -48,7 +49,7 @@ function Detail(props) {
                 </li>
               </ul>
             </div>
-            <div className="tempbox">
+            <div className="temp-area">
               <div className="tempspeech">화창한 날씨! 행복한 여행되세요:)</div>
               <div className="tempcontent">
                 <div className="tempcity">
@@ -67,11 +68,13 @@ function Detail(props) {
               </div>
             </div>
           </div>
-          <div className="videolist"></div>
+          <div className="videolist">
+            <VideoSwiper />
+          </div>
         </section>
         <section className="map-box">
           <div className="map-area"></div>
-          <div className="schedule"></div>
+          <div className="schedule">Schedule</div>
         </section>
         <section className="what-else">
           <div>
