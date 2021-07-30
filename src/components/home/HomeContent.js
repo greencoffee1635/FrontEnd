@@ -66,9 +66,9 @@ const StartBtn = styled.button`
   height: 74px;
   border: none;
   border-radius: 125px;
-  background-color: var(--main-color);
+  background-color: #1dc6d1;
   font-size: 28px;
-  color: var(--white);
+  color: #fff;
 
   &:hover {
     cursor: pointer;
