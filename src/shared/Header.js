@@ -27,16 +27,19 @@ function Header(props) {
         </HeaderLogo>
         <HeaderMenu className="header__menu">
           <HeaderMenuItem>
-            <span></span>Home
+            <div></div>
+            <span>Home</span>
           </HeaderMenuItem>
           <HeaderMenuItem>
-            <span></span>Explore
+            <div></div>
+            <span>Explore</span>
           </HeaderMenuItem>
           <HeaderMenuItem>
-            <span onClick={LoginModalOpen}>Login</span>
+            <div onClick={LoginModalOpen}></div>
             {loginModal && (
               <LoginModal {...props} LoginModalClose={LoginModalClose} />
             )}
+            <span>Login</span>
             {/* {loginModal === true ? (
                 <LoginModal close={LoginModalClose} />
               ) : null} */}
@@ -58,6 +61,11 @@ const Container = styled.div`
   align-items: center;
   padding-top: 26px;
   z-index: 99;
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    display: inline;
+  }
 `;
 
 const HeaderLogo = styled.div`
@@ -67,6 +75,10 @@ const HeaderLogo = styled.div`
   &:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const HeaderMenu = styled.ul`
@@ -74,6 +86,16 @@ const HeaderMenu = styled.ul`
   display: flex;
   justify-content: space-between;
   color: #fff;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 83px;
+    background-color: #fff;
+    color: #000;
+  }
 `;
 
 const HeaderMenuItem = styled.li`
@@ -85,6 +107,16 @@ const HeaderMenuItem = styled.li`
   &:hover {
     cursor: pointer;
     color: #1dc6d1;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+    & div {
+      width: 30px;
+      height: 28px;
+      background-color: #c4c4c4;
+      margin: 5px auto 5px;
+    }
   }
 `;
 
