@@ -19,13 +19,14 @@ function Header(props) {
     <>
       <Container>
         <HeaderLogo
+          page={props.page}
           onClick={() => {
             history.push("/");
           }}
         >
           내일 어디가?
         </HeaderLogo>
-        <HeaderMenu className="header__menu">
+        <HeaderMenu page={props.page}>
           <HeaderMenuItem>
             <div></div>
             <span>Home</span>
@@ -35,11 +36,11 @@ function Header(props) {
             <span>Explore</span>
           </HeaderMenuItem>
           <HeaderMenuItem>
-            <div onClick={LoginModalOpen}></div>
+            <div></div>
+            <span onClick={LoginModalOpen}>Login</span>
             {loginModal && (
               <LoginModal {...props} LoginModalClose={LoginModalClose} />
             )}
-            <span>Login</span>
             {/* {loginModal === true ? (
                 <LoginModal close={LoginModalClose} />
               ) : null} */}
@@ -71,7 +72,7 @@ const Container = styled.div`
 const HeaderLogo = styled.div`
   font-size: 22px;
   font-weight: 700;
-  color: #1dc6d1;
+  color: ${(props) => (props.page === "main" ? "#1dc6d1" : "#000")};
   &:hover {
     cursor: pointer;
   }
@@ -85,7 +86,7 @@ const HeaderMenu = styled.ul`
   width: 40rem;
   display: flex;
   justify-content: space-between;
-  color: #fff;
+  color: ${(props) => (props.page === "main" ? "#fff" : "#000")};
 
   @media screen and (max-width: 768px) {
     position: fixed;
