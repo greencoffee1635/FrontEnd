@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import classNames from "classnames";
-
-// css
-import headerStyles from "../css/header.scss";
+import styled from "styled-components";
 
 //components
 import LoginModal from "../components/LoginModalForm";
-
-const cx = classNames.bind(headerStyles);
 
 function Header(props) {
   const { history } = props;
@@ -21,40 +16,76 @@ function Header(props) {
   };
 
   return (
-    <React.Fragment>
-      <>
-        <div className={cx("header", `${props.page}`)}>
-          <div
-            className="header__logo"
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            내일 어디가?
-          </div>
-          <ul className="header__menu">
-            <li className="header__menu-item">
-              <div></div>Home
-            </li>
-            <li className="header__menu-item">
-              <div></div>Explore
-            </li>
-            <li className="header__menu-item">
-              <span className="loginBtn" onClick={LoginModalOpen}>
-                Login
-              </span>
-              {loginModal && (
-                <LoginModal {...props} LoginModalClose={LoginModalClose} />
-              )}
-              {/* {loginModal === true ? (
+    <>
+      <Container>
+        <HeaderLogo
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          내일 어디가?
+        </HeaderLogo>
+        <HeaderMenu className="header__menu">
+          <HeaderMenuItem>
+            <span></span>Home
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <span></span>Explore
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <span onClick={LoginModalOpen}>Login</span>
+            {loginModal && (
+              <LoginModal {...props} LoginModalClose={LoginModalClose} />
+            )}
+            {/* {loginModal === true ? (
                 <LoginModal close={LoginModalClose} />
               ) : null} */}
-            </li>
-          </ul>
-        </div>
-      </>
-    </React.Fragment>
+          </HeaderMenuItem>
+        </HeaderMenu>
+      </Container>
+    </>
   );
 }
+
+const Container = styled.div`
+  position: fixed;
+  width: 69%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 26px;
+  z-index: 99;
+`;
+
+const HeaderLogo = styled.div`
+  font-size: 22px;
+  font-weight: 700;
+  color: #1dc6d1;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const HeaderMenu = styled.ul`
+  width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+`;
+
+const HeaderMenuItem = styled.li`
+  width: 33%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+    color: #1dc6d1;
+  }
+`;
 
 export default Header;
