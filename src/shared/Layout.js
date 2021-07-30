@@ -1,17 +1,28 @@
 import React from "react";
-import classNames from "classnames";
+import styled from "styled-components";
 
-// css
-import styles from "../css/layout.scss";
-
-const cx = classNames.bind(styles);
-
-function Container(props) {
+function Layout(props) {
   return (
     <>
-      <div className={cx("container", props.page)}>{props.children}</div>
+      <Container>{props.children}</Container>
     </>
   );
 }
+
+const Container = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+
+  @media screen and (max-width: 768px) {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+`;
 
 export default Container;

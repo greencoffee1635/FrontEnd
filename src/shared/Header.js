@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import classNames from "classnames";
-
-// css
-import headerStyles from "../css/header.scss";
+import styled from "styled-components";
 
 //components
 import LoginModal from "../components/LoginModalForm";
-
-const cx = classNames.bind(headerStyles);
 
 function Header(props) {
   const { history } = props;
@@ -21,40 +16,109 @@ function Header(props) {
   };
 
   return (
-    <React.Fragment>
-      <>
-        <div className={cx("header", `${props.page}`)}>
-          <div
-            className="header__logo"
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            내일 어디가?
-          </div>
-          <ul className="header__menu">
-            <li className="header__menu-item">
-              <div></div>Home
-            </li>
-            <li className="header__menu-item">
-              <div></div>Explore
-            </li>
-            <li className="header__menu-item">
-              <span className="loginBtn" onClick={LoginModalOpen}>
-                Login
-              </span>
-              {loginModal && (
-                <LoginModal {...props} LoginModalClose={LoginModalClose} />
-              )}
-              {/* {loginModal === true ? (
+    <>
+      <Container>
+        <HeaderLogo
+          page={props.page}
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          내일 어디가?
+        </HeaderLogo>
+        <HeaderMenu page={props.page}>
+          <HeaderMenuItem>
+            <div></div>
+            <span>Home</span>
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <div></div>
+            <span>Explore</span>
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <div></div>
+            <span onClick={LoginModalOpen}>Login</span>
+            {loginModal && (
+              <LoginModal {...props} LoginModalClose={LoginModalClose} />
+            )}
+            {/* {loginModal === true ? (
                 <LoginModal close={LoginModalClose} />
               ) : null} */}
-            </li>
-          </ul>
-        </div>
-      </>
-    </React.Fragment>
+          </HeaderMenuItem>
+        </HeaderMenu>
+      </Container>
+    </>
   );
 }
+
+const Container = styled.div`
+  position: fixed;
+  width: 69%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 26px;
+  z-index: 99;
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    display: inline;
+  }
+`;
+
+const HeaderLogo = styled.div`
+  font-size: 22px;
+  font-weight: 700;
+  color: ${(props) => (props.page === "main" ? "#1dc6d1" : "#000")};
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+  }
+`;
+
+const HeaderMenu = styled.ul`
+  width: 40rem;
+  display: flex;
+  justify-content: space-between;
+  color: ${(props) => (props.page === "main" ? "#fff" : "#000")};
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 83px;
+    background-color: #fff;
+    color: #000;
+  }
+`;
+
+const HeaderMenuItem = styled.li`
+  width: 33%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+
+  &:hover {
+    cursor: pointer;
+    color: #1dc6d1;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 10px;
+    & div {
+      width: 30px;
+      height: 28px;
+      background-color: #c4c4c4;
+      margin: 5px auto 5px;
+    }
+  }
+`;
 
 export default Header;
