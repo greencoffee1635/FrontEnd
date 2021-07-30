@@ -96,19 +96,19 @@
         color: var(--white);
         margin-bottom: 10px;
       }
-      // @media screen and (max-width: 768px) {
-      //   .signUpBtn {
-      //     margin: 0 auto;
-      //     width: 86vw;
-      //     height: 7vh;
-      //     position: absolute;
-      //     bottom: 14vh;
-      //     left: 0;
-      //     right: 0;
-      //     font-size: 20px;
-      //     font-weight: 600;
-      //   }
-      // }
+      @media screen and (max-width: 768px) {
+        .signUpBtn {
+          margin: 0 auto;
+          width: 86vw;
+          height: 7vh;
+          position: absolute;
+          bottom: 14vh;
+          left: 0;
+          right: 0;
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
     }
     & .signupTextWrap {
       font-weight: 400;

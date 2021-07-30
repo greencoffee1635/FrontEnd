@@ -1,8 +1,5 @@
 import React from "react";
 
-//css
-import "../css/signup.scss";
-
 //component
 import SignUpForm from "../components/SignUpForm";
 import DetailHeader from "../shared/DetailHeader";
