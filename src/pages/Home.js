@@ -13,7 +13,7 @@ function Home(props) {
   return (
     <>
       {/* page는 home 또는 detail. home은 메인페이지, detail은 나머지페이지 */}
-      <Header page="main" {...props} />
+      <Header {...props} />
       <Background />
       <Layout page="home">
         <HomeContent {...props} />
