@@ -10,7 +10,7 @@ import VideoSwiper from "../components/detail/Swiper";
 function Detail(props) {
   return (
     <>
-      <Header page="home" />
+      <Header page="main" {...props} />
       <div className="headimage" alt="WTGT"></div>
 
       <Layout page="detail">

@@ -5,6 +5,8 @@ import kakao from "../images/kakao.png";
 import email from "../images/email.png";
 
 const LoginModal = (props, { close }) => {
+  const { LoginModalClose, history } = props;
+
   return (
     <Container
     // onClick={() => {
