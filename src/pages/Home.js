@@ -14,7 +14,7 @@ function Home(props) {
       {/* page는 home 또는 detail. home은 메인페이지, detail은 나머지페이지 */}
       <Header page="main" {...props} />
       <Background />
-      <Layout>
+      <Layout page="main">
         <HomeContent {...props} />
       </Layout>
     </>

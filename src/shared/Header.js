@@ -5,7 +5,7 @@ import styled from "styled-components";
 import LoginModal from "../components/LoginModalForm";
 
 function Header(props) {
-  const { history } = props;
+  const { history, bgColor } = props;
   const [loginModal, setLogin] = useState(false);
 
   const LoginModalOpen = () => {
@@ -17,51 +17,59 @@ function Header(props) {
 
   return (
     <>
-      <Container>
-        <HeaderLogo
-          page={props.page}
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          내일 어디가?
-        </HeaderLogo>
-        <HeaderMenu page={props.page}>
-          <HeaderMenuItem>
-            <div></div>
-            <span>Home</span>
-          </HeaderMenuItem>
-          <HeaderMenuItem>
-            <div></div>
-            <span>Explore</span>
-          </HeaderMenuItem>
-          <HeaderMenuItem>
-            <div></div>
-            <span onClick={LoginModalOpen}>Login</span>
-            {loginModal && (
-              <LoginModal {...props} LoginModalClose={LoginModalClose} />
-            )}
-            {/* {loginModal === true ? (
+      <HeaderLayout bgColor={bgColor}>
+        <Container>
+          <HeaderLogo
+            page={props.page}
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            내일 어디가?
+          </HeaderLogo>
+
+          <HeaderMenu page={props.page}>
+            <HeaderMenuItem>
+              <div></div>
+              <span>Home</span>
+            </HeaderMenuItem>
+            <HeaderMenuItem>
+              <div></div>
+              <span>Explore</span>
+            </HeaderMenuItem>
+            <HeaderMenuItem>
+              <div></div>
+              <span onClick={LoginModalOpen}>Login</span>
+              {loginModal && (
+                <LoginModal {...props} LoginModalClose={LoginModalClose} />
+              )}
+              {/* {loginModal === true ? (
                 <LoginModal close={LoginModalClose} />
               ) : null} */}
-          </HeaderMenuItem>
-        </HeaderMenu>
-      </Container>
+            </HeaderMenuItem>
+          </HeaderMenu>
+        </Container>
+      </HeaderLayout>
     </>
   );
 }
+const HeaderLayout = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84px;
+  z-index: 99;
+  ${(props) => (props.bgColor ? "background-color: #909090;" : "")}
+`;
 
 const Container = styled.div`
-  position: fixed;
   width: 69%;
   margin: 0 auto;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 26px;
-  z-index: 99;
 
   @media screen and (max-width: 768px) {
     width: 90%;
