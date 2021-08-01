@@ -1,55 +1,46 @@
 import React from "react";
 import styled from "styled-components";
 
-import search from "../../images/search.png";
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
 import whiteArrowRight from "../../images/whiteArrowRight.png";
 
 // shared
 import Header from "../../shared/Header";
 
+
 // components
 
-// css
-
-
-function Option04 (props) {
-  return (
+function Option05(props) {
+  return(
     <>
       <Header {...props} />
       <Container>
+
         <Box>
-          <Number>4/7</Number>
-          <Question>어디에서 출발하시나요?</Question>
+          <Number>5/7</Number>
+          <Question>여행지는 결정하셨나요?</Question>
         </Box>
 
-        <SearchBox>
-          <SearchAddress
-            placeholder="  시/구까지 입력해주세요"
-          >
-          </SearchAddress>
-
-          <SearchButton>
-          <img src={search} alt="" width="26px"/>
-          </SearchButton>
-        </SearchBox>
+        <AnswerBox>
+          <AnswerButton>네! 결정했어요.</AnswerButton>
+          <AnswerButton>아니요. 결정하지 못했어요.</AnswerButton>
+        </AnswerBox>
 
         <PageMoveBox>
           <PastButton
-            onClick={() => {props.history.push("/Option03");}}
+            onClick={() => {props.history.push("/Option04");}}
           >
             <img src={whiteArrowLeft} alt="" width="35px"/>
           </PastButton>
 
           <NextButton
-            onClick={() => {props.history.push("/Option05");}}
+            onClick={() => {props.history.push("/Option06_0");}}
           >
             <div>
-            <Text>
-              다음으로 
-              <img src={whiteArrowRight} alt="" width="40px" style={{marginTop: "-7px"}}/>
-            </Text>
-
+              <Text>
+                다음으로 
+                <img src={whiteArrowRight} alt="" width="40px" style={{marginTop: "-7px"}}/>
+              </Text>
             </div>
           </NextButton>
         </PageMoveBox>
@@ -90,49 +81,28 @@ const Question = styled.p`
   height: 8vh;
 `;
 
-const SearchBox = styled.div`
-  width: 26vw;
-  height: 7.5vh;
-  border-radius: 125px;
-  display: block;
-  margin: 30px auto;
-  box-sizing:border-box;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
-`;
-
-const SearchAddress = styled.input`
+const AnswerBox = styled.div`
   width: 22vw;
   height: 6vh;
-  border: 2px solid rgba(29,198,209,0.6);
-  border-radius: 125px;
-  padding: 0px 0px 0px 20px;
-  font-size: 1.5rem;
-  font-color: #BBBBBB;
-  text-align: 10px left;
-  :focus {
-    outline:none;
-  }
+  margin: 20px auto;
 `;
 
-const SearchButton = styled.button`
-  width: 3vw;
+const AnswerButton = styled.button`
+  width: 22vw;
   height: 6vh;
-  color: rgba(29,198,209,0.6);
-  background-color: #fff;
   border: none;
-  border-radius: 30px;
-  padding: px;
-  margin: 1px 0px 0px -50px;
-  position:"absolute"
+  border-radius: 125px;
+  color: #909090;
+  font-size: 1.5rem;
+  // dispaly: block;
+  margin: 9px auto;
+  cursor: pointer;
 `;
 
 const PageMoveBox = styled.div`
   width: 22vw;
   height: 7vh;
-  margin: 328px auto ;
+  margin: 349px auto ;
   // border: 1px solid black;
 `;
 
@@ -166,6 +136,4 @@ const Text = styled.text`
   display: flex;
 `;
 
-export default Option04;
-
-
+export default Option05;

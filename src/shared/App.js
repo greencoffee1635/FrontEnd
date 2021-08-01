@@ -5,9 +5,16 @@ import { Route, BrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 
 import Option01 from "../components/option/Option01";
-import option02 from "../components/option/option02";
-import option03 from "../components/option/option03";
-import option04 from "../components/option/option04";
+import Option02 from "../components/option/Option02";
+import Option03 from "../components/option/Option03";
+import Option04 from "../components/option/Option04";
+import Option05 from "../components/option/Option05";
+import Option06_0 from "../components/option/Option06_0";
+import Option06_1 from "../components/option/Option06_1";
+import Option07 from "../components/option/Option07";
+
+import Calendar from "../components/option/Calendar";
+
 import Detail from "../pages/Detail";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
@@ -18,10 +25,19 @@ function App() {
     <>
       <BrowserRouter>
         <Route exact path="/" component={Home} />
+        
         <Route exact path="/option01" component={Option01} />
-        <Route exact path="/option02" component={option02} />
-        <Route exact path="/option03" component={option03} />
-        <Route exact path="/option04" component={option04} />
+        <Route exact path="/option02" component={Option02} />
+        <Route exact path="/option03" component={Option03} />
+        <Route exact path="/option04" component={Option04} />
+        <Route exact path="/option05" component={Option05} />
+        <Route exact path="/option06_0" component={Option06_0} />
+        <Route exact path="/option06_1" component={Option06_1} />
+        <Route exact path="/option07" component={Option07} />
+
+
+        <Route exact path="/c" component={Calendar} />
+
         <Route exact path="/detail" component={Detail} />
         <Route exact path="/join" component={SignUp} />
         <Route exact path="/login" component={Login} />
