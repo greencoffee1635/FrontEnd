@@ -12,8 +12,12 @@ const detailSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: {
-    [getTourInfo.fulfilled]: (state, actions) => {
-      console.log(actions);
+    [getTourInfo.pending]: (state, action) => {
+      state.isFetching = true;
+    },
+    [getTourInfo.fulfilled]: (state, action) => {
+      state.tourList = action.payload.data;
+      state.isFetching = false;
     },
   },
 });

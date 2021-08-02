@@ -39,7 +39,7 @@ const DetailVideo = (props) => {
       <SliderContainer>
         <Slider {...settings}>
           {images.map((image, idx) => (
-            <Div>
+            <Div key={idx}>
               <SlideImage src={image.src} />
             </Div>
           ))}

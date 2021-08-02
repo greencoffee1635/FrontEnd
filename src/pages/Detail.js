@@ -16,14 +16,11 @@ import DetailAbout from "../components/detail/DetailAbout";
 import DetailVideo from "../components/detail/DetailVideo";
 import DetailMap from "../components/detail/DetailMap";
 import DetailWhatElse from "../components/detail/DetailWhatElse";
+import SaveButton from "../components/detail/SaveButton";
 
 function Detail(props) {
   const dispatch = useDispatch();
   const [navBar, setNavBar] = useState(false);
-
-  useEffect(() => {
-    dispatch(getTourInfo());
-  }, []);
 
   const changeHeaderBackground = () => {
     if (window.scrollY >= 400) {
@@ -33,7 +30,19 @@ function Detail(props) {
     }
   };
 
-  window.addEventListener("scroll", changeHeaderBackground);
+  useEffect(() => {
+    window.addEventListener("scroll", changeHeaderBackground);
+
+    return () => {
+      window.removeEventListener("scroll", changeHeaderBackground);
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(getTourInfo());
+  }, []);
+
+  const tourList = useSelector((state) => state.detail.tourList);
 
   return (
     <>
@@ -51,12 +60,16 @@ function Detail(props) {
         </VideoBox>
 
         <MapBox>
-          <DetailMap />
+          <DetailMap tourList={tourList} />
         </MapBox>
 
         <WhatElseContents>
           <DetailWhatElse />
         </WhatElseContents>
+
+        <BottomButton>
+          <SaveButton />
+        </BottomButton>
       </Layout>
 
       <UpBtn
@@ -116,6 +129,14 @@ const HeadImage = styled.div`
     url("https://waynabox.com/assets/road/routes_upfold_photo_hd.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+`;
+
+const BottomButton = styled.div`
+  width: 526px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 254px;
+  padding-bottom: 100px;
 `;
 
 export default Detail;
