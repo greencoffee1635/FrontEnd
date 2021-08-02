@@ -4,9 +4,13 @@ import { combineReducers } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+// reducer
+import detailSlice from "./modules/detailSlice";
+
 export const history = createBrowserHistory();
 
 const reducer = combineReducers({
+  detail: detailSlice.reducer,
   router: connectRouter(history),
 });
 

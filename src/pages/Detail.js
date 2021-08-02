@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { AiOutlineArrowUp } from "react-icons/ai";
+
+// async
+import { getTourInfo } from "../redux/async/detail";
 
 // shared
 import Header from "../shared/Header";
@@ -14,7 +18,12 @@ import DetailMap from "../components/detail/DetailMap";
 import DetailWhatElse from "../components/detail/DetailWhatElse";
 
 function Detail(props) {
+  const dispatch = useDispatch();
   const [navBar, setNavBar] = useState(false);
+
+  useEffect(() => {
+    dispatch(getTourInfo());
+  }, []);
 
   const changeHeaderBackground = () => {
     if (window.scrollY >= 400) {
