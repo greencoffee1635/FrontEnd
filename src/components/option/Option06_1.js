@@ -8,37 +8,29 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 import Header from "../../shared/Header";
 
 
+// components
 
-function Option02 (props) {
-  return (
+function Option06_1(props) {
+  return(
     <>
       <Header {...props} />
       <Container>
 
         <Box>
-          <Number>2/7</Number>
-          <Question>누구와 함께 하시나요?</Question>
+          <Number>6/7</Number>
+          <Question>관심있는 지역을 선택해주세요</Question>
         </Box>
 
-        <ButtonBox>
-          <WithButton>솔로</WithButton>
-          <WithButton>친구</WithButton>
-        </ButtonBox>
-
-        <ButtonBox>
-          <WithButton>연인</WithButton>
-          <WithButton>가족</WithButton>
-        </ButtonBox>
 
         <PageMoveBox>
           <PastButton
-            onClick={() => {props.history.push("/Option01");}}
+            onClick={() => {props.history.push("/Option05");}}
           >
             <img src={whiteArrowLeft} alt="" width="35px"/>
           </PastButton>
 
           <NextButton
-            onClick={() => {props.history.push("/Option03");}}
+            onClick={() => {props.history.push("/Option07");}}
           >
             <div>
               <Text>
@@ -48,6 +40,7 @@ function Option02 (props) {
             </div>
           </NextButton>
         </PageMoveBox>
+
       </Container>
     </>
   );
@@ -60,7 +53,7 @@ const Container = styled.div`
   transform: translate(-50%,-50%);
   width: 26.26vw;
   height: 75%;
-  // border: 1px solid black;
+  border: 1px solid black;
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
@@ -68,6 +61,7 @@ const Container = styled.div`
 `;
 
 const Box = styled.div`
+  // width: 26.26vw;
 `;
 
 const Number = styled.p`
@@ -80,36 +74,14 @@ const Number = styled.p`
 const Question = styled.p`
   font-weight: bolder;
   font-size: 2.5rem;
-  width: 22vw;
+  width: 23vw;
   height: 8vh;
-`;
-
-const ButtonBox = styled.div`
-  width: 19.5vw;
-  height: 20vh;
-  display: block;
-  margin: auto;
-  // border: 1px solid black;
-`;
-
-const WithButton = styled.button`
-  width: 8.4vw;
-  height: 17vh;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 30px;
-  margin: 10px 10px;
-  cursor: pointer;
-  &:hover{
-    background-color: rgba(29,198,209,0.3);
-  }
 `;
 
 const PageMoveBox = styled.div`
   width: 22vw;
   height: 7vh;
-  margin: 113px auto ;
+  margin: 325px auto ;
   // border: 1px solid black;
 `;
 
@@ -143,5 +115,4 @@ const Text = styled.text`
   display: flex;
 `;
 
-export default Option02;
-
+export default Option06_1;

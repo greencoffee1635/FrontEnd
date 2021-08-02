@@ -41,7 +41,9 @@ function Detail(props) {
           <DetailVideo />
         </VideoBox>
 
-        <MapBox>{/* <DetailMap /> */}</MapBox>
+        <MapBox>
+          <DetailMap />
+        </MapBox>
 
         <WhatElseContents>
           <DetailWhatElse />
