@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
 import whiteArrowRight from "../../images/whiteArrowRight.png";
-
+import ToggleButton from "./ToggleButton";
 
 // shared
 import Header from "../../shared/Header";
@@ -13,6 +13,9 @@ import Calendar from "./Calendar";
 // css
 
 function Option03 (props) {
+
+  // const StartDate =
+
   return (
     <>
       <Header {...props} />
@@ -26,8 +29,10 @@ function Option03 (props) {
 
         <Line/>
 
-        <SubQuestion>아직 미정이신가요?</SubQuestion>
-
+        <div>
+          <SubQuestion>아직 미정이신가요?</SubQuestion>
+          <ToggleButton/>
+        </div> 
         <PageMoveBox>
           <PastButton
             onClick={() => {props.history.push("/Option02");}}

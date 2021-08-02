@@ -1,4 +1,5 @@
-import React from "react";
+import React,{ useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import whiteArrowRight from "../../images/whiteArrowRight.png";
@@ -10,6 +11,10 @@ import Header from "../../shared/Header";
 // components
 
 function Option01(props) {
+
+  // const [clickButton, ]
+
+
   return(
     <>
       <Header {...props} />
@@ -107,6 +112,10 @@ const GenderButton = styled.button`
   margin: 15px 40px;
   justify-content: center;
   cursor: pointer;
+  &:hover{
+    background-color: rgba(29,198,209,0.3);
+    color: #1DC6D1;
+  }
 `;
 
 // const TextBox = styled.div`
@@ -144,6 +153,9 @@ const AgeButton = styled.button`
   border-radius: 5px;
   margin: 2px 2px;
   cursor: pointer;
+  &:hover{
+    background-color: rgba(29,198,209,0.3);
+  }
 `;
 
 const NextButton = styled.button`

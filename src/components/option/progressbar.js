@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-funtion ProgressBar() {
+// funtion ProgressBar() {
 
-    const [currentStep, updateCurrentStep] = useState(1);
+//     const [currentStep, updateCurrentStep] = useState(1);
     
-    return (
-        <div>
+//     return (
+//         <div>
             
-        </div>
-    );
-}
+//         </div>
+//     );
+// }

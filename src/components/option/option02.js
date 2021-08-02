@@ -101,6 +101,9 @@ const WithButton = styled.button`
   border-radius: 30px;
   margin: 10px 10px;
   cursor: pointer;
+  &:hover{
+    background-color: rgba(29,198,209,0.3);
+  }
 `;
 
 const PageMoveBox = styled.div`

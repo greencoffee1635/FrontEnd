@@ -14,6 +14,9 @@ import Header from "../../shared/Header";
 
 
 function Option04 (props) {
+
+  console.log(props)
+
   return (
     <>
       <Header {...props} />

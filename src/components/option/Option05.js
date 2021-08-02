@@ -97,6 +97,11 @@ const AnswerButton = styled.button`
   // dispaly: block;
   margin: 9px auto;
   cursor: pointer;
+  &:hover{
+    background-color: rgba(29,198,209,0.3);
+    color: #1DC6D1;
+    opacity: 0.8;
+  }
 `;
 
 const PageMoveBox = styled.div`

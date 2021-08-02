@@ -113,6 +113,11 @@ const PickButton = styled.button`
   border: none;
   border-radius: 30px;
   cursor: pointer;
+  &:hover{
+    background-color: rgba(29,198,209,0.3);
+    color: #1DC6D1;
+    }
+  }
 `;
 
 const Line = styled.hr`
