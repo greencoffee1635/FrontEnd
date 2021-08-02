@@ -52,7 +52,7 @@ const UserNick = styled.div`
 
 const InfoSuggest = styled.div`
   margin-top: 10px;
-  color: #313131;
+  color: #484848;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.2;
