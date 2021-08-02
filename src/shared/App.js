@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
+import GlobalStyle from "./GlobalStyle";
 
 // pages
 import Home from "../pages/Home";
@@ -16,6 +17,7 @@ import LoginModal from "../components/LoginModalForm";
 function App() {
   return (
     <>
+      <GlobalStyle />
       <BrowserRouter>
         <Route exact path="/" component={Home} />
         <Route exact path="/option01" component={Option01} />

@@ -12,7 +12,6 @@ function Detail(props) {
     <>
       <Header page="main" {...props} />
       <HeadImage></HeadImage>
-
       <Layout page="detail">
         <FirstBox>
           <Hello>
@@ -117,6 +116,7 @@ const HeadImage = styled.div`
 `;
 
 const FirstBox = styled.div`
+  letter-spacing: -1.5px;
   width: 106rem;
   margin-top: 33rem;
   justify-content: center;
@@ -125,7 +125,7 @@ const FirstBox = styled.div`
 `;
 
 const Hello = styled.h1`
-  font-size: 7rem;
+  font-size: 7.5rem;
   font-weight: bold;
   display: flex;
   justify-content: flex-end;
@@ -156,7 +156,6 @@ const About = styled.h1`
 const Aboutcontent = styled.p`
   width: 52rem;
   font-size: 1.8rem;
-  font-weight: 500;
   line-height: 1.8;
   margin-top: 10px;
 `;
@@ -167,7 +166,6 @@ const Tag = styled.ul`
   flex-direction: row;
   font-size: 2rem;
   padding: 1.5rem 0 0 0;
-  font-weight: medium;
   & > li {
     margin-right: 1rem;
   }
@@ -189,7 +187,8 @@ const TempArea = styled.div`
 const Tempspeech = styled.div`
   width: 27rem;
   height: 5.5rem;
-  font-size: 1.71rem;
+  font-size: 1.7rem;
+  font-weight: 600;
   color: white;
   text-align: center;
   display: flex;
@@ -197,7 +196,7 @@ const Tempspeech = styled.div`
   align-items: center;
   position: relative;
   background-color: var(--main-color);
-  border-radius: 0.4em;
+  border-radius: 0.4rem;
   margin-right: 1.3rem;
   left: 30%;
   opacity: 0.9;
@@ -226,14 +225,14 @@ const Tempcontent = styled.div`
   background-color: #e5e5e5;
   flex-direction: column;
   border-radius: 1.5rem;
-  padding: 2rem;
+  padding: 2.1rem 3rem 3.6rem 2rem;
 `;
 
 const TempCity = styled.div`
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: black;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.4;
   & > span:first-child {
     font-size: 2.75rem;
   }
@@ -243,15 +242,19 @@ const Temperature = styled.div`
   display: flex;
   height: 100%;
   font-weight: 600;
+  margin-top: -2rem;
   justify-content: flex-end;
-  & > div:last-child {
-    font-size: 7rem;
-    align-self: flex-end;
-  }
   & > div:first-child {
-    font-size: 2rem;
+    color: #313131;
+    font-size: 1.8rem;
     align-self: flex-end;
-    margin-right: 1rem;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  & > div:last-child {
+    font-size: 9rem;
+    align-self: flex-end;
   }
 `;
 
