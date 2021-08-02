@@ -43,6 +43,7 @@ function Detail(props) {
   }, []);
 
   const tourList = useSelector((state) => state.detail.tourList);
+  console.log("Detail", tourList);
 
   return (
     <>
@@ -60,7 +61,7 @@ function Detail(props) {
         </VideoBox>
 
         <MapBox>
-          <DetailMap tourList={tourList} />
+          <DetailMap />
         </MapBox>
 
         <WhatElseContents>
