@@ -39,7 +39,7 @@ const Schedule = styled.li`
   font-size: 23px;
   line-height: 28px;
   list-style: inside;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 
   &:hover {
     cursor: pointer;

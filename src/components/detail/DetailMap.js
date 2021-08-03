@@ -147,7 +147,7 @@ const Schedule = styled.div`
 const ScheduleTitle = styled.h1`
   font-size: 55px;
   font-weight: 600;
-  margin: 0px 0px 96px 0px;
+  margin: 0px 0px 60px 0px;
 `;
 
 const ScheduleList = styled.ul`
@@ -157,8 +157,18 @@ const ScheduleList = styled.ul`
   overflow: auto;
 
   &::-webkit-scrollbar {
-    display: none;
+    background-color: #f2f2f2;
+    width: 10px;
+    border-radius: 5px;
   }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #1dc6d1;
+    border-radius: 5px;
+  }
+  /* &::-webkit-scrollbar-track {
+    background-color: grey;
+  } */
 `;
 
 export default DetailMap;
