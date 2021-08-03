@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getTourInfo } from "../async/detail";
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   tourList: [],
   error: null,
 };
@@ -10,14 +10,16 @@ const initialState = {
 const detailSlice = createSlice({
   name: "detail",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    // 여기에 리듀서를 작성해주세요.
+  },
   extraReducers: {
     [getTourInfo.pending]: (state, action) => {
-      state.isFetching = true;
+      state.isLoading = true;
     },
     [getTourInfo.fulfilled]: (state, action) => {
       state.tourList = action.payload.data;
-      state.isFetching = false;
+      state.isLoading = false;
     },
   },
 });

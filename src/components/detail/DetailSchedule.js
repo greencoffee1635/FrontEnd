@@ -4,7 +4,7 @@ import styled from "styled-components";
 // components
 import DetailModal from "./DetailModal";
 
-const DetailSchedule = ({ loc, setViewport }) => {
+const DetailSchedule = ({ list, setViewport }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -20,16 +20,16 @@ const DetailSchedule = ({ loc, setViewport }) => {
       <Schedule
         onClick={() => {
           setViewport({
-            latitude: loc.latitude,
-            longitude: loc.longitude,
+            latitude: parseFloat(list.mapy),
+            longitude: parseFloat(list.mapx),
             level: 5,
           });
           openModal();
         }}
       >
-        {loc.name}
+        {list.title}
       </Schedule>
-      {isModalOpen && <DetailModal loc={loc} closeModal={closeModal} />}
+      {isModalOpen && <DetailModal list={list} closeModal={closeModal} />}
     </>
   );
 };

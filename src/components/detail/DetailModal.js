@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const DetailModal = ({ loc, closeModal }) => {
+const DetailModal = ({ list, closeModal }) => {
   return (
     <>
       <ModalContainer onClick={closeModal}>
         <ScheduleModal onClick={closeModal}>
-          <Image
+          {/* <Image
             src={require("../../images/background_img.jpg").default}
             alt=""
-          />
+          /> */}
+          <Image src={list.firstimage} alt="" />
           <ModalContents>
             <TopContents>
               <PlaceTitle>
-                <h1>{loc.name}</h1>
-                <span>불교사찰</span>
+                <h1>{list.title}</h1>
+                <span>카테고리?</span>
               </PlaceTitle>
               <Grade>
                 <span>4.5</span>
@@ -23,8 +24,8 @@ const DetailModal = ({ loc, closeModal }) => {
               </Grade>
             </TopContents>
             <BottomContents>
-              <div>{loc.address}</div>
-              <div>연중무휴 7:30 - 17:00</div>
+              <div>주소</div>
+              <div>운영시간</div>
             </BottomContents>
           </ModalContents>
         </ScheduleModal>
@@ -77,6 +78,8 @@ const TopContents = styled.div`
 `;
 
 const PlaceTitle = styled.div`
+  width: 198px;
+
   & h1 {
     font-size: 26px;
     font-weight: 700;

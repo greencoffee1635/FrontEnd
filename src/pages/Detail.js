@@ -43,6 +43,7 @@ function Detail(props) {
   }, []);
 
   const tourList = useSelector((state) => state.detail.tourList);
+  const isLoaded = useSelector((state) => state.detail.isLoading);
   // console.log("Detail", tourList);
 
   return (

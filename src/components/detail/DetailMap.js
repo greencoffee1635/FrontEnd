@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 // components
 import DetailSchedule from "./DetailSchedule";
-import DetailModal from "./DetailModal";
 
 const { kakao } = window;
 
 const DetailMap = (props) => {
   const [viewport, setViewport] = useState({
-    latitude: 37.6403324,
-    longitude: 126.9380102,
+    latitude: 37.5334919,
+    longitude: 126.9863622,
     level: 7,
   });
+
+  const tourList = useSelector((state) => state.detail.tourList);
 
   const location = [
     {
@@ -42,30 +44,58 @@ const DetailMap = (props) => {
   ];
 
   useEffect(() => {
-    let mapContainer = document.getElementById("map");
-    let options = {
-      center: new kakao.maps.LatLng(viewport.latitude, viewport.longitude),
-      level: viewport.level,
-    };
+    if (!tourList) {
+      return;
+    } else {
+      var mapContainer = document.getElementById("map");
+      var options = {
+        center: new kakao.maps.LatLng(viewport.latitude, viewport.longitude),
+        level: viewport.level,
+      };
 
-    // map
-    const map = new kakao.maps.Map(mapContainer, options);
+      // map
+      var map = new kakao.maps.Map(mapContainer, options);
+    }
 
     // marker
-    location.forEach((loc) => {
-      const marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
-        title: loc.name,
+    tourList &&
+      tourList.forEach((list) => {
+        const marker = new kakao.maps.Marker({
+          map: map,
+          position: new kakao.maps.LatLng(
+            parseFloat(list.mapy),
+            parseFloat(list.mapx)
+          ),
+          title: list.title,
+        });
+
+        marker.setMap(map);
+
+        // const customOverlay = new kakao.maps.CustomOverlay({
+        //   position: new kakao.maps.LatLng(
+        //     parseFloat(list.mapy),
+        //     parseFloat(list.mapx)
+        //   ),
+        //   zIndex: 3,
+        //   map: map,
+        // });
+        // customOverlay.setMap(map);
       });
 
-      const customOverlay = new kakao.maps.CustomOverlay({
-        position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
-        zIndex: 3,
-        map: map,
-      });
-      customOverlay.setMap(map);
-    });
+    // location.forEach((loc) => {
+    //   const marker = new kakao.maps.Marker({
+    //     map: map,
+    //     position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
+    //     title: loc.name,
+    //   });
+
+    //   const customOverlay = new kakao.maps.CustomOverlay({
+    //     position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
+    //     zIndex: 3,
+    //     map: map,
+    //   });
+    //   customOverlay.setMap(map);
+    // });
   }, [viewport]);
 
   return (
@@ -76,9 +106,14 @@ const DetailMap = (props) => {
           <Schedule>
             <ScheduleTitle>Schedule</ScheduleTitle>
             <ScheduleList>
-              {location.map((loc, idx) => (
-                <DetailSchedule key={idx} loc={loc} setViewport={setViewport} />
-              ))}
+              {tourList &&
+                tourList.map((list, idx) => (
+                  <DetailSchedule
+                    key={idx}
+                    list={list}
+                    setViewport={setViewport}
+                  />
+                ))}
             </ScheduleList>
           </Schedule>
         </MapContainer>
