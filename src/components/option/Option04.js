@@ -1,174 +1,339 @@
+// import React from "react";
+// import styled from "styled-components";
+
+// import search from "../../images/search.png";
+// import whiteArrowLeft from "../../images/whiteArrowLeft.png";
+// import whiteArrowRight from "../../images/whiteArrowRight.png";
+
+// // shared
+// import Header from "../../shared/Header";
+
+// // components
+
+// // css
+
+// function Option04 (props) {
+
+//   console.log(props)
+
+//   return (
+//     <>
+//       <Header {...props} />
+//       <Container>
+//         <Box>
+//           <Number>4/7</Number>
+//           <Question>어디에서 출발하시나요?</Question>
+//         </Box>
+
+//         <SearchBox>
+//           <SearchAddress
+//             placeholder="  시/구까지 입력해주세요"
+//           >
+//           </SearchAddress>
+
+//           <SearchButton>
+//           <img src={search} alt="" width="26px"/>
+//           </SearchButton>
+//         </SearchBox>
+
+//         <PageMoveBox>
+//           <PastButton
+//             onClick={() => {props.history.push("/Option03");}}
+//           >
+//             <img src={whiteArrowLeft} alt="" width="35px"/>
+//           </PastButton>
+
+//           <NextButton
+//             onClick={() => {props.history.push("/Option05");}}
+//           >
+//             <div>
+//             <Text>
+//               다음으로
+//               <img src={whiteArrowRight} alt="" width="40px" style={{marginTop: "-7px"}}/>
+//             </Text>
+
+//             </div>
+//           </NextButton>
+//         </PageMoveBox>
+
+//       </Container>
+//     </>
+//   );
+// };
+
+// const Container = styled.div`
+//   position: absolute;
+//   left: 50%;
+//   top: 50%;
+//   transform: translate(-50%,-50%);
+//   width: 26.26vw;
+//   height: 75%;
+//   // border: 1px solid black;
+//   // display: flex;
+//   // flex-direction: column;
+//   // justify-content: center;
+//   // align-items: center;
+// `;
+
+// const Box = styled.div`
+// `;
+
+// const Number = styled.p`
+//   font-size: 1.5rem;
+//   font-weight: bold;
+//   color: #BBBBBB;
+//   margin: 10px auto;
+// `;
+
+// const Question = styled.p`
+//   font-weight: bolder;
+//   font-size: 2.5rem;
+//   width: 22vw;
+//   height: 8vh;
+// `;
+
+// const SearchBox = styled.div`
+//   width: 26vw;
+//   height: 7.5vh;
+//   border-radius: 125px;
+//   display: block;
+//   margin: 30px auto;
+//   box-sizing:border-box;
+//   display:flex;
+//   justify-content:center;
+//   align-items:center;
+//   position:relative;
+// `;
+
+// const SearchAddress = styled.input`
+//   width: 22vw;
+//   height: 6vh;
+//   border: 2px solid rgba(29,198,209,0.6);
+//   border-radius: 125px;
+//   padding: 0px 0px 0px 20px;
+//   font-size: 1.5rem;
+//   font-color: #BBBBBB;
+//   text-align: 10px left;
+//   :focus {
+//     outline:none;
+//   }
+// `;
+
+// const SearchButton = styled.button`
+//   width: 3vw;
+//   height: 6vh;
+//   color: rgba(29,198,209,0.6);
+//   background-color: #fff;
+//   border: none;
+//   border-radius: 30px;
+//   padding: px;
+//   margin: 1px 0px 0px -50px;
+//   position:"absolute"
+// `;
+
+// const PageMoveBox = styled.div`
+//   width: 22vw;
+//   height: 7vh;
+//   margin: 328px auto ;
+//   // border: 1px solid black;
+// `;
+
+// const PastButton = styled.button`
+//   width: 4vw;
+//   height: 7.5vh;
+//   background-color: #BBBBBB;
+//   border: none;
+//   border-radius: 30px;
+//   padding: 11px;
+//   cursor: pointer;
+// `;
+
+// const NextButton = styled.button`
+//   width: 16.5vw;
+//   height: 7.5vh;
+//   float: right;
+//   border: none;
+//   border-radius: 30px;
+//   background-color: #1DC6D1;
+//   font-size: 2rem;
+//   color: #fff;
+//   cursor: pointer;
+//   &:hover {
+//     opacity: 0.8;
+//   }
+// `;
+
+// const Text = styled.text`
+//   margin: 1vh 0 0 4vw;
+//   display: flex;
+// `;
+
+// export default Option04;
+
 import React from "react";
 import styled from "styled-components";
 
+import left_arrow from "../../images/left_arrow.png";
+import right_arrow from "../../images/right_arrow.png";
 import search from "../../images/search.png";
-import whiteArrowLeft from "../../images/whiteArrowLeft.png";
-import whiteArrowRight from "../../images/whiteArrowRight.png";
 
 // shared
 import Header from "../../shared/Header";
 
-// components
-
-// css
-
-
-function Option04 (props) {
-
-  console.log(props)
-
+function Option04(props) {
   return (
     <>
-      <Header {...props} />
+      <Header />
+
       <Container>
-        <Box>
-          <Number>4/7</Number>
-          <Question>어디에서 출발하시나요?</Question>
-        </Box>
-
-        <SearchBox>
-          <SearchAddress
-            placeholder="  시/구까지 입력해주세요"
-          >
-          </SearchAddress>
-
-          <SearchButton>
-          <img src={search} alt="" width="26px"/>
-          </SearchButton>
-        </SearchBox>
+        <QuestionBox>
+          <div>
+            <Number>4/7</Number>
+            <Question>어디서 출발하시나요?</Question>
+          </div>
+          <SearchBox>
+            <SearchInput placeholder="시/구까지 입력해주세요"></SearchInput>
+            <SearchButton>
+              <img src={search} alt="" width="26px" />
+            </SearchButton>
+          </SearchBox>
+        </QuestionBox>
 
         <PageMoveBox>
-          <PastButton
-            onClick={() => {props.history.push("/Option03");}}
-          >
-            <img src={whiteArrowLeft} alt="" width="35px"/>
-          </PastButton>
-
-          <NextButton
-            onClick={() => {props.history.push("/Option05");}}
-          >
+          <ButtonWrap>
             <div>
-            <Text>
-              다음으로 
-              <img src={whiteArrowRight} alt="" width="40px" style={{marginTop: "-7px"}}/>
-            </Text>
-
+              <PastButton
+                onClick={() => {
+                  props.history.push("/Option03");
+                }}
+              >
+                <img src={left_arrow} alt="" width="25px" />
+              </PastButton>
             </div>
-          </NextButton>
+            <div>
+              <NextButton
+                onClick={() => {
+                  props.history.push("/Option05");
+                }}
+              >
+                <Text>
+                  다음으로
+                  <img src={right_arrow} alt="" width="25px" />
+                </Text>
+              </NextButton>
+            </div>
+          </ButtonWrap>
         </PageMoveBox>
-
       </Container>
     </>
   );
-};
+}
 
 const Container = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  width: 26.26vw;
-  height: 75%;
-  // border: 1px solid black;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
+  width: 72rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8rem auto;
+  flex-direction: column;
+
+  @media screen and (max-width: 768px) {
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 `;
 
-const Box = styled.div`
+const QuestionBox = styled.div`
+  width: 50%;
+  height: 15rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 `;
 
 const Number = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
-  color: #BBBBBB;
-  margin: 10px auto;
+  color: #bbbbbb;
 `;
 
 const Question = styled.p`
-  font-weight: bolder;
+  font-weight: bold;
   font-size: 2.5rem;
-  width: 22vw;
-  height: 8vh;
+  margin-top: 1rem;
 `;
 
 const SearchBox = styled.div`
-  width: 26vw;
-  height: 7.5vh;
+  width: 100%;
   border-radius: 125px;
-  display: block;
-  margin: 30px auto;
-  box-sizing:border-box;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  position:relative;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
-const SearchAddress = styled.input`
-  width: 22vw;
+const SearchInput = styled.input`
+  width: 100%;
   height: 6vh;
-  border: 2px solid rgba(29,198,209,0.6);
+  border: 2px solid rgba(29, 198, 209, 0.6);
   border-radius: 125px;
   padding: 0px 0px 0px 20px;
   font-size: 1.5rem;
-  font-color: #BBBBBB;
-  text-align: 10px left;
+  color: #bbbbbb;
   :focus {
-    outline:none;
+    outline: none;
   }
 `;
 
 const SearchButton = styled.button`
-  width: 3vw;
-  height: 6vh;
-  color: rgba(29,198,209,0.6);
-  background-color: #fff;
+  position: absolute;
+  margin-right: 1rem;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
   border: none;
-  border-radius: 30px;
-  padding: px;
-  margin: 1px 0px 0px -50px;
-  position:"absolute"
+  cursor: pointer;
 `;
 
 const PageMoveBox = styled.div`
-  width: 22vw;
-  height: 7vh;
-  margin: 328px auto ;
-  // border: 1px solid black;
+  width: 50%;
+  height: 40rem;
+`;
+
+const ButtonWrap = styled.div`
+  height: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
+  display: flex;
 `;
 
 const PastButton = styled.button`
-  width: 4vw;
-  height: 7.5vh;
-  background-color: #BBBBBB;
+  width: 5.5rem;
+  height: 5.5rem;
+  background-color: #bbbbbb;
   border: none;
-  border-radius: 30px;
-  padding: 11px;
+  border-radius: 2.75rem;
   cursor: pointer;
+  padding: 11px;
 `;
 
 const NextButton = styled.button`
-  width: 16.5vw;
-  height: 7.5vh;
-  float: right;
+  width: 24rem;
+  height: 5.5rem;
   border: none;
-  border-radius: 30px;
-  background-color: #1DC6D1;
+  border-radius: 2.75rem;
+  background-color: #1dc6d1;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
+
   &:hover {
     opacity: 0.8;
   }
 `;
 
-const Text = styled.text`
-  margin: 1vh 0 0 4vw;
-  display: flex;
-`;
+const Text = styled.p``;
 
 export default Option04;
-
-
