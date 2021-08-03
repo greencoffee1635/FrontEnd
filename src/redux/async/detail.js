@@ -12,7 +12,7 @@ export const getTourInfo = createAsyncThunk(
         areaCode: [1, 2],
         lat: 37.6403324,
         lng: 126.9380102,
-        contentType: 25,
+        contenttypeid: 25,
       },
     });
 
