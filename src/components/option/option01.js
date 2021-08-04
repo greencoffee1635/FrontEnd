@@ -129,7 +129,7 @@ const GenderButton = styled.button`
 // `; 
 
 const GenderText = styled.span`
-  margin: auto 66.5px;
+  margin: auto 4.4vw;
   font-size: 1.4rem;
   font-weight: bold;
   // border: 1px solid black;
@@ -155,6 +155,7 @@ const AgeButton = styled.button`
   cursor: pointer;
   &:hover{
     background-color: rgba(29,198,209,0.3);
+    color: #1DC6D1;
   }
 `;
 
@@ -163,7 +164,7 @@ const NextButton = styled.button`
   width: 22vw;
   height: 7.5vh;
   border: none;
-  border-radius: 30px;
+  border-radius: 40px;
   background-color: #1DC6D1;
   font-size: 2rem;
   color: #fff;

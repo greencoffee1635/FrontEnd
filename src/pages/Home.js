@@ -8,7 +8,7 @@ import Layout from "../shared/Layout";
 import Background from "../components/home/Background";
 
 // css
-import "../css/home/home.scss";
+// import "../css/home/home.scss";
 
 function Home(props) {
   const { history } = props;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
@@ -14,7 +14,7 @@ import Calendar from "./Calendar";
 
 function Option03 (props) {
 
-  // const StartDate =
+  // const startDate
 
   return (
     <>
@@ -93,7 +93,7 @@ const ButtonBox = styled.div`
 
 const Line = styled.hr`
   width: 100%;
-  margin: 40px auto;
+  margin: 65px auto 30px;
 `;
 
 const SubQuestion = styled.p`
