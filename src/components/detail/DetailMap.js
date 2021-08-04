@@ -104,7 +104,7 @@ const DetailMap = (props) => {
         <MapContainer>
           <Map id="map"></Map>
           <Schedule>
-            <ScheduleTitle>Schedule</ScheduleTitle>
+            <ScheduleTitle>추천장소</ScheduleTitle>
             <ScheduleList>
               {tourList &&
                 tourList.map((list, idx) => (
