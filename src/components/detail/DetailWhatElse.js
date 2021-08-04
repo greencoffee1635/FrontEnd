@@ -3,102 +3,214 @@ import styled from "styled-components";
 
 // components
 import Entire from "./what-else-components/Entire";
-import TouristSpot from "./what-else-components/TouristSpot";
+import Nature from "./what-else-components/Nature";
+import Humanities from "./what-else-components/Humanities";
+import Sports from "./what-else-components/Sports";
+import Shopping from "./what-else-components/Shopping";
 import Food from "./what-else-components/Food";
-import Activity from "./what-else-components/Activity";
+import Lodgment from "./what-else-components/Lodgment";
+import RecommendedJCourse from "./what-else-components/RecommendedJCourse";
 
 const DetailWhatElse = (props) => {
-  const [button1, setButton1] = useState(true);
-  const [button2, setButton2] = useState(false);
-  const [button3, setButton3] = useState(false);
-  const [button4, setButton4] = useState(false);
-  const [button5, setButton5] = useState(false);
+  // 서버에서 받아온 데이터
+  const { tourList } = props;
 
-  const data = [
-    {
-      name: "불국사",
-      subTitle: "불교사찰",
-      src: "https://images.unsplash.com/photo-1517868674985-0525518ae392?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    },
-    {
-      name: "무령왕릉",
-      subTitle: "왕릉",
-      src: "https://pds.joins.com/news/component/htmlphoto_mmdata/201704/24/ea24516d-5e22-44ed-b220-92138ca320c8.jpg",
-    },
-    {
-      name: "가로수길",
-      subTitle: "불교사찰",
-      src: "https://images.unsplash.com/photo-1517868674985-0525518ae392?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    },
-    {
-      name: "에버랜드",
-      subTitle: "불교사찰",
-      src: "https://images.unsplash.com/photo-1517868674985-0525518ae392?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    },
-    {
-      name: "불국사",
-      subTitle: "불교사찰",
-      src: "https://images.unsplash.com/photo-1517868674985-0525518ae392?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-    },
-  ];
+  // 여행지 카테고리를 중복되지 않게 하기 위해 Set을 사용
+  const tourCategory = new Set();
+  tourList &&
+    tourList.map((list, idx) => {
+      tourCategory.add(list.cat1);
+    });
+
+  // 여행지 카테고리를 정렬해주기 위해 배열로 바꿔주고 정렬
+  // Spread Operator를 이용하여 set을 array로 변환
+  const tourCategoryArr = [...tourCategory].sort();
+
+  // 각 카테고리 별로 데이터 분류
+  // 자연
+  const natureData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "A01";
+    });
+
+  // 인문
+  const humanitiesData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "A02";
+    });
+
+  // 레포츠
+  const sportsData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "A03";
+    });
+
+  // 쇼핑
+  const shoppingData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "A04";
+    });
+
+  // 음식
+  const foodData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "A05";
+    });
+
+  // 숙박
+  const lodgmentData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "B02";
+    });
+
+  // 추천코스
+  const recommendedCourseData =
+    tourList &&
+    tourList.filter((list) => {
+      return list.cat1 === "C01";
+    });
+
+  // 카테고리 (자연, 인문, 레포츠, 쇼핑, 음식, 숙박, 추천코스 로 구분됨)
+  const nature = tourCategoryArr.includes("A01");
+  const humanities = tourCategoryArr.includes("A02");
+  const sports = tourCategoryArr.includes("A03");
+  const shopping = tourCategoryArr.includes("A04");
+  const food = tourCategoryArr.includes("A05");
+  const lodgment = tourCategoryArr.includes("B02");
+  const recommendedCourse = tourCategoryArr.includes("C01");
+
+  // What else에 카테고리 버튼을 제어하기 위한 변수
+  const [entireBtn, setEntireBtn] = useState(true);
+  const [natureBtn, setNatureBtn] = useState(false);
+  const [humanitiesBtn, setHumanitiesBtn] = useState(false);
+  const [sportsBtn, setSportsBtn] = useState(false);
+  const [shoppingBtn, setShoppingBtn] = useState(false);
+  const [foodBtn, setFoodBtn] = useState(false);
+  const [lodgmentBtn, setLodgmentBtn] = useState(false);
+  const [recommendedCourseBtn, setRecommendedCourseBtn] = useState(false);
 
   return (
     <>
       <Title>What else</Title>
 
       <div>
-        <Button1
-          isClick={button1}
+        <Button
+          isClick={entireBtn}
           onClick={() => {
-            setButton1(!button1);
-            setButton2(false);
-            setButton3(false);
-            setButton4(false);
+            setEntireBtn(!entireBtn);
+            setNatureBtn(false);
+            setHumanitiesBtn(false);
+            setSportsBtn(false);
+            setShoppingBtn(false);
+            setFoodBtn(false);
+            setLodgmentBtn(false);
+            setRecommendedCourseBtn(false);
           }}
         >
           전체
-        </Button1>
-        <Button2
-          isClick={button2}
-          onClick={() => {
-            setButton1(false);
-            setButton2(!button2);
-          }}
-        >
-          관광지
-        </Button2>
-        <Button3
-          isClick={button3}
-          onClick={() => {
-            setButton1(false);
-            setButton3(!button3);
-          }}
-        >
-          음식
-        </Button3>
-        <Button4
-          isClick={button4}
-          onClick={() => {
-            setButton1(false);
-            setButton4(!button4);
-          }}
-        >
-          액티비티
-        </Button4>
-        <Button5
-          isClick={button5}
-          onClick={() => {
-            setButton5(!button5);
-          }}
-        >
-          기타
-        </Button5>
+        </Button>
+
+        {nature && (
+          <Button
+            isClick={natureBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setNatureBtn(!natureBtn);
+            }}
+          >
+            자연
+          </Button>
+        )}
+
+        {humanities && (
+          <Button
+            isClick={humanitiesBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setHumanitiesBtn(!humanitiesBtn);
+            }}
+          >
+            인문
+          </Button>
+        )}
+
+        {sports && (
+          <Button
+            isClick={sportsBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setSportsBtn(!sportsBtn);
+            }}
+          >
+            레포츠
+          </Button>
+        )}
+
+        {shopping && (
+          <Button
+            isClick={shoppingBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setShoppingBtn(!shoppingBtn);
+            }}
+          >
+            쇼핑
+          </Button>
+        )}
+
+        {food && (
+          <Button
+            isClick={foodBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setFoodBtn(!foodBtn);
+            }}
+          >
+            음식
+          </Button>
+        )}
+
+        {lodgment && (
+          <Button
+            isClick={lodgmentBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setLodgmentBtn(!lodgmentBtn);
+            }}
+          >
+            숙박
+          </Button>
+        )}
+
+        {recommendedCourse && (
+          <Button
+            isClick={recommendedCourseBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setRecommendedCourseBtn(!recommendedCourseBtn);
+            }}
+          >
+            추천코스
+          </Button>
+        )}
       </div>
-      {/* {isEmpty && <EmptyPage />} */}
-      {button1 && <Entire data={data} />}
-      {button2 && <TouristSpot data={data} />}
-      {button3 && <Food data={data} />}
-      {button4 && <Activity data={data} />}
+
+      {entireBtn && <Entire tourData={tourList} />}
+      {natureBtn && <Nature tourData={natureData} />}
+      {humanitiesBtn && <Humanities tourData={humanitiesData} />}
+      {sportsBtn && <Sports tourData={sportsData} />}
+      {shoppingBtn && <Shopping tourData={shoppingData} />}
+      {foodBtn && <Food tourData={foodData} />}
+      {lodgmentBtn && <Lodgment tourData={lodgmentData} />}
+      {recommendedCourseBtn && (
+        <RecommendedJCourse tourData={recommendedCourseData} />
+      )}
     </>
   );
 };
@@ -112,55 +224,7 @@ const Title = styled.h1`
   margin-bottom: 20px;
 `;
 
-const Button1 = styled.button`
-  margin-right: 15px;
-  border: 2px solid #1dc6d1;
-  padding: 14px 24px;
-  box-sizing: border-box;
-  border-radius: 50px;
-  font-size: 22px;
-  font-weight: 600;
-  background-color: ${(props) => (props.isClick ? "#1dc5d1;" : "#fff;")};
-  color: ${(props) => (props.isClick ? "#fff;" : "#1dc5d1;")};
-`;
-
-const Button2 = styled.button`
-  margin-right: 15px;
-  border: 2px solid #1dc6d1;
-  padding: 14px 24px;
-  box-sizing: border-box;
-  border-radius: 50px;
-  font-size: 22px;
-  font-weight: 600;
-  background-color: ${(props) => (props.isClick ? "#1dc5d1;" : "#fff;")};
-  color: ${(props) => (props.isClick ? "#fff;" : "#1dc5d1;")};
-`;
-
-const Button3 = styled.button`
-  margin-right: 15px;
-  border: 2px solid #1dc6d1;
-  padding: 14px 24px;
-  box-sizing: border-box;
-  border-radius: 50px;
-  font-size: 22px;
-  font-weight: 600;
-  background-color: ${(props) => (props.isClick ? "#1dc5d1;" : "#fff;")};
-  color: ${(props) => (props.isClick ? "#fff;" : "#1dc5d1;")};
-`;
-
-const Button4 = styled.button`
-  margin-right: 15px;
-  border: 2px solid #1dc6d1;
-  padding: 14px 24px;
-  box-sizing: border-box;
-  border-radius: 50px;
-  font-size: 22px;
-  font-weight: 600;
-  background-color: ${(props) => (props.isClick ? "#1dc5d1;" : "#fff;")};
-  color: ${(props) => (props.isClick ? "#fff;" : "#1dc5d1;")};
-`;
-
-const Button5 = styled.button`
+const Button = styled.button`
   margin-right: 15px;
   border: 2px solid #1dc6d1;
   padding: 14px 24px;
