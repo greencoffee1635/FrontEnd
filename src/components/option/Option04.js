@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import left_arrow from "../../images/left_arrow.png";
 import right_arrow from "../../images/right_arrow.png";
 import search from "../../images/search.png";
+import deleteImg from "../../images/deleteImg.png";
 
 // shared
 import Header from "../../shared/Header";
 
 function Option04(props) {
+  const [startPoint, setStartPoint] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [filteredList, setFilteredList] = useState([]);
+
   return (
     <>
       <Header page="main" />
-
       <Container>
         <QuestionBox>
           <div>
@@ -20,11 +24,50 @@ function Option04(props) {
             <Question>어디서 출발하시나요?</Question>
           </div>
           <SearchBox>
-            <SearchInput placeholder="시/구까지 입력하세요"></SearchInput>
+            <SearchInput
+              placeholder="시/구까지 입력하세요"
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+                const filtered = locationList.filter((location) => {
+                  return location.includes(e.target.value);
+                });
+                setFilteredList(filtered);
+              }}
+              value={searchValue}
+            ></SearchInput>
             <SearchButton>
               <img src={search} alt="" width="25px" />
             </SearchButton>
+            {startPoint !== "" ? (
+              <StartPointResult>
+                {startPoint}
+                <DeleteButton
+                  onClick={() => {
+                    setStartPoint("");
+                  }}
+                >
+                  <img src={deleteImg} alt="deleteImg" />
+                </DeleteButton>
+              </StartPointResult>
+            ) : null}
           </SearchBox>
+          {searchValue !== "" ? (
+            <SearchList>
+              {filteredList.map((location, idx) => {
+                return (
+                  <SearchItem
+                    key={idx}
+                    onClick={() => {
+                      setStartPoint(location);
+                      setSearchValue("");
+                    }}
+                  >
+                    {location}
+                  </SearchItem>
+                );
+              })}
+            </SearchList>
+          ) : null}
         </QuestionBox>
 
         <PageMoveBox>
@@ -58,6 +101,32 @@ function Option04(props) {
   );
 }
 
+const locationList = [
+  "서울특별시 강남구",
+  "서울특별시 강동구",
+  "서울특별시 강북구",
+  "서울특별시 강서구",
+  "서울특별시 관악구",
+  "서울특별시 광진구",
+  "서울특별시 금천구",
+  "서울특별시 동대문구",
+  "서울특별시 동작구",
+  "서울특별시 서대문구",
+  "서울특별시 서초구",
+  "서울특별시 송파구",
+  "서울특별시 영등포구",
+  "서울특별시 은평구",
+  "서울특별시 중구",
+];
+
+const StartPointResult = styled.span``;
+
+const SearchList = styled.ul``;
+
+const SearchItem = styled.li``;
+
+const DeleteButton = styled.button``;
+
 const Container = styled.div`
   width: 72rem;
   display: flex;
@@ -74,7 +143,6 @@ const Container = styled.div`
 
 const QuestionBox = styled.div`
   width: 50%;
-  height: 15rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -95,9 +163,9 @@ const Question = styled.p`
 const SearchBox = styled.div`
   width: 100%;
   border-radius: 125px;
+  margin-top: 7rem;
   box-sizing: border-box;
   display: flex;
-
   position: relative;
 `;
 
