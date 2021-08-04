@@ -17,7 +17,7 @@ function Header(props) {
 
   return (
     <>
-      <HeaderLayout bgColor={bgColor}>
+      <HeaderLayout bgColor={bgColor} id="header-layout">
         <Container>
           <HeaderLogo
             page={props.page}
@@ -87,6 +87,8 @@ const HeaderLogo = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 16px;
+    margin-top: 8vh;
+    margin-left: 5vw;
   }
 `;
 
