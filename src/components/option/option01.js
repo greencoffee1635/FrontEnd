@@ -116,6 +116,10 @@ const GenderButton = styled.button`
     background-color: rgba(29, 198, 209, 0.3);
     color: #1dc6d1;
   }
+  &:focus{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
+  }
 `;
 
 // const TextBox = styled.div`
@@ -155,6 +159,9 @@ const AgeButton = styled.button`
   cursor: pointer;
   &:hover {
     background-color: rgba(29, 198, 209, 0.3);
+  }&:focus{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
   }
 `;
 

@@ -60,7 +60,7 @@ function Option03 (props) {
             </div>
           </NextButton>
         </PageMoveBox>
-      </Container>
+      </Container> 
     </>
   );
 };

@@ -35,6 +35,10 @@ function App() {
           <Route exact path="/option02" component={Option02} />
           <Route exact path="/option03" component={Option03} />
           <Route exact path="/option04" component={Option04} />
+          <Route exact path="/option04" component={Option05} />
+          <Route exact path="/option04" component={Option06_1} />
+          {/* <Route exact path="/option04" component={Option06_} /> */}
+          <Route exact path="/option04" component={Option07} />
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/join" component={SignUp} />
           <Route exact path="/login" component={Login} />
