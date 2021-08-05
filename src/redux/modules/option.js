@@ -1,3 +1,4 @@
+
 export const INIT = 'option/INIT';
 
 export const initOption = (payload) => ({
@@ -6,20 +7,21 @@ export const initOption = (payload) => ({
 });
 
 const optionState = {
-	category: null,
-    startDate: null,
-
+	gender: null,
+	age: null,
+	companion: null,
 	// 이외의 것들 추가..
 }
 
 const optionReducer = (state = optionState, action) => {
 	switch (action.type) {
 		case INIT:
-			const { category,startDate } = action.payload;
+			const { gender, age, companion } = action.payload;
 			return {
 				...state,
-                category,
-                startDate,
+				gender,
+				age,
+				companion,
 			};
 		default:
 			return state;
@@ -27,3 +29,4 @@ const optionReducer = (state = optionState, action) => {
 }
 
 export default optionReducer;
+
