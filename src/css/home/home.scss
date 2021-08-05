@@ -1,0 +1,71 @@
+@import "../color.scss";
+
+.title {
+  text-align: center;
+
+  & div:first-child {
+    font-size: 5.5rem;
+    font-weight: 700;
+    line-height: 67px;
+    color: var(--white);
+  }
+  & div:nth-child(2) {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 26px 0px 95px 0px;
+    color: var(--main-color);
+  }
+}
+
+.button {
+  width: 256px;
+  height: 74px;
+  border: none;
+  border-radius: 125px;
+  background-color: var(--main-color);
+  font-size: 28px;
+  color: var(--white);
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .title {
+    & div:first-child {
+      font-size: 4.4rem;
+    }
+    & div:nth-child(2) {
+      font-size: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .title {
+    text-align: left;
+    margin: 15vh 0 0 5vw;
+    & div:first-child {
+      font-size: 3.2rem;
+      line-height: 43px;
+      width: 70vw;
+    }
+    & div:nth-child(2) {
+      font-size: 1.8rem;
+      line-height: 25px;
+      width: 68vw;
+    }
+  }
+
+  .button {
+    margin: 0 auto;
+    width: 86vw;
+    height: 7vh;
+    position: absolute;
+    bottom: 14vh;
+    left: 0;
+    right: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}

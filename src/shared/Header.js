@@ -18,12 +18,14 @@ function Header(props) {
     }
   });
 
+
   useEffect(() => {
     document.addEventListener("click", onClickOutside);
     return () => {
       document.removeEventListener("click", onClickOutside);
     };
   });
+
 
   return (
     <>
@@ -48,6 +50,7 @@ function Header(props) {
             </HeaderMenuItem>
             <HeaderMenuItem>
               <div></div>
+
               <span
                 onClick={() => {
                   setLoginModal(true);
@@ -55,6 +58,7 @@ function Header(props) {
               >
                 Login
               </span>
+
               {loginModal && <LoginModal ref={is_close} />}
             </HeaderMenuItem>
           </HeaderMenu>

@@ -1,0 +1,170 @@
+@import "../color.scss";
+
+.headimage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 44rem;
+  background: transparent;
+  background-image: linear-gradient(to top, rgb(255, 255, 255), transparent 35%),
+    url("https://waynabox.com/assets/road/routes_upfold_photo_hd.jpg");
+  background-size: cover;
+  // background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+.first-box {
+  width: 106rem;
+  margin-top: 33rem;
+  // border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hello {
+  // margin-top: 30rem;
+  // padding: 30rem 0rem 10rem;
+  // justify-content: flex-end;
+  font-size: 7rem;
+  font-weight: bold;
+  // text-align: end;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.aboutntemp {
+  margin-top: 50px;
+  height: 38.8rem;
+  display: flex;
+  flex-direction: row;
+  // flex-direction: row;
+  justify-content: space-between;
+  // align-items: center;
+  // flex-grow: 1;
+  flex-wrap: wrap;
+}
+
+.aboutbox {
+  width: 52rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.about {
+  font-size: 5.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.aboutcontent {
+  width: 52rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+
+.tag {
+  color: var(--main-color);
+  display: flex;
+  flex-direction: row;
+  font-size: 2rem;
+  padding: 1.5rem 0 0 0;
+  font-weight: medium;
+
+  & > li {
+    margin-right: 1rem;
+  }
+
+  & a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: var(--main-color);
+    text-decoration: none;
+  }
+}
+
+.temp-area {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.tempspeech {
+  width: 27rem;
+  height: 5.5rem;
+  font-size: 1.71rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: var(--main-color);
+  // background-color: #1dc6d1;
+  border-radius: 0.4em;
+  margin-right: 1.3rem;
+  left: 30%;
+  opacity: 0.6;
+}
+
+.tempspeech:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 85%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: var(--main-color);
+  border-bottom: 0;
+  margin-left: -20px;
+  margin-bottom: -20px;
+}
+
+.tempcontent {
+  box-sizing: border-box;
+  width: 40rem;
+  height: 18rem;
+  margin-top: 2rem;
+  flex-direction: column;
+  display: flex;
+  background-color: #e5e5e5;
+  // padding: 2rem;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  padding: 2rem;
+}
+
+.tempcity {
+  font-size: 2.5rem;
+  color: black;
+  font-weight: 600;
+  line-height: 1.2;
+  & > span:first-child {
+    font-size: 2.75rem;
+  }
+}
+
+.temperature {
+  display: flex;
+  height: 100%;
+  font-weight: 600;
+  justify-content: flex-end;
+  & > div:last-child {
+    font-size: 7rem;
+    align-self: flex-end;
+  }
+  & > div:first-child {
+    font-size: 2rem;
+    align-self: flex-end;
+    margin-right: 1rem;
+  }
+}
+
+.videolist {
+}
