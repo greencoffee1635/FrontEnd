@@ -6,8 +6,6 @@ export const initOption = (payload) => ({
 	payload,
 });
 
-import {INIT} from "../modules/option";
-
 const optionState = {
 	gender: null,
 	age: null,

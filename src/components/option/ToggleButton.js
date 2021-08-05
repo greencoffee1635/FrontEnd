@@ -1,70 +1,70 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-function ToggleButton ({ isOn, handleToggle, onColor }) {
-
-    // const 
+function ToggleButton () {
+    const [isToggleOn, setToggleOn] = useState(false);
 
     return (
-      <>
-        <SwitchCheckbox
-            checked={isOn}
-            onChange={handleToggle}
-            id={`react-switch-new`}
-            type="checkbox"
-        />
-        <SwitchLabel
-            style={{ background: isOn && onColor }}
-            className="react-switch-label"
-            htmlFor={`react-switch-new`}
-        >
-          <SwitchButton/>
-        </SwitchLabel>
-      </>
+        <Switch>
+            <Input
+                type="checkbox"
+                checked={isToggleOn}
+                onChange={() => setToggleOn(!isToggleOn)}
+            />
+                <Slider />
+        </Switch>
     );
   };
   
 export default ToggleButton;
 
-const SwitchCheckbox = styled.input`
-    height: 0;
-    width: 0;
-    visibility: hidden
+const Switch = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+  }
 `;
-  
-const SwitchLabel = styled.label`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    width: 80px;
-    height: 38px;
-    background: grey;
-    border-radius: 100px;
-    position: relative;
-    transition: background-color .2s;
-`;
-  
-const SwitchButton = styled.span`
-    // content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 33px;
-    height: 33px;
-    border-radius: 35px;
-    transition: 0.2s;
-    background: #fff;
-    box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-`;
-  
 
-// //초기값 false 
-//   .react-switch-checkbox: checked + .react-switch-label .react-switch-button {
-//     left: calc(100% - 2px);
-//     transform: translateX(-100%);
-//   }
-  
-//   .react-switch-label:active .react-switch-button {
-//     width: 60px;
-//   }
+const Slider = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+  &:before {
+    position: absolute;
+    border-radius: 50%;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+`;
+
+const Input = styled.input`
+    &:checked + ${Slider} {
+      background-color: #2196F3;
+    }
+    &:focus + .slider {
+     box-shadow: 0 0 1px #2196F3;
+    }
+    &:checked + ${Slider}:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+`;

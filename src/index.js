@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./redux/configureStore";
 import App from "./shared/App";
-import GlobalStyle from "./shared/GlobalStyle";
 import persistStore from "redux-persist/es/persistStore";
 
 const persistor = persistStore(store);
