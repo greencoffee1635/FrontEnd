@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 //components
@@ -9,54 +9,57 @@ function Header(props) {
   const { history, bgColor } = props;
   const [loginModal, setLoginModal] = useState(false);
 
-  const LoginModalOpen = (e) => {
-    setLoginModal(true);
-
+  const onClickOutside = useCallback((e) => {
     if (
       loginModal &&
       (!is_close.current || !is_close.current.contains(e.target))
     ) {
       setLoginModal(false);
-      console.log("false");
     }
-  };
+  });
 
   useEffect(() => {
-    window.addEventListener("click", LoginModalOpen);
+    document.addEventListener("click", onClickOutside);
     return () => {
-      window.removeEventListener("click", LoginModalOpen);
+      document.removeEventListener("click", onClickOutside);
     };
   });
 
   return (
     <>
-    <HeaderLayout bgColor={bgColor} id="header-layout">
-      <Container>
-        <HeaderLogo
-          page={props.page}
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          내일 어디가?
-        </HeaderLogo>
-        <HeaderMenu page={props.page}>
-          <HeaderMenuItem>
-            <div></div>
-            <span>Home</span>
-          </HeaderMenuItem>
-          <HeaderMenuItem>
-            <div></div>
-            <span>Explore</span>
-          </HeaderMenuItem>
-          <HeaderMenuItem>
-            <div></div>
-            <span onClick={LoginModalOpen}>Login</span>
-            {loginModal && <LoginModal ref={is_close} />}
-          </HeaderMenuItem>
-        </HeaderMenu>
-      </Container>
-    </HeaderLayout>
+      <HeaderLayout bgColor={bgColor} id="header-layout">
+        <Container>
+          <HeaderLogo
+            page={props.page}
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            내일 어디가?
+          </HeaderLogo>
+          <HeaderMenu page={props.page}>
+            <HeaderMenuItem>
+              <div></div>
+              <span>Home</span>
+            </HeaderMenuItem>
+            <HeaderMenuItem>
+              <div></div>
+              <span>Explore</span>
+            </HeaderMenuItem>
+            <HeaderMenuItem>
+              <div></div>
+              <span
+                onClick={() => {
+                  setLoginModal(true);
+                }}
+              >
+                Login
+              </span>
+              {loginModal && <LoginModal ref={is_close} />}
+            </HeaderMenuItem>
+          </HeaderMenu>
+        </Container>
+      </HeaderLayout>
     </>
   );
 }

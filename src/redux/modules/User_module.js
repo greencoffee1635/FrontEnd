@@ -59,7 +59,7 @@ const UserSlice = createSlice({
 const signupDB = (email, nickName, pwd, pwdConfirm, phoneNumber) => {
   console.log(email, nickName, pwd, pwdConfirm, phoneNumber);
   console.log(typeof phoneNumber);
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState) {
     console.log(history);
     axios({
       method: "POST",
@@ -97,7 +97,7 @@ const signupDB = (email, nickName, pwd, pwdConfirm, phoneNumber) => {
 //로그인
 const loginDB = (email, pwd) => {
   console.log(email, pwd);
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState) {
     axios({
       method: "POST",
       url: `${config.api}/user/login`,
@@ -136,7 +136,7 @@ const loginDB = (email, pwd) => {
 
 // 카카로 로그인
 const kakaoLogin = (code) => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState) {
     axios({
       method: "POST",
       // url: `${REDIRECT_URI}?code=${code}`,
