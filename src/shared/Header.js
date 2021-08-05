@@ -6,7 +6,7 @@ import LoginModal from "../components/LoginModalForm";
 
 function Header(props) {
   const is_close = useRef();
-  const { history } = props;
+  const { history, bgColor } = props;
   const [loginModal, setLoginModal] = useState(false);
 
   const LoginModalOpen = (e) => {
@@ -30,6 +30,7 @@ function Header(props) {
 
   return (
     <>
+    <HeaderLayout bgColor={bgColor} id="header-layout">
       <Container>
         <HeaderLogo
           page={props.page}
@@ -55,21 +56,27 @@ function Header(props) {
           </HeaderMenuItem>
         </HeaderMenu>
       </Container>
+    </HeaderLayout>
     </>
   );
 }
+const HeaderLayout = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84px;
+  z-index: 99;
+  ${(props) => (props.bgColor ? "background-color: #909090;" : "")}
+`;
 
 const Container = styled.div`
-  position: fixed;
   width: 69%;
   margin: 0 auto;
-  left: 0;
-  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 26px;
-  z-index: 99;
 
   @media screen and (max-width: 768px) {
     width: 90%;
@@ -87,6 +94,8 @@ const HeaderLogo = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 16px;
+    margin-top: 8vh;
+    margin-left: 5vw;
   }
 `;
 

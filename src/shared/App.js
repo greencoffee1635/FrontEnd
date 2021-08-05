@@ -4,6 +4,7 @@ import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Route, BrowserRouter } from "react-router-dom";
+import GlobalStyle from "./GlobalStyle";
 
 // pages
 import Home from "../pages/Home";
@@ -19,6 +20,7 @@ import KakaoRedirection from "../shared/socialRedirection";
 function App() {
   return (
     <>
+      <GlobalStyle />
       <ConnectedRouter history={history}>
         <BrowserRouter>
           <Route exact path="/" component={Home} />
