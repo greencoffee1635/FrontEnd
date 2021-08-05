@@ -32,7 +32,7 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  option: option.reducer,
+  option: option,
   router: connectRouter(history),
 });
 

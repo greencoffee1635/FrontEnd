@@ -1,29 +1,23 @@
-export const INIT = 'option/INIT';
+import { createAction, handleActions } from 'redux-actions';
 
-export const initOption = (payload) => ({
-	type: INIT,
-	payload,
-});
+const INIT = 'option/INIT';
+export const init = createAction(INIT);
 
 const optionState = {
-	category: null,
-    startDate: null,
-
+    category: "",
+    startDate: "",
 	// 이외의 것들 추가..
 }
 
-const optionReducer = (state = optionState, action) => {
-	switch (action.type) {
-		case INIT:
-			const { category,startDate } = action.payload;
-			return {
-				...state,
-                category,
-                startDate,
-			};
-		default:
-			return state;
+const option = handleActions({
+	[INIT]: (state, action) => {
+		const { category, startDate } = action.payload;
+		return {
+			...state,
+			category,
+            startDate,
+		};
 	}
-}
+}, optionState);
 
-export default optionReducer;
+export default option;

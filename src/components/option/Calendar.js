@@ -23,7 +23,7 @@ function Calendar(props) {
     const startDate = (idx) => {
       console.log(idx)
       // setDate(idx);
-      sessionStorage.setItem("date",idx);
+      // localStorage.setItem("date",idx);
     }
 
 

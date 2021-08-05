@@ -51,13 +51,13 @@ const Slider = styled.span`
     bottom: 4px;
     background-color: white;
     -webkit-transition: .4s;
-    transition: .4s;
+    transition: .2s;
   }
 `;
 
 const Input = styled.input`
     &:checked + ${Slider} {
-      background-color: #2196F3;
+      background-color: #1DC6D1;
     }
     &:focus + .slider {
      box-shadow: 0 0 1px #2196F3;

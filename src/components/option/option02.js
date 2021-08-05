@@ -8,7 +8,7 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 // shared
 import Header from "../../shared/Header";
 
-import {initOption} from "../../redux/modules/option";
+import {init} from "../../redux/modules/option";
 
 function Option02 (props) {
 
@@ -77,8 +77,8 @@ function Option02 (props) {
           <NextButton
            onClick={() => {
             props.history.push("/Option03");
-            dispatch(initOption({
-              category: 'test'
+            dispatch(init({
+              category: category
           }));
       }}
     >

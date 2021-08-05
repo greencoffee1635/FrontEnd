@@ -9,7 +9,7 @@ import ToggleButton from "./ToggleButton";
 // shared
 import Header from "../../shared/Header";
 
-import {initOption} from "../../redux/modules/option";
+import {init} from "../../redux/modules/option";
 
 
 // components
@@ -46,8 +46,8 @@ function Option03 (props) {
 
           <NextButton
            onClick={() => {
-            props.history.push("/Option03");
-            dispatch(initOption({
+            props.history.push("/Option04");
+            dispatch(init({
               startDate: 'test'
             }));
         }}

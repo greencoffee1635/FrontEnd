@@ -4,7 +4,7 @@ import kakao from "../images/kakao.png";
 import email from "../images/email.png";
 
 //css
-import "../css/loginModal.scss";
+import "../css/LoginModal.scss";
 
 const LoginModal = (props, { close }) => {
   const { LoginModalClose, history } = props;
