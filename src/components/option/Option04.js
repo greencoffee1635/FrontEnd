@@ -121,10 +121,6 @@ const locationList = [
 
 const StartPointResult = styled.span``;
 
-const SearchList = styled.ul``;
-
-const SearchItem = styled.li``;
-
 const DeleteButton = styled.button``;
 
 const Container = styled.div`
@@ -193,15 +189,36 @@ const SearchButton = styled.button`
   cursor: pointer;
 `;
 
+const SearchList = styled.ul`
+  width: 100%;
+  height: 30rem;
+  padding: 0px 0px 0px 20px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    border-radius: 6px;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: rgba(226, 226, 226, 0.9);
+  }
+`;
+
+const SearchItem = styled.li`
+  font-size: 2.1rem;
+  margin-top: 4rem;
+  color: #484848;
+`;
+
 const PageMoveBox = styled.div`
   width: 50%;
-  height: 40rem;
+  margin-top: 23rem;
+  z-index: 10;
 `;
 
 const ButtonWrap = styled.div`
   height: 100%;
   justify-content: space-between;
-  align-items: flex-end;
   display: flex;
 `;
 
