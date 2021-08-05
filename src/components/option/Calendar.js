@@ -1,17 +1,31 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 import moment from "moment";
-import styled from "styled-components";
+import styled from "styled-components"; 
+
 
 import leftArrow from "../../images/leftArrow.png";
 import rightArrow from "../../images/rightArrow.png";
-// import "./font/font.css";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
+// import { findLastKey } from "lodash";
 
-function Calendar() {
+
+function Calendar(props) {
 
     const [getMoment, setMoment] = useState(moment());
+
+    const [date, setDate] = useState("");
+
     const today = getMoment;
     const firstWeek = today.clone().startOf("month").week();
     const lastWeek = today.clone().endOf("month").week() === 1 ? 53 : today.clone().endOf('month').week();
+    const day = useRef(null);
+
+    const startDate = (idx) => {
+      console.log(idx)
+      // setDate(idx);
+      sessionStorage.setItem("date",idx);
+    }
+
 
     const calendarArr=()=>{
         let result = [];
@@ -33,16 +47,24 @@ function Calendar() {
                           );
                       }else if(days.format("MM") !== today.format("MM")) {
                           return(
-                            <Td key={index}  style={{color:"#E2E2E2"}}>
+                            <Td 
+                              key={index}  
+                              style={{color:"#E2E2E2"}}
+                              onClick={()=>{startDate(days.format("YYYY-MM-DD"))}}  
+                            >
                               <Span>{days.format("D")}</Span>
                             </Td>
                           );
                       }else {
                           return(
-                            <Td key={index}>
+                            <Td 
+                              key={index} 
+                              onClick={()=>{startDate(days.format("YYYY-MM-DD"))}}  
+                            >
                               <Span>{days.format("D")}</Span>
-                            </Td>   
+                            </Td>  
                           )
+                        
                       }
                   })
               }
@@ -123,7 +145,7 @@ const DateHeader = styled.div`
   margin: 16px auto 20px;
 `;
 const WeekName = styled.span`
-  margin: 23px;
+  margin: 22px;
   font-size: 15px;
   color: #909090;
 `;
@@ -133,13 +155,25 @@ const Tr = styled.tr`
   flex-direction: row;
 `;
 
-const Td = styled.td`
+const Td = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   // border:1px solid gray;
+  border: none;
+  background-color: #fff;
   width: 56px;
   height: 56px;
+  cursor: pointer;
+  &:hover{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
+    opacity: 0.8; 
+  }
+  &:focus{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
+  }
 `;
 
 const Span = styled.span`
@@ -148,22 +182,31 @@ const Span = styled.span`
   align-items: center;
 `;
 
-const Today = styled.div`
+const Today = styled.button`
   width: 56px;
   height: 56px;
   background-color: rgba(29,198,209,0.3);
   border: none;
-  border-radius: 25px;  
+  border-radius: 30px;  
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  &:hover{
+    background-color: #1DC6D1;
+    opacity: 0.8; 
+  }
+  &:focus{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
+  }
 `;
 
 const Button = styled.button`
   width: 30px;
   height: 30px;
   background-color: #fff;
-  margin: 15px;
+  margin: 13px;
   border: none;
   cursor: pointer;
   // border: 1px soild black;  
