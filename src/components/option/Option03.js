@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
@@ -8,13 +9,16 @@ import ToggleButton from "./ToggleButton";
 // shared
 import Header from "../../shared/Header";
 
+import {init} from "../../redux/modules/option";
+
+
 // components
 import Calendar from "./Calendar";
-// css
+
 
 function Option03 (props) {
 
-  // const StartDate =
+  const  dispatch = useDispatch();
 
   return (
     <>
@@ -32,7 +36,7 @@ function Option03 (props) {
         <div>
           <SubQuestion>아직 미정이신가요?</SubQuestion>
           <ToggleButton/>
-        </div> 
+        </div>
         <PageMoveBox>
           <PastButton
             onClick={() => {props.history.push("/Option02");}}
@@ -41,8 +45,13 @@ function Option03 (props) {
           </PastButton>
 
           <NextButton
-            onClick={() => {props.history.push("/Option04");}}
-          >
+           onClick={() => {
+            props.history.push("/Option04");
+            dispatch(init({
+              startDate: 'test'
+            }));
+        }}
+      >  
             <div>
               <Text>
                 다음으로 
@@ -93,7 +102,7 @@ const ButtonBox = styled.div`
 
 const Line = styled.hr`
   width: 100%;
-  margin: 40px auto;
+  margin: 65px auto 30px;
 `;
 
 const SubQuestion = styled.p`

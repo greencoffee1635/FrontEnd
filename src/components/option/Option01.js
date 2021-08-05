@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import whiteArrowRight from "../../images/whiteArrowRight.png";
@@ -10,7 +9,6 @@ import Header from "../../shared/Header";
 // components
 
 function Option01(props) {
-  // const [clickButton, ]
 
   return (
     <>
