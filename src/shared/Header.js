@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 //components
 import LoginModal from "../components/LoginModalForm";
 
 function Header(props) {
+  const is_close = useRef();
   const { history } = props;
-  const [loginModal, setLogin] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
-  const LoginModalOpen = () => {
-    setLogin(true);
+  const LoginModalOpen = (e) => {
+    setLoginModal(true);
+
+    if (
+      loginModal &&
+      (!is_close.current || !is_close.current.contains(e.target))
+    ) {
+      setLoginModal(false);
+      console.log("false");
+    }
   };
-  const LoginModalClose = () => {
-    setLogin(false);
-  };
+
+  useEffect(() => {
+    window.addEventListener("click", LoginModalOpen);
+    return () => {
+      window.removeEventListener("click", LoginModalOpen);
+    };
+  });
 
   return (
     <>
@@ -38,12 +51,7 @@ function Header(props) {
           <HeaderMenuItem>
             <div></div>
             <span onClick={LoginModalOpen}>Login</span>
-            {loginModal && (
-              <LoginModal {...props} LoginModalClose={LoginModalClose} />
-            )}
-            {/* {loginModal === true ? (
-                <LoginModal close={LoginModalClose} />
-              ) : null} */}
+            {loginModal && <LoginModal ref={is_close} />}
           </HeaderMenuItem>
         </HeaderMenu>
       </Container>
