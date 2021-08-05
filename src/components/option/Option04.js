@@ -1,243 +1,159 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import left_arrow from "../../images/left_arrow.png";
-import right_arrow from "../../images/right_arrow.png";
 import search from "../../images/search.png";
-import deleteImg from "../../images/deleteImg.png";
+import whiteArrowLeft from "../../images/whiteArrowLeft.png";
+import whiteArrowRight from "../../images/whiteArrowRight.png";
 
 // shared
 import Header from "../../shared/Header";
 
-function Option04(props) {
-  const [startPoint, setStartPoint] = useState("");
-  const [searchValue, setSearchValue] = useState("");
-  const [filteredList, setFilteredList] = useState([]);
+// components
+
+// css
+
+
+function Option04 (props) {
 
   return (
     <>
-      <Header page="main" />
+      <Header {...props} />
       <Container>
-        <QuestionBox>
-          <div>
-            <Number>4 / 7</Number>
-            <Question>어디서 출발하시나요?</Question>
-          </div>
-          <SearchBox>
-            <SearchInput
-              placeholder="시/구까지 입력하세요"
-              onChange={(e) => {
-                setSearchValue(e.target.value);
-                const filtered = locationList.filter((location) => {
-                  return location.includes(e.target.value);
-                });
-                setFilteredList(filtered);
-              }}
-              value={searchValue}
-            ></SearchInput>
-            <SearchButton>
-              <img src={search} alt="" width="25px" />
-            </SearchButton>
-            {startPoint !== "" ? (
-              <StartPointResult>
-                {startPoint}
-                <DeleteButton
-                  onClick={() => {
-                    setStartPoint("");
-                  }}
-                >
-                  <img src={deleteImg} alt="deleteImg" />
-                </DeleteButton>
-              </StartPointResult>
-            ) : null}
-          </SearchBox>
-          {searchValue !== "" ? (
-            <SearchList>
-              {filteredList.map((location, idx) => {
-                return (
-                  <SearchItem
-                    key={idx}
-                    onClick={() => {
-                      setStartPoint(location);
-                      setSearchValue("");
-                    }}
-                  >
-                    {location}
-                  </SearchItem>
-                );
-              })}
-            </SearchList>
-          ) : null}
-        </QuestionBox>
+        <Box>
+          <Number>4/7</Number>
+          <Question>어디에서 출발하시나요?</Question>
+        </Box>
+
+        <SearchBox>
+          <SearchAddress
+            placeholder="  시/구까지 입력해주세요"
+          >
+          </SearchAddress>
+
+          <SearchButton>
+          <img src={search} alt="" width="26px"/>
+          </SearchButton>
+        </SearchBox>
 
         <PageMoveBox>
-          <ButtonWrap>
-            <PastButton
-              onClick={() => {
-                props.history.push("/Option03");
-              }}
-            >
-              <img src={left_arrow} alt="" width="25px" />
-            </PastButton>
-            <NextButton
-              onClick={() => {
-                props.history.push("/Option05");
-              }}
-            >
-              <Text>
-                다음으로
-                <img
-                  src={right_arrow}
-                  alt=""
-                  width="25px"
-                  style={{ margin: "0 0 -4px 13px" }}
-                />
-              </Text>
-            </NextButton>
-          </ButtonWrap>
+          <PastButton
+            onClick={() => {props.history.push("/Option03");}}
+          >
+            <img src={whiteArrowLeft} alt="" width="35px"/>
+          </PastButton>
+
+          <NextButton
+            onClick={() => {props.history.push("/Option05");}}
+          >
+            <div>
+            <Text>
+              다음으로 
+              <img src={whiteArrowRight} alt="" width="40px" style={{marginTop: "-7px"}}/>
+            </Text>
+
+            </div>
+          </NextButton>
         </PageMoveBox>
+
       </Container>
     </>
   );
-}
-
-const locationList = [
-  "서울특별시 강남구",
-  "서울특별시 강동구",
-  "서울특별시 강북구",
-  "서울특별시 강서구",
-  "서울특별시 관악구",
-  "서울특별시 광진구",
-  "서울특별시 금천구",
-  "서울특별시 동대문구",
-  "서울특별시 동작구",
-  "서울특별시 서대문구",
-  "서울특별시 서초구",
-  "서울특별시 송파구",
-  "서울특별시 영등포구",
-  "서울특별시 은평구",
-  "서울특별시 중구",
-];
-
-const StartPointResult = styled.span``;
-
-const DeleteButton = styled.button``;
+};
 
 const Container = styled.div`
-  width: 72rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 8rem auto;
-  flex-direction: column;
-
-  @media screen and (max-width: 768px) {
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 26.26vw;
+  height: 75%;
+  // border: 1px solid black;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 `;
 
-const QuestionBox = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+const Box = styled.div`
 `;
 
 const Number = styled.p`
   font-size: 1.5rem;
   font-weight: bold;
-  color: #bbbbbb;
+  color: #BBBBBB;
+  margin: 10px auto;
 `;
 
 const Question = styled.p`
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 2.5rem;
-  margin-top: 1rem;
+  width: 22vw;
+  height: 8vh;
 `;
 
 const SearchBox = styled.div`
-  width: 100%;
+  width: 26vw;
+  height: 7.5vh;
   border-radius: 125px;
-  margin-top: 7rem;
-  box-sizing: border-box;
-  display: flex;
-  position: relative;
+  display: block;
+  margin: 30px auto;
+  box-sizing:border-box;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
 `;
 
-const SearchInput = styled.input`
-  width: 100%;
-  height: 5rem;
-  border: 2px solid rgba(29, 198, 209, 0.6);
+const SearchAddress = styled.input`
+  width: 22vw;
+  height: 6vh;
+  border: 2px solid rgba(29,198,209,0.6);
   border-radius: 125px;
   padding: 0px 0px 0px 20px;
   font-size: 1.5rem;
-  color: #bbbbbb;
+  font-color: #BBBBBB;
+  text-align: 10px left;
   :focus {
-    outline: none;
+    outline:none;
   }
 `;
 
 const SearchButton = styled.button`
-  position: absolute;
-  margin-right: 1rem;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: transparent;
+  width: 3vw;
+  height: 6vh;
+  color: rgba(29,198,209,0.6);
+  background-color: #fff;
   border: none;
-  cursor: pointer;
-`;
-
-const SearchList = styled.ul`
-  width: 100%;
-  height: 30rem;
-  padding: 0px 0px 0px 20px;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    border-radius: 6px;
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background: rgba(226, 226, 226, 0.9);
-  }
-`;
-
-const SearchItem = styled.li`
-  font-size: 2.1rem;
-  margin-top: 4rem;
-  color: #484848;
+  border-radius: 30px;
+  padding: px;
+  margin: 1px 0px 0px -50px;
+  position:"absolute"
 `;
 
 const PageMoveBox = styled.div`
-  width: 50%;
-  margin-top: 23rem;
-  z-index: 10;
-`;
-
-const ButtonWrap = styled.div`
-  height: 100%;
-  justify-content: space-between;
-  display: flex;
+  width: 22vw;
+  height: 7vh;
+  margin: 328px auto ;
+  // border: 1px solid black;
 `;
 
 const PastButton = styled.button`
-  width: 5.5rem;
-  height: 5.5rem;
-  background-color: #bbbbbb;
+  width: 4vw;
+  height: 7.5vh;
+  background-color: #BBBBBB;
   border: none;
-  border-radius: 2.75rem;
-  cursor: pointer;
+  border-radius: 30px;
   padding: 11px;
+  cursor: pointer;
 `;
 
 const NextButton = styled.button`
-  width: 24rem;
-  height: 5.5rem;
+  width: 16.5vw;
+  height: 7.5vh;
+  float: right;
   border: none;
-  border-radius: 2.75rem;
-  background-color: #1dc6d1;
+  border-radius: 30px;
+  background-color: #1DC6D1;
   font-size: 2rem;
   color: #fff;
   cursor: pointer;
@@ -246,8 +162,11 @@ const NextButton = styled.button`
   }
 `;
 
-const Text = styled.p`
-  font-weight: 600;
+const Text = styled.text`
+  margin: 1vh 0 0 4vw;
+  display: flex;
 `;
 
 export default Option04;
+
+

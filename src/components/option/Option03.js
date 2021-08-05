@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
@@ -14,7 +14,7 @@ import Calendar from "./Calendar";
 
 function Option03 (props) {
 
-  // const StartDate =
+  // const startDate
 
   return (
     <>
@@ -31,7 +31,7 @@ function Option03 (props) {
 
         <div>
           <SubQuestion>아직 미정이신가요?</SubQuestion>
-          <ToggleButton/>
+          <ToggleButton />
         </div> 
         <PageMoveBox>
           <PastButton
@@ -93,7 +93,7 @@ const ButtonBox = styled.div`
 
 const Line = styled.hr`
   width: 100%;
-  margin: 40px auto;
+  margin: 65px auto 30px;
 `;
 
 const SubQuestion = styled.p`
@@ -141,4 +141,3 @@ const Text = styled.text`
 `;
 
 export default Option03;
-
