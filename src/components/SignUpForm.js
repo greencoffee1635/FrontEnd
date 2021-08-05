@@ -7,10 +7,10 @@ import { CheckValidation as checkVal } from "../shared/validation";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
-  const nickNameCheck = useSelector((state) => state.user.nickNameCheck);
-  const phoneAuthCheck = useSelector((state) => state.user.phoneAuthCheck);
-  const phoneAuthConfirm = useSelector((state) => state.user.phoneAuthConfirm);
-  const phoneAuth = useSelector((state) => state.user.phoneAuth);
+  // const nickNameCheck = useSelector((state) => state.user.nickNameCheck);
+  // const phoneAuthCheck = useSelector((state) => state.user.phoneAuthCheck);
+  // const phoneAuthConfirm = useSelector((state) => state.user.phoneAuthConfirm);
+  // const phoneAuth = useSelector((state) => state.user.phoneAuth);
 
   const emailInfo = useRef();
   const nickNameInfo = useRef();
@@ -203,17 +203,17 @@ const SignUpForm = () => {
       return;
     }
 
-    if (nickNameCheck === false) {
-      setNicknameInfoText("닉네임 중복확인이 완료되지 않았습니다.");
-      Swal.fire({
-        position: "center-right",
-        icon: "info",
-        title: "닉네임 중복확인이 완료되지 않았습니다!",
-        showConfirmButton: false,
-        timer: 1400,
-      });
-      return;
-    }
+    // if (nickNameCheck === false) {
+    //   setNicknameInfoText("닉네임 중복확인이 완료되지 않았습니다.");
+    //   Swal.fire({
+    //     position: "center-right",
+    //     icon: "info",
+    //     title: "닉네임 중복확인이 완료되지 않았습니다!",
+    //     showConfirmButton: false,
+    //     timer: 1400,
+    //   });
+    //   return;
+    // }
 
     // if (phoneAuthCheck === false) {
     //   Swal.fire({
