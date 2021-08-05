@@ -102,7 +102,6 @@ const DetailWhatElse = (props) => {
   return (
     <>
       <Title>What else</Title>
-
       <div>
         <Button
           isClick={entireBtn}
@@ -229,7 +228,6 @@ const Title = styled.h1`
   color: #121212;
   margin-bottom: 20px;
 `;
-
 const Button = styled.button`
   margin-right: 15px;
   border: 2px solid #1dc6d1;

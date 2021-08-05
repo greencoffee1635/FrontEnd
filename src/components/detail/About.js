@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const About = (props) => {
   const { tourList } = props;
-
   return (
     <>
       <AboutBox>

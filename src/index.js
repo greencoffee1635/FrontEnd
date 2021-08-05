@@ -6,12 +6,9 @@ import { store } from "./redux/configureStore";
 
 import App from "./shared/App";
 
-import GlobalStyle from "./shared/GlobalStyle";
-
 ReactDOM.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <GlobalStyle />
     <App />
   </Provider>,
   // </React.StrictMode>,
