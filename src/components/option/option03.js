@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
@@ -8,13 +9,16 @@ import ToggleButton from "./ToggleButton";
 // shared
 import Header from "../../shared/Header";
 
+import {initOption} from "../../redux/modules/option";
+
+
 // components
 import Calendar from "./Calendar";
-// css
+
 
 function Option03 (props) {
 
-  // const startDate
+  const  dispatch = useDispatch();
 
   return (
     <>
@@ -41,8 +45,13 @@ function Option03 (props) {
           </PastButton>
 
           <NextButton
-            onClick={() => {props.history.push("/Option04");}}
-          >
+           onClick={() => {
+            props.history.push("/Option03");
+            dispatch(initOption({
+              startDate: 'test'
+            }));
+        }}
+      >  
             <div>
               <Text>
                 다음으로 

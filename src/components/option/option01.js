@@ -12,8 +12,6 @@ import Header from "../../shared/Header";
 
 function Option01(props) {
 
-  // const [clickButton, ]
-
 
   return(
     <>
@@ -101,6 +99,7 @@ const GenderBox = styled.div`
   align-items: center
   justify-content: center;
   // border: 1px solid black;
+  
 `;
 
 const GenderButton = styled.button`
@@ -114,7 +113,10 @@ const GenderButton = styled.button`
   cursor: pointer;
   &:hover{
     background-color: rgba(29,198,209,0.3);
-    color: #1DC6D1;
+  }
+  &:focus{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
   }
 `;
 
@@ -155,7 +157,10 @@ const AgeButton = styled.button`
   cursor: pointer;
   &:hover{
     background-color: rgba(29,198,209,0.3);
-    color: #1DC6D1;
+  }
+  &:focus{
+    background-color: #1DC6D1;
+    border-radius: 30px; 
   }
 `;
 

@@ -5,20 +5,25 @@ import styled from "styled-components";
 
 import leftArrow from "../../images/leftArrow.png";
 import rightArrow from "../../images/rightArrow.png";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 // import { findLastKey } from "lodash";
 
 
 function Calendar(props) {
 
     const [getMoment, setMoment] = useState(moment());
+
+    const [date, setDate] = useState("");
+
     const today = getMoment;
     const firstWeek = today.clone().startOf("month").week();
     const lastWeek = today.clone().endOf("month").week() === 1 ? 53 : today.clone().endOf('month').week();
     const day = useRef(null);
 
-    const findDate = (idx) => {
+    const startDate = (idx) => {
       console.log(idx)
-
+      // setDate(idx);
+      sessionStorage.setItem("date",idx);
     }
 
 
@@ -45,7 +50,7 @@ function Calendar(props) {
                             <Td 
                               key={index}  
                               style={{color:"#E2E2E2"}}
-                              onClick={()=>{findDate(days.format("YYYY-MM-DD"))}}  
+                              onClick={()=>{startDate(days.format("YYYY-MM-DD"))}}  
                             >
                               <Span>{days.format("D")}</Span>
                             </Td>
@@ -54,7 +59,7 @@ function Calendar(props) {
                           return(
                             <Td 
                               key={index} 
-                              onClick={()=>{findDate(days.format("YYYY-MM-DD"))}}  
+                              onClick={()=>{startDate(days.format("YYYY-MM-DD"))}}  
                             >
                               <Span>{days.format("D")}</Span>
                             </Td>  

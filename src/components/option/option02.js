@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
@@ -7,24 +8,29 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 // shared
 import Header from "../../shared/Header";
 
+import {initOption} from "../../redux/modules/option";
+
 function Option02 (props) {
 
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState([]);
   
+  const dispatch = useDispatch();
+
   const changeSolo = (e) =>{
     setCategory(["C0113","C0114","C0115"]); 
-    console.log(category)
   }
 
   const changeCouple = (e) =>{
     setCategory(["C0114","C0115"]) ;
-    console.log(category)
   }
 
   const changeFamily = (e) => {
     setCategory(["C0112","C0114","C0115"]) 
-    console.log(category)
   }
+
+  useEffect(()=> {
+    console.log(category); 
+  },[category]);
 
   return (
     <>
@@ -38,7 +44,7 @@ function Option02 (props) {
 
         <ButtonBox>
           <WithButton
-            onClick={()=>{changeSolo()}}
+            onClick={changeSolo}
           >
             솔로
           </WithButton>
@@ -69,8 +75,13 @@ function Option02 (props) {
           </PastButton>
 
           <NextButton
-            onClick={() => {props.history.push("/Option03");}}
-          >
+           onClick={() => {
+            props.history.push("/Option03");
+            dispatch(initOption({
+              category: 'test'
+          }));
+      }}
+    >
             <div>
               <Text>
                 다음으로 
