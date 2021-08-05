@@ -10,22 +10,22 @@ const DetailModal = ({ list, closeModal }) => {
             src={require("../../images/background_img.jpg").default}
             alt=""
           /> */}
-          <Image src={list.firstimage} alt="" />
+          <Image src={list.img} alt="" />
           <ModalContents>
             <TopContents>
               <PlaceTitle>
-                <h1>{list.title}</h1>
+                <h1>{list.name}</h1>
                 <span>카테고리?</span>
               </PlaceTitle>
-              <Grade>
+              {/* <Grade>
                 <span>4.5</span>
                 <span>구글 (11,611)</span>
                 <div>별점</div>
-              </Grade>
+              </Grade> */}
             </TopContents>
             <BottomContents>
-              <div>주소</div>
-              <div>운영시간</div>
+              <div>주소 : {list.addr1}</div>
+              {/* <div>운영시간</div> */}
             </BottomContents>
           </ModalContents>
         </ScheduleModal>

@@ -52,12 +52,12 @@ function Detail(props) {
 
       <Layout>
         <ContentsBox>
-          <DetailTitle />
+          <DetailTitle tourList={tourList} />
           <DetailAbout tourList={tourList} />
         </ContentsBox>
 
         <VideoBox>
-          <DetailVideo tourList={tourList} />
+          <DetailVideo tourList={tourList.courseImages} />
         </VideoBox>
 
         <MapBox>

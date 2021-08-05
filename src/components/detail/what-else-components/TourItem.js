@@ -5,12 +5,12 @@ const TourItem = ({ data, category }) => {
   return (
     <>
       <Div>
-        <TourImage src={data.firstimage}>
+        <TourImage src={data.img}>
           <Gradation />
 
           <TourItemTitle id="title">
             <Left>
-              <h1>{data.title}</h1>
+              <h1>{data.name}</h1>
               <span>subtitle</span>
             </Left>
             {/* <Right>
@@ -25,7 +25,7 @@ const TourItem = ({ data, category }) => {
           <HoverMenu id="hoverMenu">
             <HoverMenuTitle>
               <Left>
-                <h1>{data.title}</h1>
+                <h1>{data.name}</h1>
                 <span>subtitle</span>
               </Left>
               {/* <Right>

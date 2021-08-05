@@ -11,7 +11,8 @@ const About = (props) => {
           <h1>About</h1>
           <span>거리두기 3단계</span>
         </AboutTitle>
-        <p>{tourList[0] && tourList[0].overview} </p>
+        <p>{tourList && tourList.overview}</p>
+        {/* <p>{tourList[0] && tourList[0].overview}</p> */}
         <HashTag>
           <span>#황리단길</span>
           <span>#황남빵</span>

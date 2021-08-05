@@ -42,6 +42,20 @@ const DetailVideo = (props) => {
         <Slider {...settings}>
           {tourList &&
             tourList.map((list, idx) => {
+              if (list) {
+                return (
+                  <Div key={idx}>
+                    <SlideImage src={list} />
+                  </Div>
+                );
+              }
+            })}
+        </Slider>
+      </SliderContainer>
+      {/* <SliderContainer>
+        <Slider {...settings}>
+          {tourList &&
+            tourList.map((list, idx) => {
               if (list.firstimage) {
                 return (
                   <Div key={idx}>
@@ -51,7 +65,7 @@ const DetailVideo = (props) => {
               }
             })}
         </Slider>
-      </SliderContainer>
+      </SliderContainer> */}
     </>
   );
 };

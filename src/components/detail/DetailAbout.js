@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // components
 import About from "./About";
-import Weather from "./Weather";
+import DetailMyInfo from "./DetailMyInfo";
 
 const DetailAbout = (props) => {
   const { tourList } = props;
@@ -12,7 +12,7 @@ const DetailAbout = (props) => {
     <>
       <Container>
         <About tourList={tourList} />
-        <Weather />
+        <DetailMyInfo />
       </Container>
     </>
   );

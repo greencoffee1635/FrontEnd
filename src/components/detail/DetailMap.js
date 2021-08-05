@@ -58,8 +58,8 @@ const DetailMap = (props) => {
     }
 
     // marker
-    tourList &&
-      tourList.forEach((list) => {
+    tourList.course &&
+      tourList.course.forEach((list) => {
         const marker = new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(
@@ -70,31 +70,31 @@ const DetailMap = (props) => {
         });
 
         marker.setMap(map);
-
-        // const customOverlay = new kakao.maps.CustomOverlay({
-        //   position: new kakao.maps.LatLng(
-        //     parseFloat(list.mapy),
-        //     parseFloat(list.mapx)
-        //   ),
-        //   zIndex: 3,
-        //   map: map,
-        // });
-        // customOverlay.setMap(map);
       });
 
-    // location.forEach((loc) => {
-    //   const marker = new kakao.maps.Marker({
-    //     map: map,
-    //     position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
-    //     title: loc.name,
-    //   });
+    // marker
+    // tourList &&
+    //   tourList.forEach((list) => {
+    //     const marker = new kakao.maps.Marker({
+    //       map: map,
+    //       position: new kakao.maps.LatLng(
+    //         parseFloat(list.mapy),
+    //         parseFloat(list.mapx)
+    //       ),
+    //       title: list.title,
+    //     });
 
-    //   const customOverlay = new kakao.maps.CustomOverlay({
-    //     position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
-    //     zIndex: 3,
-    //     map: map,
-    //   });
-    //   customOverlay.setMap(map);
+    //     marker.setMap(map);
+
+    // const customOverlay = new kakao.maps.CustomOverlay({
+    //   position: new kakao.maps.LatLng(
+    //     parseFloat(list.mapy),
+    //     parseFloat(list.mapx)
+    //   ),
+    //   zIndex: 3,
+    //   map: map,
+    // });
+    // customOverlay.setMap(map);
     // });
   }, [viewport]);
 
@@ -104,16 +104,24 @@ const DetailMap = (props) => {
         <MapContainer>
           <Map id="map"></Map>
           <Schedule>
-            <ScheduleTitle>추천장소</ScheduleTitle>
+            <ScheduleTitle>Schedule</ScheduleTitle>
             <ScheduleList>
-              {tourList &&
-                tourList.map((list, idx) => (
+              {tourList.course &&
+                tourList.course.map((list, idx) => (
                   <DetailSchedule
                     key={idx}
                     list={list}
                     setViewport={setViewport}
                   />
                 ))}
+              {/* {tourList &&
+                tourList.map((list, idx) => (
+                  <DetailSchedule
+                    key={idx}
+                    list={list}
+                    setViewport={setViewport}
+                  />
+                ))} */}
             </ScheduleList>
           </Schedule>
         </MapContainer>
