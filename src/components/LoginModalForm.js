@@ -43,7 +43,13 @@ const LoginModal = (props) => {
         </BtnWrap>
         <LoginSignUpWrap>
           <p>아직 회원이 아니신가요?</p>
-          <LoginSignUpBtn>회원가입</LoginSignUpBtn>
+          <LoginSignUpBtn
+            onClick={() => {
+              window.location.href = "/join";
+            }}
+          >
+            회원가입
+          </LoginSignUpBtn>
         </LoginSignUpWrap>
       </FormWrap>
     </Container>
