@@ -1,43 +1,43 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore,getDefaultMiddleware } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
+
 import { createBrowserHistory } from "history";
-import thunk from "redux-thunk";
 
-// redux-persist
-import { persistReducer, persistStore } from "redux-persist";
+
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-// => localStorage에 저장!
 
-// reducers
+// reducer
+import detailSlice from "./modules/detailSlice";
 import option from "./modules/option";
 
 export const history = createBrowserHistory();
 
-const middlewares = [
-  thunk.withExtraArgument({
-    history,
-  }),
-];
- 
+const rootReducer = combineReducers({
+  detail: detailSlice.reducer,
+  option: option,
+  router: connectRouter(history),
+});
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const middlewares = [];
+
 const env = process.env.NODE_ENV;
 
 if (env === "development") {
   const { logger } = require("redux-logger");
   middlewares.push(logger);
 }
-//  persist
-const persistConfig = {
-  key: "root",
-  storage
-};
 
-const reducer = combineReducers({
-  option: option,
-  router: connectRouter(history),
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: [...middlewares, ...getDefaultMiddleware()],
+  devTools: env !== "production",
 });
-
-// persist
-const persistedReducer = persistReducer(persistConfig, reducer);
-export const store = configureStore({ reducer: persistedReducer, middleware: middlewares });
-export const persistor = persistStore(store);
-export default { store, persistor };

@@ -36,7 +36,7 @@ function Option03 (props) {
         <div>
           <SubQuestion>아직 미정이신가요?</SubQuestion>
           <ToggleButton/>
-        </div> 
+        </div>
         <PageMoveBox>
           <PastButton
             onClick={() => {props.history.push("/Option02");}}

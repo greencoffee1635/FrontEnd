@@ -190,4 +190,3 @@ const Text = styled.text`
 `;
 
 export default Option02;
-

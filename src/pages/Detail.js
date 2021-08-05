@@ -1,107 +1,143 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
+import { AiOutlineArrowUp } from "react-icons/ai";
+
+// async
+import { getTourInfo } from "../redux/async/detail";
 
 // shared
 import Header from "../shared/Header";
 import Layout from "../shared/Layout";
 
-import "../css/detail/detail.scss";
-import VideoSwiper from "../components/detail/Swiper";
+// components
+import DetailTitle from "../components/detail/DetailTitle";
+import DetailAbout from "../components/detail/DetailAbout";
+import DetailVideo from "../components/detail/DetailVideo";
+import DetailMap from "../components/detail/DetailMap";
+import DetailWhatElse from "../components/detail/DetailWhatElse";
+import SaveButton from "../components/detail/SaveButton";
 
 function Detail(props) {
+  const dispatch = useDispatch();
+  const [navBar, setNavBar] = useState(false);
+
+  const changeHeaderBackground = () => {
+    if (window.scrollY >= 400) {
+      setNavBar(true);
+    } else {
+      setNavBar(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeHeaderBackground);
+
+    return () => {
+      window.removeEventListener("scroll", changeHeaderBackground);
+    };
+  }, []);
+
+  useEffect(() => {
+    dispatch(getTourInfo());
+  }, []);
+
+  const tourList = useSelector((state) => state.detail.tourList);
+  // console.log("Detail", tourList);
+
   return (
     <>
-      <Header page="main" {...props} />
-      <div className="headimage" alt="WTGT"></div>
+      <Header page="main" bgColor={navBar ? "gray" : ""} {...props} />
+      <HeadImage></HeadImage>
 
-      <Layout page="detail">
-        <section className="first-box">
-          <h1 className="hello">
-            Hello!
-            <br />
-            Gyeongju!
-            <br />
-          </h1>
-          <div className="aboutntemp">
-            <div className="aboutbox">
-              <h1 className="about">About</h1>
-              {/* <div className="corona"></div> */}
-              <p className="aboutcontent">
-                지붕 없는 박물관 경주. 경주는 그만큼 발길이 닿는 어느 곳이든
-                문화 유적지를 만날 수 있는 곳이다. 밤이면 더 빛나는 안압지를
-                비롯해 허허벌판에 자리를 굳건히 지키고 있는 첨성대. 뛰어난
-                건축미를 자랑하는 불국사 석굴암까지 어느 하나 빼놓을 수 없다.
-                경주 여행의 기록을 남기고 싶다면 스탬프 투어를 이용해보는 것도
-                좋다. 16곳의 명소를 탐방할 때마다 찍히는 도장 모으는 재미가
-                쏠쏠하다. 모바일 앱으로도 스탬프 투어 참여가 가능하다.
-              </p>
-              <ul className="tag">
-                <li>
-                  <a href="#">#황리단길</a>
-                </li>
-                <li>
-                  <a href="#">#황남빵</a>
-                </li>
-                <li>
-                  <a href="#">#찰보리빵</a>
-                </li>
-                <li>
-                  <a href="#">#유적지</a>
-                </li>
-              </ul>
-            </div>
-            <div className="temp-area">
-              <div className="tempspeech">화창한 날씨! 행복한 여행되세요:)</div>
-              <div className="tempcontent">
-                <div className="tempcity">
-                  <span>경상북도 경주시</span>
-                  <br />
-                  <span>21년 7월 26일</span>
-                </div>
-                <div className="temperature">
-                  <div>
-                    <span>최고: 34º</span>
-                    <br />
-                    <span>최저: 26º</span>
-                  </div>
-                  <div>29º</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="videolist">
-            <VideoSwiper />
-          </div>
-        </section>
-        <section className="map-box">
-          <div className="map-area"></div>
-          <div className="schedule">Schedule</div>
-        </section>
-        <section className="what-else">
-          <div>
-            <h2 className="what-else__title">What else?</h2>
-            <ul className="what-else__filter">
-              <li>전체</li>
-              <li>관광지</li>
-              <li>음식</li>
-              <li>액티비티</li>
-              <li>축제</li>
-              <li>여행후기</li>
-            </ul>
-          </div>
-          <div className="what-else__category-wrap">
-            <div className="what-else__category">
-              <h3>#관광지</h3>
-              <div></div>
-            </div>
-          </div>
-        </section>
-        <section className="button-area">
-          <button>다시하기</button>
-          <button>저장하기</button>
-        </section>
+      <Layout>
+        <ContentsBox>
+          <DetailTitle tourList={tourList} />
+          <DetailAbout tourList={tourList} />
+        </ContentsBox>
+
+        <VideoBox>
+          <DetailVideo tourList={tourList.courseImages} />
+        </VideoBox>
+
+        <MapBox>
+          <DetailMap />
+        </MapBox>
+
+        <WhatElseContents>
+          <DetailWhatElse tourList={tourList} />
+        </WhatElseContents>
+
+        <BottomButton>
+          <SaveButton />
+        </BottomButton>
       </Layout>
+
+      <UpBtn
+        onClick={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }}
+      >
+        <AiOutlineArrowUp />
+      </UpBtn>
     </>
   );
 }
+
+const UpBtn = styled.button`
+  width: 65px;
+  height: 65px;
+  position: fixed;
+  left: 92%;
+  top: 855px;
+  background: rgba(29, 198, 209, 0.3);
+  border: 1px solid rgba(29, 198, 209, 0.6);
+  border-radius: 32px;
+  z-index: 98;
+  font-size: 50px;
+  color: #fff;
+`;
+
+const ContentsBox = styled.div`
+  width: 108rem;
+  margin-top: 29rem;
+`;
+
+const VideoBox = styled.div`
+  width: 108rem;
+  margin-top: 6rem;
+`;
+
+const MapBox = styled.div`
+  width: 100%;
+  margin-top: 141px;
+`;
+
+const WhatElseContents = styled.div`
+  width: 149rem;
+  /* width: 108rem; */
+  margin: 185px 0px 0px auto;
+`;
+
+const HeadImage = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40rem;
+  background: transparent;
+  background-image: linear-gradient(to top, rgb(255, 255, 255), transparent 35%),
+    url("https://waynabox.com/assets/road/routes_upfold_photo_hd.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const BottomButton = styled.div`
+  width: 526px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 254px;
+  padding-bottom: 100px;
+`;
 
 export default Detail;
