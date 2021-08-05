@@ -21,42 +21,42 @@ function Header(props) {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("click", LoginModalOpen);
-    return () => {
-      window.removeEventListener("click", LoginModalOpen);
-    };
-  });
+  // useEffect(() => {
+  //   window.addEventListener("click", LoginModalOpen);
+  //   return () => {
+  //     window.removeEventListener("click", LoginModalOpen);
+  //   };
+  // });
 
   return (
     <>
-    <HeaderLayout bgColor={bgColor} id="header-layout">
-      <Container>
-        <HeaderLogo
-          page={props.page}
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          내일 어디가?
-        </HeaderLogo>
-        <HeaderMenu page={props.page}>
-          <HeaderMenuItem>
-            <div></div>
-            <span>Home</span>
-          </HeaderMenuItem>
-          <HeaderMenuItem>
-            <div></div>
-            <span>Explore</span>
-          </HeaderMenuItem>
-          <HeaderMenuItem>
-            <div></div>
-            <span onClick={LoginModalOpen}>Login</span>
-            {loginModal && <LoginModal ref={is_close} />}
-          </HeaderMenuItem>
-        </HeaderMenu>
-      </Container>
-    </HeaderLayout>
+      <HeaderLayout bgColor={bgColor} id="header-layout">
+        <Container>
+          <HeaderLogo
+            page={props.page}
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            내일 어디가?
+          </HeaderLogo>
+          <HeaderMenu page={props.page}>
+            <HeaderMenuItem>
+              <div></div>
+              <span>Home</span>
+            </HeaderMenuItem>
+            <HeaderMenuItem>
+              <div></div>
+              <span>Explore</span>
+            </HeaderMenuItem>
+            <HeaderMenuItem>
+              <div></div>
+              <span onClick={LoginModalOpen}>Login</span>
+              {loginModal && <LoginModal ref={is_close} />}
+            </HeaderMenuItem>
+          </HeaderMenu>
+        </Container>
+      </HeaderLayout>
     </>
   );
 }

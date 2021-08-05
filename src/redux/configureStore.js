@@ -4,15 +4,27 @@ import { combineReducers } from "redux";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
 // reducer
 import detailSlice from "./modules/detailSlice";
+import optionReducer from "./modules/option";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   detail: detailSlice.reducer,
+  option: optionReducer,
   router: connectRouter(history),
 });
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middlewares = [];
 
@@ -26,7 +38,7 @@ if (env === "development") {
 }
 
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: [...middlewares, ...getDefaultMiddleware()],
   devTools: env !== "production",
 });
