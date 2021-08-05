@@ -7,8 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import TourItem from "./TourItem";
 
-const TouristSpot = ({ category, tourData }) => {
-  console.log(tourData);
+const TouristSpot = ({ category, tourData, setOpenModal }) => {
   const settings = {
     speed: 500,
     slidesToShow: 3,
@@ -26,7 +25,12 @@ const TouristSpot = ({ category, tourData }) => {
         <Slider {...settings}>
           {tourData.course &&
             tourData.course.map((data, idx) => (
-              <TourItem key={idx} data={data} category={category} />
+              <TourItem
+                key={idx}
+                data={data}
+                category={category}
+                setOpenModal={setOpenModal}
+              />
             ))}
           {/* {tourData &&
             tourData.map((data, idx) => (

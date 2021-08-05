@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const TourItem = ({ data, category }) => {
+const TourItem = ({ data, category, setOpenModal }) => {
   return (
     <>
       <Div>
@@ -38,7 +38,15 @@ const TourItem = ({ data, category }) => {
             </HoverMenuTitle>
 
             <Explain>
-              {data.overview} <a href="#">더보기</a>
+              {data.overview}{" "}
+              <a
+                href="#123"
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                더보기
+              </a>
             </Explain>
 
             {/* <Address>

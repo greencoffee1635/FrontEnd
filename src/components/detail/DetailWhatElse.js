@@ -10,10 +10,14 @@ import Shopping from "./what-else-components/Shopping";
 import Food from "./what-else-components/Food";
 import Lodgment from "./what-else-components/Lodgment";
 import RecommendedJCourse from "./what-else-components/RecommendedJCourse";
+import ViewMoreModal from "./what-else-components/ViewMoreModal";
 
 const DetailWhatElse = (props) => {
   // 서버에서 받아온 데이터
   const { tourList } = props;
+
+  // what else 모달 제어하기 위한 변수
+  const [openModal, setOpenModal] = useState(false);
 
   // // 여행지 카테고리를 중복되지 않게 하기 위해 Set을 사용
   // const tourCategory = new Set();
@@ -201,7 +205,9 @@ const DetailWhatElse = (props) => {
         )} */}
       </div>
 
-      {entireBtn && <Entire tourData={tourList} />}
+      {openModal && <ViewMoreModal setOpenModal={setOpenModal} />}
+
+      {entireBtn && <Entire tourData={tourList} setOpenModal={setOpenModal} />}
       {/* {natureBtn && <Nature tourData={natureData} />}
       {humanitiesBtn && <Humanities tourData={humanitiesData} />}
       {sportsBtn && <Sports tourData={sportsData} />}

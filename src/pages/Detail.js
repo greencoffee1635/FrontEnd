@@ -93,7 +93,7 @@ const UpBtn = styled.button`
   background: rgba(29, 198, 209, 0.3);
   border: 1px solid rgba(29, 198, 209, 0.6);
   border-radius: 32px;
-  z-index: 99;
+  z-index: 98;
   font-size: 50px;
   color: #fff;
 `;
