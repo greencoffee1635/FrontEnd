@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 // components
 import DetailSchedule from "./DetailSchedule";
-import DetailModal from "./DetailModal";
 
 const { kakao } = window;
 
 const DetailMap = (props) => {
   const [viewport, setViewport] = useState({
-    latitude: 37.6403324,
-    longitude: 126.9380102,
+    latitude: 37.5334919,
+    longitude: 126.9863622,
     level: 7,
   });
+
+  const tourList = useSelector((state) => state.detail.tourList);
 
   const location = [
     {
@@ -42,30 +44,58 @@ const DetailMap = (props) => {
   ];
 
   useEffect(() => {
-    let mapContainer = document.getElementById("map");
-    let options = {
-      center: new kakao.maps.LatLng(viewport.latitude, viewport.longitude),
-      level: viewport.level,
-    };
+    if (!tourList) {
+      return;
+    } else {
+      var mapContainer = document.getElementById("map");
+      var options = {
+        center: new kakao.maps.LatLng(viewport.latitude, viewport.longitude),
+        level: viewport.level,
+      };
 
-    // map
-    const map = new kakao.maps.Map(mapContainer, options);
+      // map
+      var map = new kakao.maps.Map(mapContainer, options);
+    }
 
     // marker
-    location.forEach((loc) => {
-      const marker = new kakao.maps.Marker({
-        map: map,
-        position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
-        title: loc.name,
+    tourList.course &&
+      tourList.course.forEach((list) => {
+        const marker = new kakao.maps.Marker({
+          map: map,
+          position: new kakao.maps.LatLng(
+            parseFloat(list.mapy),
+            parseFloat(list.mapx)
+          ),
+          title: list.title,
+        });
+
+        marker.setMap(map);
       });
 
-      const customOverlay = new kakao.maps.CustomOverlay({
-        position: new kakao.maps.LatLng(loc.latitude, loc.longitude),
-        zIndex: 3,
-        map: map,
-      });
-      customOverlay.setMap(map);
-    });
+    // marker
+    // tourList &&
+    //   tourList.forEach((list) => {
+    //     const marker = new kakao.maps.Marker({
+    //       map: map,
+    //       position: new kakao.maps.LatLng(
+    //         parseFloat(list.mapy),
+    //         parseFloat(list.mapx)
+    //       ),
+    //       title: list.title,
+    //     });
+
+    //     marker.setMap(map);
+
+    // const customOverlay = new kakao.maps.CustomOverlay({
+    //   position: new kakao.maps.LatLng(
+    //     parseFloat(list.mapy),
+    //     parseFloat(list.mapx)
+    //   ),
+    //   zIndex: 3,
+    //   map: map,
+    // });
+    // customOverlay.setMap(map);
+    // });
   }, [viewport]);
 
   return (
@@ -76,9 +106,22 @@ const DetailMap = (props) => {
           <Schedule>
             <ScheduleTitle>Schedule</ScheduleTitle>
             <ScheduleList>
-              {location.map((loc, idx) => (
-                <DetailSchedule key={idx} loc={loc} setViewport={setViewport} />
-              ))}
+              {tourList.course &&
+                tourList.course.map((list, idx) => (
+                  <DetailSchedule
+                    key={idx}
+                    list={list}
+                    setViewport={setViewport}
+                  />
+                ))}
+              {/* {tourList &&
+                tourList.map((list, idx) => (
+                  <DetailSchedule
+                    key={idx}
+                    list={list}
+                    setViewport={setViewport}
+                  />
+                ))} */}
             </ScheduleList>
           </Schedule>
         </MapContainer>
@@ -112,7 +155,7 @@ const Schedule = styled.div`
 const ScheduleTitle = styled.h1`
   font-size: 55px;
   font-weight: 600;
-  margin: 0px 0px 96px 0px;
+  margin: 0px 0px 60px 0px;
 `;
 
 const ScheduleList = styled.ul`
@@ -122,8 +165,18 @@ const ScheduleList = styled.ul`
   overflow: auto;
 
   &::-webkit-scrollbar {
-    display: none;
+    background-color: #f2f2f2;
+    width: 10px;
+    border-radius: 5px;
   }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #1dc6d1;
+    border-radius: 5px;
+  }
+  /* &::-webkit-scrollbar-track {
+    background-color: grey;
+  } */
 `;
 
 export default DetailMap;

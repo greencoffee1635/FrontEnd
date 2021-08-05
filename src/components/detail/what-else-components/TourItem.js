@@ -1,53 +1,58 @@
 import React from "react";
 import styled from "styled-components";
 
-const TourItem = ({ data, category }) => {
+const TourItem = ({ data, category, setOpenModal }) => {
   return (
     <>
       <Div>
-        <TourImage src={data.src}>
+        <TourImage src={data.img}>
           <Gradation />
 
           <TourItemTitle id="title">
             <Left>
               <h1>{data.name}</h1>
-              <span>{data.subTitle}</span>
+              <span>subtitle</span>
             </Left>
-            <Right>
+            {/* <Right>
               <div>
                 <span>4.5</span>
                 <span>구글 (11.611)</span>
               </div>
               <div>별점</div>
-            </Right>
+            </Right> */}
           </TourItemTitle>
 
           <HoverMenu id="hoverMenu">
             <HoverMenuTitle>
               <Left>
                 <h1>{data.name}</h1>
-                <span>{data.subTitle}</span>
+                <span>subtitle</span>
               </Left>
-              <Right>
+              {/* <Right>
                 <div>
                   <span>4.5</span>
                   <span>구글 (11.611)</span>
                 </div>
                 <div>별점</div>
-              </Right>
+              </Right> */}
             </HoverMenuTitle>
 
             <Explain>
-              경주 불국사 대웅전은 경상북도 경주시, 불국사의 대웅전으로
-              조선시대의 건축물이다. 2011년 12월 30일 대한민국의 보물 제1744호로
-              지정되었다. 석가여래 부처님을 모시는 법당으로, 불국사 경 내 중심이
-              되는 건물이다. <a href="#">더보기</a>
+              {data.overview}{" "}
+              <a
+                href="#123"
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                더보기
+              </a>
             </Explain>
 
-            <Address>
+            {/* <Address>
               <p>경상북도 경주시 진현동 15-1</p>
               <p>평일 09:00 - 18:00</p>
-            </Address>
+            </Address> */}
 
             <AddScheduleBtn>
               <button>일정추가</button>
@@ -183,7 +188,10 @@ const Explain = styled.div`
   font-size: 15px;
   font-weight: 500;
   color: #e2e2e2;
-  margin: 35px 0px 20px 0px;
+  margin: 15px 0px 20px 0px;
+  line-height: 25px;
+  height: 65px;
+  overflow: auto;
 
   & a {
     color: #fff;

@@ -9,7 +9,7 @@ const DetailMyInfo = (props) => {
         <InfoContainer>
           <UserNick>OO 님!</UserNick>
           <InfoSuggest>
-            “요즘 SNS에서 가장 핫한 경주 황리단길에서 인생샷 건져 보세요!”
+            “요즘 SNS에서 가장 핫한 이 곳에서 인생샷 건져 보세요!”
           </InfoSuggest>
         </InfoContainer>
       </MyInfoBox>
@@ -52,7 +52,7 @@ const UserNick = styled.div`
 
 const InfoSuggest = styled.div`
   margin-top: 10px;
-  color: #484848;
+  color: #313131;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.2;

@@ -1,55 +1,62 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 //components
 import LoginModal from "../components/LoginModalForm";
 
 function Header(props) {
+  const is_close = useRef();
   const { history, bgColor } = props;
-  const [loginModal, setLogin] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
 
-  const LoginModalOpen = () => {
-    setLogin(true);
+  const LoginModalOpen = (e) => {
+    setLoginModal(true);
+
+    if (
+      loginModal &&
+      (!is_close.current || !is_close.current.contains(e.target))
+    ) {
+      setLoginModal(false);
+      console.log("false");
+    }
   };
-  const LoginModalClose = () => {
-    setLogin(false);
-  };
+
+  useEffect(() => {
+    window.addEventListener("click", LoginModalOpen);
+    return () => {
+      window.removeEventListener("click", LoginModalOpen);
+    };
+  });
 
   return (
     <>
-      <HeaderLayout bgColor={bgColor}>
-        <Container>
-          <HeaderLogo
-            page={props.page}
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            내일 어디가?
-          </HeaderLogo>
-
-          <HeaderMenu page={props.page}>
-            <HeaderMenuItem>
-              <div></div>
-              <span>Home</span>
-            </HeaderMenuItem>
-            <HeaderMenuItem>
-              <div></div>
-              <span>Explore</span>
-            </HeaderMenuItem>
-            <HeaderMenuItem>
-              <div></div>
-              <span onClick={LoginModalOpen}>Login</span>
-              {loginModal && (
-                <LoginModal {...props} LoginModalClose={LoginModalClose} />
-              )}
-              {/* {loginModal === true ? (
-                <LoginModal close={LoginModalClose} />
-              ) : null} */}
-            </HeaderMenuItem>
-          </HeaderMenu>
-        </Container>
-      </HeaderLayout>
+    <HeaderLayout bgColor={bgColor} id="header-layout">
+      <Container>
+        <HeaderLogo
+          page={props.page}
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          내일 어디가?
+        </HeaderLogo>
+        <HeaderMenu page={props.page}>
+          <HeaderMenuItem>
+            <div></div>
+            <span>Home</span>
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <div></div>
+            <span>Explore</span>
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <div></div>
+            <span onClick={LoginModalOpen}>Login</span>
+            {loginModal && <LoginModal ref={is_close} />}
+          </HeaderMenuItem>
+        </HeaderMenu>
+      </Container>
+    </HeaderLayout>
     </>
   );
 }
@@ -87,6 +94,8 @@ const HeaderLogo = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 16px;
+    margin-top: 8vh;
+    margin-left: 5vw;
   }
 `;
 

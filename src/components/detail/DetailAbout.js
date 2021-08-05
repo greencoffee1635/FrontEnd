@@ -6,10 +6,12 @@ import About from "./About";
 import DetailMyInfo from "./DetailMyInfo";
 
 const DetailAbout = (props) => {
+  const { tourList } = props;
+
   return (
     <>
       <Container>
-        <About />
+        <About tourList={tourList} />
         <DetailMyInfo />
       </Container>
     </>

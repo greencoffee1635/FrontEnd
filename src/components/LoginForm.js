@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/User_module";
 import styled from "styled-components";
+import Swal from "sweetalert2";
 
-function LoginForm(props) {
+function LoginForm() {
+  const dispatch = useDispatch();
+
+  const [email, setEmail] = React.useState("");
+  const [pwd, setPwd] = React.useState("");
+
+  const login = () => {
+    if (email === "" || pwd === "") {
+      Swal.fire({
+        position: "center-right",
+        icon: "info",
+        title: "모든 항목을 입력해주세요!",
+        showConfirmButton: false,
+        timer: 1400,
+      });
+    } else {
+      dispatch(userActions.loginDB(email, pwd));
+    }
+  };
+
   return (
     <Container>
       <LoginFormWrap>
@@ -17,9 +39,9 @@ function LoginForm(props) {
               type="text"
               maxLength="40"
               placeholder="example@goTomorrow.com"
-              // _onChange={(e) => {
-              //   setId(e.target.value);
-              // }}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
           </LoginInformWrap>
           <LoginInformWrap>
@@ -27,12 +49,12 @@ function LoginForm(props) {
             <LoginTextBox
               className="LoginTextBox"
               label="password"
-              type="text"
+              type="password"
               maxLength="16"
-              placeholder="8자리 이상 입력하세요."
-              // _onChange={(e) => {
-              //   setId(e.target.value);
-              // }}
+              placeholder="영문/숫자/특수문자 포함 8글자 이상"
+              onChange={(e) => {
+                setPwd(e.target.value);
+              }}
             />
           </LoginInformWrap>
           <FindIdPwWrap>
@@ -42,11 +64,17 @@ function LoginForm(props) {
           </FindIdPwWrap>
         </LoginSimilarInformWrap>
         <BtnWrap>
-          <LoginBtn>로그인</LoginBtn>
+          <LoginBtn onClick={login}>로그인</LoginBtn>
         </BtnWrap>
         <SignupTextWrap>
           <p className="signupText">회원이 아니신가요?</p>
-          <SignupTextBtn>회원가입</SignupTextBtn>
+          <SignupTextBtn
+            onClick={() => {
+              window.location.href = "/join";
+            }}
+          >
+            회원가입
+          </SignupTextBtn>
         </SignupTextWrap>
       </LoginFormWrap>
     </Container>

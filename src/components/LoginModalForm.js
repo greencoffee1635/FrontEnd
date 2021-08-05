@@ -1,25 +1,40 @@
 import React from "react";
+import { KAKAO_AUTH_URL } from "../shared/OAuth";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/User_module";
+import { history } from "../redux/configureStore";
+
 import styled from "styled-components";
 import naver from "../images/naver.png";
 import kakao from "../images/kakao.png";
 import email from "../images/email.png";
 
-const LoginModal = (props, { close }) => {
-  const { LoginModalClose, history } = props;
+const LoginModal = (props) => {
+  const dispatch = useDispatch();
+
+  // const [closeLoginModal, setCloseLoginModal] = React.useState(true);
+  // const handleLoginModalOff = (e) => {
+  //   if (
+  //     closeLoginModal &&
+  //     (!is_close.current || !is_close.current.contains(e.target))
+  //   )
+  //     setCloseLoginModal(false);
+  // };
 
   return (
-    <Container
-    // onClick={() => {
-    //   close();
-    // }}
-    >
+    <Container>
       <FormWrap>
         <TitleWrap>
           <MainTitle>내일 당장 떠나요!(로고예정)</MainTitle>
           <SubTitle>일상이 여행인 당신을 위해~!</SubTitle>
         </TitleWrap>
-        <btnWrap>
-          <LinkBtn className="kakaoBtn" href="">
+        <BtnWrap>
+          <LinkBtn
+            className="kakaoBtn"
+            onClick={() => {
+              window.location.href = `${KAKAO_AUTH_URL}`;
+            }}
+          >
             <SocialLogo src={kakao} />
             <LogoText className="kakaoText">카카오 로그인하기</LogoText>
           </LinkBtn>
@@ -27,11 +42,16 @@ const LoginModal = (props, { close }) => {
             <SocialLogo src={naver} />
             <LogoText>네이버 로그인하기</LogoText>
           </LinkBtn>
-          <LinkBtn className="emailBtn" href="">
+          <LinkBtn
+            className="emailBtn"
+            onClick={() => {
+              window.location.href = "/login";
+            }}
+          >
             <SocialLogo className="Email" src={email} />
             <LogoText>이메일 로그인하기</LogoText>
           </LinkBtn>
-        </btnWrap>
+        </BtnWrap>
         <LoginSignUpWrap>
           <p>아직 회원이 아니신가요?</p>
           <LoginSignUpBtn>회원가입</LoginSignUpBtn>
@@ -43,22 +63,23 @@ const LoginModal = (props, { close }) => {
 
 const Container = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  // opacity: 0.4;
-  height: 100vh;
-  width: 100vw;
+  box-sizing: border-box;
+  display: block;
+  outline: 0px;
   z-index: 600;
+  transform: translate(-30%, 50%);
+  margin: 0px auto;
 `;
 
 const FormWrap = styled.div`
-  position: fixed;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
   top: 50%;
-  left: 50%;
-  width: 380px;
-  transform: translate(-50%, -50%);
-  background-color: #ffffff;
-  z-index: 610;
+  height: 400px;
+  width: 400px;
+  background-color: #fff;
+  opacity: 0.8;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -89,7 +110,7 @@ const SubTitle = styled.p`
   color: var(--main-color);
 `;
 
-const btnWrap = styled.section`
+const BtnWrap = styled.section`
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -153,6 +174,7 @@ const LoginSignUpWrap = styled.section`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 const LoginSignUpBtn = styled.p`
