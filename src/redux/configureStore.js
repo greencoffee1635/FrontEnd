@@ -3,21 +3,29 @@ import { combineReducers } from "redux";
 
 import { createBrowserHistory } from "history";
 
+
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+// reducer
+import detailSlice from "./modules/detailSlice";
 import option from "./modules/option";
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 export const history = createBrowserHistory();
-const persistConfig = {
-  key: "root",
-  storage
-};
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
+  detail: detailSlice.reducer,
   option: option,
-  // router: connectRouter(history),
+  router: connectRouter(history),
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const middlewares = [];
 
@@ -30,9 +38,6 @@ if (env === "development") {
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware({
-        serializableCheck: false,
-      }),
+  middleware: [...middlewares, ...getDefaultMiddleware()],
   devTools: env !== "production",
 });
