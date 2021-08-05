@@ -1,0 +1,55 @@
+// Arrows
+:root {
+    --swiper-navigation-size: 1.5rem;
+  }
+  $swiperButtonClass: "swiper-button";
+  $swiperSlideClass: "swiper-slide";
+  $swiperButtonModifierClass: $swiperButtonClass;
+  $swiperButtonPrevClass: "swiper-button-prev:after";
+  $swiperButtonNextClass: "swiper-button-next:after";
+  
+  $swiperButtonPrevClass: "swiper-button-prev";
+  $swiperButtonNextClass: "swiper-button-next";
+  $swiperButtonDisabledClass: "#{$swiperButtonModifierClass}-disabled";
+  
+  .#{$swiperButtonPrevClass},
+  .#{$swiperButtonNextClass} {
+    &.#{$swiperButtonDisabledClass} {
+      opacity: 0;
+      cursor: auto;
+      pointer-events: none;
+    }
+  }
+  /* Arrows */
+  .#{$swiperButtonPrevClass} {
+    color: gray;
+    size: 1rem;
+    font-weight: 900;
+  }
+  
+  .#{$swiperButtonNextClass} {
+    color: gray;
+    font-size: x-large;
+    font-weight: 900;
+    right: 2rem;
+  }
+  
+  .bigbox {
+    margin: 3rem auto 0;
+  }
+  .secbox {
+    margin: 3rem auto 0;
+    & li {
+      width: auto;
+      margin-right: 1rem;
+    }
+  }
+  
+  .video {
+    width: auto;
+  }
+  
+  .swiper-container {
+    position: relative;
+    height: 100%;
+  }
