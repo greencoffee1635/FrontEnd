@@ -4,7 +4,7 @@ import styled from "styled-components";
 function Layout(props) {
   return (
     <>
-      <Container>{props.children}</Container>
+      <Container page={props.page}>{props.children}</Container>
     </>
   );
 }
@@ -15,7 +15,7 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  ${(props) => (props.page === "main" ? "justify-content: center;" : "")}
   align-items: center;
   z-index: 2;
 
@@ -25,4 +25,4 @@ const Container = styled.div`
   }
 `;
 
-export default Container;
+export default Layout;
