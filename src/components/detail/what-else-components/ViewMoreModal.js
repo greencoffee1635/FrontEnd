@@ -1,55 +1,71 @@
-import React from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import styled from "styled-components";
 
 const ViewMoreModal = (props) => {
-  const { setOpenModal, setAddScheduleModal } = props;
+  const { openModal, setOpenModal, setAddScheduleModal } = props;
+
+  const isModal = useRef();
+
+  const clickOutsideModal = useCallback((e) => {
+    if (
+      openModal &&
+      (!isModal.current || !isModal.current.contains(e.target))
+    ) {
+      setOpenModal(false);
+    }
+  });
+
+  useEffect(() => {
+    document.addEventListener("click", clickOutsideModal);
+
+    return () => {
+      document.removeEventListener("click", clickOutsideModal);
+    };
+  });
 
   return (
     <>
-      <OutArea
-        onClick={() => {
-          setOpenModal(false);
-        }}
-      />
-      <Modal>
-        <Image
-          src="https://img.etnews.com/photonews/2105/1410551_20210506101604_121_0001.jpg"
-          alt=""
-        />
-        <Container>
-          <InfoTab>기본정보</InfoTab>
-          <DetailInfo>
-            <Title>
-              <h1>불국사</h1>
-              <span>불교사찰</span>
-            </Title>
-            <Ul>
-              <li>평일 09:00 - 18:00</li>
-              <li>054-746-9913</li>
-              <li>http://www.bulguksa.or.kr/</li>
-            </Ul>
-            <Intro>
-              <h2>장소 소개</h2>
-              <p>
-                경주 불국사 대웅전은 경상북도 경주시, 불국사의 대웅전으로
-                조선시대의 건축물이다. 2011년 12월 30일 대한민국의 보물
-                제1744호로 지정되었다. 석가여래 부처님을 모시는 법당으로, 불국사
-                경 내 중심이 되는 건물이다.
-              </p>
-            </Intro>
-          </DetailInfo>
-          <AddContainer>
-            <AddScheduleBtn
-              onClick={() => {
-                setOpenModal(false);
-                setAddScheduleModal(true);
-              }}
-            >
-              일정 추가하기
-            </AddScheduleBtn>
-          </AddContainer>
-        </Container>
-      </Modal>
+      <OutArea>
+        <Modal ref={isModal}>
+          <Image
+            src="https://img.etnews.com/photonews/2105/1410551_20210506101604_121_0001.jpg"
+            alt=""
+          />
+          <Container>
+            <InfoTab>기본정보</InfoTab>
+            <DetailInfo>
+              <Title>
+                <h1>불국사</h1>
+                <span>불교사찰</span>
+              </Title>
+              <Ul>
+                <li>평일 09:00 - 18:00</li>
+                <li>054-746-9913</li>
+                <li>http://www.bulguksa.or.kr/</li>
+              </Ul>
+              <Intro>
+                <h2>장소 소개</h2>
+                <p>
+                  경주 불국사 대웅전은 경상북도 경주시, 불국사의 대웅전으로
+                  조선시대의 건축물이다. 2011년 12월 30일 대한민국의 보물
+                  제1744호로 지정되었다. 석가여래 부처님을 모시는 법당으로,
+                  불국사 경 내 중심이 되는 건물이다.
+                </p>
+              </Intro>
+            </DetailInfo>
+            <AddContainer>
+              <AddScheduleBtn
+                onClick={() => {
+                  setOpenModal(false);
+                  setAddScheduleModal(true);
+                }}
+              >
+                일정 추가하기
+              </AddScheduleBtn>
+            </AddContainer>
+          </Container>
+        </Modal>
+      </OutArea>
     </>
   );
 };

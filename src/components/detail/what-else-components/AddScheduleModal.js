@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -7,12 +7,24 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import detailSlice from "../../../redux/modules/detailSlice";
 
 const AddScheduleModal = (props) => {
-  const { tourList, setOpenModal, setAddScheduleModal } = props;
+  const { tourList, setOpenModal, addScheduleModal, setAddScheduleModal } =
+    props;
 
   const dispatch = useDispatch();
 
+  const isModal = useRef();
+
   const [tourData, setTourData] = useState(tourList);
-  console.log("스케줄모달", tourData);
+  // console.log("스케줄모달", tourData);
+
+  const clickOutsideModal = useCallback((e) => {
+    if (
+      addScheduleModal &&
+      (!isModal.current || !isModal.current.contains(e.target))
+    ) {
+      setAddScheduleModal(false);
+    }
+  });
 
   const handleChange = (result) => {
     if (!result.destination) {
@@ -28,69 +40,70 @@ const AddScheduleModal = (props) => {
   };
 
   useEffect(() => {
-    console.log(tourData);
-  }, [tourData]);
+    document.addEventListener("click", clickOutsideModal);
+
+    return () => {
+      document.removeEventListener("click", clickOutsideModal);
+    };
+  });
 
   return (
     <>
-      <OutArea
-        onClick={() => {
-          setAddScheduleModal(false);
-        }}
-      />
-      <Modal>
-        <TourContainer>
-          <DragDropContext onDragEnd={handleChange}>
-            <Droppable droppableId="tour_data">
-              {(provided) => (
-                <ul
-                  className="tour_data"
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {tourData.map((data, idx) => (
-                    <Draggable
-                      key={data.contentid}
-                      draggableId={data.contentid}
-                      index={idx}
-                    >
-                      {(provided) => (
-                        <Li
-                          ref={provided.innerRef}
-                          {...provided.dragHandleProps}
-                          {...provided.draggableProps}
-                        >
-                          {data.title}
-                        </Li>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </TourContainer>
+      <OutArea>
+        <Modal ref={isModal}>
+          <TourContainer>
+            <DragDropContext onDragEnd={handleChange}>
+              <Droppable droppableId="tour_data">
+                {(provided) => (
+                  <ul
+                    className="tour_data"
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {tourData.map((data, idx) => (
+                      <Draggable
+                        key={data.contentid}
+                        draggableId={data.contentid}
+                        index={idx}
+                      >
+                        {(provided) => (
+                          <Li
+                            ref={provided.innerRef}
+                            {...provided.dragHandleProps}
+                            {...provided.draggableProps}
+                          >
+                            {data.title}
+                          </Li>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </ul>
+                )}
+              </Droppable>
+            </DragDropContext>
+          </TourContainer>
 
-        <AddBtnBox>
-          <button
-            onClick={() => {
-              setAddScheduleModal(false);
-              setOpenModal(true);
-            }}
-          >
-            뒤로가기
-          </button>
-          <button
-            onClick={() => {
-              setAddScheduleModal(false);
-              dispatch(detailSlice.actions.addTourList(tourData));
-            }}
-          >
-            추가하기
-          </button>
-        </AddBtnBox>
-      </Modal>
+          <AddBtnBox>
+            <button
+              onClick={() => {
+                setAddScheduleModal(false);
+                setOpenModal(true);
+              }}
+            >
+              뒤로가기
+            </button>
+            <button
+              onClick={() => {
+                setAddScheduleModal(false);
+                dispatch(detailSlice.actions.addTourList(tourData));
+              }}
+            >
+              추가하기
+            </button>
+          </AddBtnBox>
+        </Modal>
+      </OutArea>
     </>
   );
 };

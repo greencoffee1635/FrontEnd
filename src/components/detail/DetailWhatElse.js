@@ -209,6 +209,7 @@ const DetailWhatElse = (props) => {
       {openModal && (
         <ViewMoreModal
           tourList={tourList}
+          openModal={openModal}
           setOpenModal={setOpenModal}
           setAddScheduleModal={setAddScheduleModal}
         />
@@ -218,6 +219,7 @@ const DetailWhatElse = (props) => {
         <AddScheduleModal
           tourList={tourList}
           setOpenModal={setOpenModal}
+          addScheduleModal={addScheduleModal}
           setAddScheduleModal={setAddScheduleModal}
         />
       )}

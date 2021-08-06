@@ -6,7 +6,7 @@ import LoginModal from "../components/LoginModalForm";
 
 function Header(props) {
   const is_close = useRef();
-  const { history, bgColor } = props;
+  const { history } = props;
   const [loginModal, setLoginModal] = useState(false);
 
   const onClickOutside = useCallback((e) => {
