@@ -88,14 +88,17 @@ const UpBtn = styled.button`
   width: 65px;
   height: 65px;
   position: fixed;
-  left: 92%;
-  top: 855px;
+  left: 95%;
+  top: 90%;
   background: rgba(29, 198, 209, 0.3);
   border: 1px solid rgba(29, 198, 209, 0.6);
   border-radius: 32px;
   z-index: 98;
   font-size: 50px;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ContentsBox = styled.div`
