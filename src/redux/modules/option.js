@@ -1,23 +1,34 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, handleActions } from "redux-actions";
 
-const INIT = 'option/INIT';
+const INIT = "option/INIT";
 export const init = createAction(INIT);
 
 const optionState = {
-    category: "",
-    startDate: "",
-	// 이외의 것들 추가..
-}
+  category: "",
+  startDate: "",
+  areaCode: "",
+  lat: "",
+  lng: "",
+  contenttypeid: "",
+  // 이외의 것들 추가..
+};
 
-const option = handleActions({
-	[INIT]: (state, action) => {
-		const { category, startDate } = action.payload;
-		return {
-			...state,
-			category,
-            startDate,
-		};
-	}
-}, optionState);
+const option = handleActions(
+  {
+    [INIT]: (state, action) => {
+      const { category, startDate, areaCode, lat, lng, contenttypeid } = action.payload;
+      return {
+        ...state,
+        category,
+        startDate,
+        areaCode,
+        lat,
+        lng,
+        contenttypeid,
+      };
+    },
+  },
+  optionState
+);
 
 export default option;

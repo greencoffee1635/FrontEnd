@@ -10,17 +10,6 @@ import kakao from "../images/kakao.png";
 import email from "../images/email.png";
 
 const LoginModal = (props) => {
-  const dispatch = useDispatch();
-
-  // const [closeLoginModal, setCloseLoginModal] = React.useState(true);
-  // const handleLoginModalOff = (e) => {
-  //   if (
-  //     closeLoginModal &&
-  //     (!is_close.current || !is_close.current.contains(e.target))
-  //   )
-  //     setCloseLoginModal(false);
-  // };
-
   return (
     <Container>
       <FormWrap>
@@ -54,7 +43,13 @@ const LoginModal = (props) => {
         </BtnWrap>
         <LoginSignUpWrap>
           <p>아직 회원이 아니신가요?</p>
-          <LoginSignUpBtn>회원가입</LoginSignUpBtn>
+          <LoginSignUpBtn
+            onClick={() => {
+              window.location.href = "/join";
+            }}
+          >
+            회원가입
+          </LoginSignUpBtn>
         </LoginSignUpWrap>
       </FormWrap>
     </Container>
@@ -66,20 +61,20 @@ const Container = styled.div`
   box-sizing: border-box;
   display: block;
   outline: 0px;
-  z-index: 600;
-  transform: translate(-30%, 50%);
-  margin: 0px auto;
+  z-index: 1000;
+  /* transform: translate(-50%, -50%); */
+  right: 3%;
+  top: 10%;
 `;
 
 const FormWrap = styled.div`
   position: relative;
   box-sizing: border-box;
   border-radius: 10px;
-  top: 50%;
   height: 400px;
   width: 400px;
   background-color: #fff;
-  opacity: 0.8;
+  opacity: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

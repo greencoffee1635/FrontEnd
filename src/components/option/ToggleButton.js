@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-function ToggleButton () {
-    const [isToggleOn, setToggleOn] = useState(false);
+function ToggleButton() {
+  const [isToggleOn, setToggleOn] = useState(false);
 
-    return (
-        <Switch>
-            <Input
-                type="checkbox"
-                checked={isToggleOn}
-                onChange={() => setToggleOn(!isToggleOn)}
-            />
-                <Slider />
-        </Switch>
-    );
-  };
-  
+  return (
+    <Switch>
+      <Input
+        type="checkbox"
+        checked={isToggleOn}
+        onChange={() => setToggleOn(!isToggleOn)}
+      />
+      <Slider />
+    </Switch>
+  );
+}
+
 export default ToggleButton;
 
 const Switch = styled.label`
@@ -23,10 +23,10 @@ const Switch = styled.label`
   display: inline-block;
   width: 60px;
   height: 34px;
-  input { 
-      opacity: 0;
-      width: 0;
-      height: 0;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
 `;
 
@@ -38,8 +38,8 @@ const Slider = styled.span`
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 34px;
   &:before {
     position: absolute;
@@ -51,7 +51,7 @@ const Slider = styled.span`
     bottom: 4px;
     background-color: white;
     -webkit-transition: .4s;
-    transition: .2s;
+    transition: .1s;
   }
 `;
 

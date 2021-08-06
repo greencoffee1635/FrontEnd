@@ -1,9 +1,8 @@
-import { configureStore,getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
 import { createBrowserHistory } from "history";
-
 
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";

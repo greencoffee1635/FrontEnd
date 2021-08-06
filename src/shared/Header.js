@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 //components
@@ -9,24 +9,23 @@ function Header(props) {
   const { history, bgColor } = props;
   const [loginModal, setLoginModal] = useState(false);
 
-  const LoginModalOpen = (e) => {
-    setLoginModal(true);
-
+  const onClickOutside = useCallback((e) => {
     if (
       loginModal &&
       (!is_close.current || !is_close.current.contains(e.target))
     ) {
       setLoginModal(false);
-      console.log("false");
     }
-  };
+  });
 
-  // useEffect(() => {
-  //   window.addEventListener("click", LoginModalOpen);
-  //   return () => {
-  //     window.removeEventListener("click", LoginModalOpen);
-  //   };
-  // });
+
+  useEffect(() => {
+    document.addEventListener("click", onClickOutside);
+    return () => {
+      document.removeEventListener("click", onClickOutside);
+    };
+  });
+
 
   return (
     <>
@@ -51,7 +50,15 @@ function Header(props) {
             </HeaderMenuItem>
             <HeaderMenuItem>
               <div></div>
-              <span onClick={LoginModalOpen}>Login</span>
+
+              <span
+                onClick={() => {
+                  setLoginModal(true);
+                }}
+              >
+                Login
+              </span>
+
               {loginModal && <LoginModal ref={is_close} />}
             </HeaderMenuItem>
           </HeaderMenu>
