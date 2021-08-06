@@ -5,6 +5,9 @@ import styled from "styled-components";
 // components
 import DetailSchedule from "./DetailSchedule";
 
+// images
+import Marker from "../../images/marker.png";
+
 const { kakao } = window;
 
 const DetailMap = (props) => {
@@ -60,6 +63,12 @@ const DetailMap = (props) => {
     // marker
     tourList &&
       tourList.forEach((list) => {
+        // 마커 이미지
+        const imageSize = new kakao.maps.Size(48, 48);
+
+        // 마커 이미지 생성
+        const markerImg = new kakao.maps.MarkerImage(Marker, imageSize);
+
         const marker = new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(
@@ -67,6 +76,7 @@ const DetailMap = (props) => {
             parseFloat(list.mapx)
           ),
           title: list.title,
+          image: markerImg,
         });
 
         marker.setMap(map);
