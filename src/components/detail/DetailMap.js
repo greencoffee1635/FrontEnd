@@ -58,8 +58,8 @@ const DetailMap = (props) => {
     }
 
     // marker
-    tourList.course &&
-      tourList.course.forEach((list) => {
+    tourList &&
+      tourList.forEach((list) => {
         const marker = new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(
@@ -106,8 +106,8 @@ const DetailMap = (props) => {
           <Schedule>
             <ScheduleTitle>Schedule</ScheduleTitle>
             <ScheduleList>
-              {tourList.course &&
-                tourList.course.map((list, idx) => (
+              {tourList &&
+                tourList.map((list, idx) => (
                   <DetailSchedule
                     key={idx}
                     list={list}

@@ -11,7 +11,9 @@ const detailSlice = createSlice({
   name: "detail",
   initialState: initialState,
   reducers: {
-    // 여기에 리듀서를 작성해주세요.
+    addTourList: (state, action) => {
+      state.tourList = action.payload;
+    },
   },
   extraReducers: {
     [getTourInfo.pending]: (state, action) => {

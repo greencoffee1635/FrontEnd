@@ -23,14 +23,9 @@ const TouristSpot = ({ category, tourData, setOpenModal }) => {
       <SliderContainer>
         <TouristSpotTitle># {category}</TouristSpotTitle>
         <Slider {...settings}>
-          {tourData.course &&
-            tourData.course.map((data, idx) => (
-              <TourItem
-                key={idx}
-                data={data}
-                category={category}
-                setOpenModal={setOpenModal}
-              />
+          {tourData &&
+            tourData.map((data, idx) => (
+              <TourItem key={idx} data={data} setOpenModal={setOpenModal} />
             ))}
           {/* {tourData &&
             tourData.map((data, idx) => (

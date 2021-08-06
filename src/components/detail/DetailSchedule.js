@@ -27,7 +27,7 @@ const DetailSchedule = ({ list, setViewport }) => {
           openModal();
         }}
       >
-        {list.name}
+        {list.title}
         {/* {list.title} */}
       </Schedule>
       {isModalOpen && <DetailModal list={list} closeModal={closeModal} />}

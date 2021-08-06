@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const TourItem = ({ data, category, setOpenModal }) => {
+const TourItem = ({ data, setOpenModal }) => {
   return (
     <>
       <Div>
-        <TourImage src={data.img}>
+        <TourImage src={data.firstimage}>
           <Gradation />
 
           <TourItemTitle id="title">
             <Left>
-              <h1>{data.name}</h1>
+              <h1>{data.title}</h1>
               <span>subtitle</span>
             </Left>
             {/* <Right>
@@ -25,7 +25,7 @@ const TourItem = ({ data, category, setOpenModal }) => {
           <HoverMenu id="hoverMenu">
             <HoverMenuTitle>
               <Left>
-                <h1>{data.name}</h1>
+                <h1>{data.title}</h1>
                 <span>subtitle</span>
               </Left>
               {/* <Right>
@@ -38,15 +38,7 @@ const TourItem = ({ data, category, setOpenModal }) => {
             </HoverMenuTitle>
 
             <Explain>
-              {data.overview}{" "}
-              <a
-                href="#123"
-                onClick={() => {
-                  setOpenModal(true);
-                }}
-              >
-                더보기
-              </a>
+              {data.overview} <a href="#123">더보기</a>
             </Explain>
 
             {/* <Address>
@@ -55,7 +47,13 @@ const TourItem = ({ data, category, setOpenModal }) => {
             </Address> */}
 
             <AddScheduleBtn>
-              <button>일정추가</button>
+              <button
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              >
+                일정추가
+              </button>
             </AddScheduleBtn>
           </HoverMenu>
         </TourImage>

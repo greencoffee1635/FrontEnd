@@ -11,6 +11,7 @@ import Food from "./what-else-components/Food";
 import Lodgment from "./what-else-components/Lodgment";
 import RecommendedJCourse from "./what-else-components/RecommendedJCourse";
 import ViewMoreModal from "./what-else-components/ViewMoreModal";
+import AddScheduleModal from "./what-else-components/AddScheduleModal";
 
 const DetailWhatElse = (props) => {
   // 서버에서 받아온 데이터
@@ -18,6 +19,7 @@ const DetailWhatElse = (props) => {
 
   // what else 모달 제어하기 위한 변수
   const [openModal, setOpenModal] = useState(false);
+  const [addScheduleModal, setAddScheduleModal] = useState(false);
 
   // // 여행지 카테고리를 중복되지 않게 하기 위해 Set을 사용
   // const tourCategory = new Set();
@@ -204,7 +206,21 @@ const DetailWhatElse = (props) => {
         )} */}
       </div>
 
-      {openModal && <ViewMoreModal setOpenModal={setOpenModal} />}
+      {openModal && (
+        <ViewMoreModal
+          tourList={tourList}
+          setOpenModal={setOpenModal}
+          setAddScheduleModal={setAddScheduleModal}
+        />
+      )}
+
+      {addScheduleModal && (
+        <AddScheduleModal
+          tourList={tourList}
+          setOpenModal={setOpenModal}
+          setAddScheduleModal={setAddScheduleModal}
+        />
+      )}
 
       {entireBtn && <Entire tourData={tourList} setOpenModal={setOpenModal} />}
       {/* {natureBtn && <Nature tourData={natureData} />}

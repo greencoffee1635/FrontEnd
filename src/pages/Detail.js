@@ -43,7 +43,7 @@ function Detail(props) {
   }, []);
 
   const tourList = useSelector((state) => state.detail.tourList);
-  // console.log("Detail", tourList);
+  console.log("Detail", tourList);
 
   return (
     <>
@@ -69,7 +69,7 @@ function Detail(props) {
         </WhatElseContents>
 
         <BottomButton>
-          <SaveButton />
+          <SaveButton tourList={tourList} />
         </BottomButton>
       </Layout>
 
