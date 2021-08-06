@@ -9,7 +9,7 @@ import ToggleButton from "./ToggleButton";
 // shared
 import Header from "../../shared/Header";
 
-import { init } from "../../redux/modules/option";
+import { setStartDate } from "../../redux/modules/option";
 
 // components
 import Calendar from "./Calendar";
@@ -47,7 +47,7 @@ function Option03(props) {
             onClick={() => {
               props.history.push("/Option04");
               dispatch(
-                init({
+                setStartDate({
                   startDate: "test",
                 })
               );
