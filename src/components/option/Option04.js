@@ -59,30 +59,32 @@ function Option04(props) {
               </StartPointResult>
             ) : null}
           </SearchBox>
-          {searchValue !== "" ? (
-            <SearchList>
-              {filteredList.map((location, idx) => {
-                return (
-                  <SearchItem
-                    key={idx}
-                    onClick={() => {
-                      setStartPoint(location);
-                      for (const locationcode in LocationCodeData) {
-                        if (location.includes(locationcode)) {
-                          // console.log(LocationCodeData[locationcode]);
-                          dispatch(setAreaCode(LocationCodeData[locationcode]));
-                          break;
+          <SearchList>
+            {searchValue !== ""
+              ? filteredList.map((location, idx) => {
+                  return (
+                    <SearchItem
+                      key={idx}
+                      onClick={() => {
+                        setStartPoint(location);
+                        for (const locationcode in LocationCodeData) {
+                          if (location.includes(locationcode)) {
+                            // console.log(LocationCodeData[locationcode]);
+                            dispatch(
+                              setAreaCode(LocationCodeData[locationcode])
+                            );
+                            break;
+                          }
                         }
-                      }
-                      setSearchValue("");
-                    }}
-                  >
-                    {location}
-                  </SearchItem>
-                );
-              })}
-            </SearchList>
-          ) : null}
+                        setSearchValue("");
+                      }}
+                    >
+                      {location}
+                    </SearchItem>
+                  );
+                })
+              : null}
+          </SearchList>
         </QuestionBox>
 
         <PageMoveBox>
@@ -209,7 +211,7 @@ const SearchItem = styled.li`
 
 const PageMoveBox = styled.div`
   width: 50%;
-  margin-top: 23rem;
+  margin-top: 8rem;
   z-index: 10;
 `;
 
