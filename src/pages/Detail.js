@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import { AiOutlineArrowUp } from "react-icons/ai";
@@ -20,23 +20,6 @@ import SaveButton from "../components/detail/SaveButton";
 
 function Detail(props) {
   const dispatch = useDispatch();
-  const [navBar, setNavBar] = useState(false);
-
-  const changeHeaderBackground = () => {
-    if (window.scrollY >= 400) {
-      setNavBar(true);
-    } else {
-      setNavBar(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", changeHeaderBackground);
-
-    return () => {
-      window.removeEventListener("scroll", changeHeaderBackground);
-    };
-  }, []);
 
   useEffect(() => {
     dispatch(getTourInfo());
@@ -47,7 +30,7 @@ function Detail(props) {
 
   return (
     <>
-      <Header page="main" bgColor={navBar ? "gray" : ""} {...props} />
+      <Header page="main" {...props} />
       <HeadImage></HeadImage>
 
       <Layout>
