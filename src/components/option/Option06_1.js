@@ -79,30 +79,30 @@ const Question = styled.p`
 `;
 
 const PageMoveBox = styled.div`
-  width: 22vw;
-  height: 7vh;
-  margin: 325px auto ;
+  width: 340px;
+  height: 55px;
+  margin: 114px auto;
   // border: 1px solid black;
 `;
 
 const PastButton = styled.button`
-  width: 4vw;
-  height: 7.5vh;
-  background-color: #BBBBBB;
+  width: 60px;
+  height: 55px;
+  background-color: #bbbbbb;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   padding: 11px;
   cursor: pointer;
 `;
 
 const NextButton = styled.button`
-  width: 16.5vw;
-  height: 7.5vh;
+  width: 250px;
+  height: 55px;
   float: right;
   border: none;
   border-radius: 30px;
-  background-color: #1DC6D1;
-  font-size: 2rem;
+  background-color: #1dc6d1;
+  font-size: 20px;
   color: #fff;
   cursor: pointer;
   &:hover {
@@ -111,8 +111,9 @@ const NextButton = styled.button`
 `;
 
 const Text = styled.text`
-  margin: 1vh 0 0 4vw;
+  margin: 8px 0 0 65px;
   display: flex;
 `;
+
 
 export default Option06_1;
