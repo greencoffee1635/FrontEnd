@@ -26,8 +26,6 @@ import { unstable_renderSubtreeIntoContainer } from "react-dom";
 function Option03(props) {
   const dispatch = useDispatch();
 
-  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
   const [getMoment, setMoment] = useState(moment());
 
   const today = getMoment;
@@ -36,7 +34,6 @@ function Option03(props) {
 
   const startDate = (index) => {
     console.log(index)
-    // setDate(index);
     dispatch(setStartDate(index))
   }
 
@@ -170,7 +167,7 @@ const Container = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 395px;
+  width: 450px;
   height: 560px;
   // border: 1px solid black;
 `;
@@ -195,8 +192,8 @@ const Question = styled.p`
 const ButtonBox = styled.div``;
 
 const Line = styled.hr`
-  width: 395px;
-  margin: 65px auto 30px;
+  width: 450px;
+  margin: 130px auto 30px;
 `;
 
 const SubQuestion = styled.p`
@@ -244,12 +241,12 @@ const Text = styled.text`
   display: flex;
 `;
 
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// >>>>>>>>>>>>>>>>>>달력CSS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 const ContainerT = styled.div`
-  width: 393px;
-  height: 400px;
-  // border: 1px solid black;
+  width: 450px;
+  height: 400px
+  // border: 2px solid black;
 `;
 
 const ButtonControl = styled.div`
@@ -259,9 +256,9 @@ const ButtonControl = styled.div`
 `;
 
 const ThisMonth = styled.span`
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 900;
-  margin: 10px;
+  margin: auto 35px auto 12px;
 `;
 
 const Table = styled.div`
@@ -280,8 +277,8 @@ const DateHeader = styled.div`
   margin: 16px auto 20px;
 `;
 const WeekName = styled.span`
-  margin: 22px;
-  font-size: 15px;
+  margin: 25.5px;
+  font-size: 16px;
   color: #909090;
 `;
 
@@ -297,17 +294,17 @@ const Td = styled.button`
   // border:1px solid gray;
   border: none;
   background-color: #fff;
-  width: 56px;
-  height: 56px;
+  width: 63.5px;
+  height: 63.5px;
   cursor: pointer;
   &:hover{
     background-color: #1DC6D1;
-    border-radius: 30px; 
+    border-radius: 50px; 
     opacity: 0.8; 
   }
   &:focus{
     background-color: #1DC6D1;
-    border-radius: 30px; 
+    border-radius: 50px; 
   }
 `;
 
@@ -315,14 +312,16 @@ const Span = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 18px;
 `;
 
 const Today = styled.button`
-  width: 56px;
-  height: 56px;
+  width: 63.5px;
+  height: 63.5px;
   background-color: rgba(29,198,209,0.3);
+
   border: none;
-  border-radius: 30px;  
+  border-radius: 50px;  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -341,13 +340,10 @@ const Button = styled.button`
   width: 30px;
   height: 30px;
   background-color: #fff;
-  margin: 13px;
+  margin: 20px;
   border: none;
   cursor: pointer;
   // border: 1px soild black;  
 `;
-
-
-
 
 export default Option03;

@@ -8,6 +8,7 @@ function ToggleButton() {
     <Switch>
       <Input
         type="checkbox"
+        value= "false"
         checked={isToggleOn}
         onChange={() => setToggleOn(!isToggleOn)}
       />

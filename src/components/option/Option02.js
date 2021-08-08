@@ -93,7 +93,7 @@ const Container = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 395px;
+  width: 450px;
   height: 560px;
   // border: 1px solid black;
 `;

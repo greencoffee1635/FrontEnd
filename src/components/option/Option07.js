@@ -20,17 +20,25 @@ function Option07(props) {
           <Title>여행 스타일</Title>
 
           <div style={{ margin: "15px 0px 0px 5px" }}>
-            <PickButton>자연</PickButton>
-            <PickButton>역사</PickButton>
-            <PickButton>휴양</PickButton>
-            <PickButton>액티비티</PickButton>
-          </div>
-          <div style={{ marginLeft: "5px" }}>
-            <PickButton>SNS 핫플레이스</PickButton>
-            <PickButton>문화·예술</PickButton>
-            <PickButton>먹방</PickButton>
+            <PickButton>여유롭고 느긋한 여행</PickButton>
+            <PickButton>스케줄 알찬 여행</PickButton>      
           </div>
         </div>
+
+        <Line/>
+
+
+        <div>
+          <Title>여행 테마</Title>
+          <div style={{ margin: "15px 0px 0px 5px" }}>
+            <PickButton>자연과 함께 힐링 여행</PickButton>
+            <PickButton>먹방 여행</PickButton>
+            <PickButton>문화·예술을 향유하는 교양 여행</PickButton>
+            <PickButton>역사 탐방 여행</PickButton>
+            <PickButton>역동적인 액티비티 여행</PickButton>
+          </div>
+        </div>
+
 
         <NextButton
           onClick={() => {
@@ -101,6 +109,10 @@ const PickButton = styled.button`
   }
 `;
 
+const Line = styled.hr`
+  width: 100%;
+  margin: 30px auto;
+`;
 
 const NextButton = styled.button`
   margin: 80px auto;

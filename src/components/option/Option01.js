@@ -9,7 +9,11 @@ import Header from "../../shared/Header";
 // components
 
 function Option01(props) {
-  const [isClik, setIsClik] = useState();
+  // const [genderCliked, setGenderCliked] = useState();
+  // const [ageCliked, setAgeCliked] = useState();
+
+  
+  // const handle
 
   // const
 
@@ -71,7 +75,7 @@ const Container = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 395px;
+  width: 450px;
   height: 560px;
   // border: 1px solid black;
 `;
@@ -89,7 +93,7 @@ const Number = styled.p`
 const Question = styled.p`
   font-weight: bolder;
   font-size: 25px;
-  width: 394px;
+  width: 450px;
   height: 60px;
   // border: 1px solid black;
 `;
@@ -106,8 +110,8 @@ const GenderBox = styled.div`
 `;
 
 const GenderButton = styled.button`
-  width: 5.3vw;
-  height: 10vh;
+  width: 80px;
+  height: 80px;
   background-color: #bbbbbb;
   border: none;
   border-radius: 12px;
