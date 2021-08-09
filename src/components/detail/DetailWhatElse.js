@@ -502,6 +502,7 @@ const DetailWhatElse = (props) => {
       {/* 모달창 */}
       {openModal && (
         <ViewMoreModal
+          course={course}
           detailData={detailData}
           openModal={openModal}
           setOpenModal={setOpenModal}

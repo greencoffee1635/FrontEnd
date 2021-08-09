@@ -4,7 +4,16 @@ import styled from "styled-components";
 import parse from "html-react-parser";
 
 const ViewMoreModal = (props) => {
-  const { openModal, setOpenModal, setAddScheduleModal, detailData } = props;
+  const { openModal, setOpenModal, setAddScheduleModal, detailData, course } =
+    props;
+  // console.log("course", course);
+  // console.log("detail data", detailData);
+
+  // 코스의 title 배열
+  const titleList = course.map((el, idx) => {
+    return el.title;
+  });
+  // console.log("title list", titleList);
 
   const isModal = useRef();
 
@@ -62,7 +71,11 @@ const ViewMoreModal = (props) => {
                 <AddScheduleBtn
                   onClick={() => {
                     setOpenModal(false);
-                    setAddScheduleModal(true);
+                    if (titleList.includes(detailData.title)) {
+                      window.alert("이미 추가된 항목입니다.");
+                    } else {
+                      setAddScheduleModal(true);
+                    }
                   }}
                 >
                   일정 추가하기
