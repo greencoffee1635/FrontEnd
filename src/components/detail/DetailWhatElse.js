@@ -9,18 +9,18 @@ import AddScheduleModal from "./what-else-components/AddScheduleModal";
 const DetailWhatElse = (props) => {
   // 서버에서 받아온 데이터
   const { whatElse } = props;
-  console.log("what else", whatElse);
+  // console.log("what else", whatElse);
 
   // what else 모달 제어하기 위한 변수
   const [openModal, setOpenModal] = useState(false);
   const [addScheduleModal, setAddScheduleModal] = useState(false);
 
   const keys = Object.keys(whatElse);
-  const values = Object.values(whatElse);
-  const entires = Object.entries(whatElse);
-  console.log("keys", keys);
-  console.log("values", values);
-  console.log("entires", entires);
+  // const values = Object.values(whatElse);
+  // const entires = Object.entries(whatElse);
+  // console.log("keys", keys);
+  // console.log("values", values);
+  // console.log("entires", entires);
 
   // 여행 카테고리별 데이터
   const natureSpotData = whatElse && whatElse["A0101"];

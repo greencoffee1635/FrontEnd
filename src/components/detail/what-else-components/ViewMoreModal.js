@@ -1,5 +1,7 @@
 import React, { useCallback, useRef, useEffect } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import parse from "html-react-parser";
 
 const ViewMoreModal = (props) => {
   const { openModal, setOpenModal, setAddScheduleModal } = props;
@@ -15,6 +17,8 @@ const ViewMoreModal = (props) => {
     }
   });
 
+  const detailData = useSelector((state) => state.detail.detailInfo);
+
   useEffect(() => {
     document.addEventListener("click", clickOutsideModal);
 
@@ -27,30 +31,30 @@ const ViewMoreModal = (props) => {
     <>
       <OutArea>
         <Modal ref={isModal}>
-          <Image
-            src="https://img.etnews.com/photonews/2105/1410551_20210506101604_121_0001.jpg"
-            alt=""
-          />
+          <Image src={detailData && detailData.firstimage} alt="" />
           <Container>
             <InfoTab>기본정보</InfoTab>
             <DetailInfo>
               <Title>
-                <h1>불국사</h1>
-                <span>불교사찰</span>
+                <h1>{detailData && detailData.title}</h1>
+                <span>subtitle</span>
               </Title>
               <Ul>
-                <li>평일 09:00 - 18:00</li>
-                <li>054-746-9913</li>
-                <li>http://www.bulguksa.or.kr/</li>
+                <li>
+                  {detailData && detailData.opentime
+                    ? parse(detailData.opentime)
+                    : ""}
+                </li>
+                <li>{detailData && detailData.infocenter}</li>
+                <li>
+                  {detailData && detailData.homepage
+                    ? parse(detailData.homepage)
+                    : ""}
+                </li>
               </Ul>
               <Intro>
                 <h2>장소 소개</h2>
-                <p>
-                  경주 불국사 대웅전은 경상북도 경주시, 불국사의 대웅전으로
-                  조선시대의 건축물이다. 2011년 12월 30일 대한민국의 보물
-                  제1744호로 지정되었다. 석가여래 부처님을 모시는 법당으로,
-                  불국사 경 내 중심이 되는 건물이다.
-                </p>
+                <p>{detailData && parse(detailData.overview)}</p>
               </Intro>
             </DetailInfo>
             <AddContainer>
@@ -120,7 +124,7 @@ const InfoTab = styled.div`
 
 const DetailInfo = styled.div`
   width: 100%;
-  height: 48rem;
+  height: 47rem;
   padding: 2rem 6.4rem 2rem;
   box-sizing: border-box;
   overflow: auto;
@@ -161,6 +165,7 @@ const Intro = styled.div`
   & p {
     font-size: 1.8rem;
     font-weight: 500;
+    margin-bottom: 8rem;
   }
 `;
 

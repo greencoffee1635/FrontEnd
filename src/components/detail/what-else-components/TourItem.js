@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
+// async
+import { getOneTour } from "../../../redux/async/detail";
 
 const TourItem = (props) => {
-  const { data, setOpenModal, setItem } = props;
+  const { data, setOpenModal } = props;
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -52,6 +58,7 @@ const TourItem = (props) => {
               <button
                 onClick={() => {
                   setOpenModal(true);
+                  dispatch(getOneTour(data.contentid));
                 }}
               >
                 일정추가

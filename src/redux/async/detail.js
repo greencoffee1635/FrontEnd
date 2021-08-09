@@ -26,3 +26,17 @@ export const getTourInfo = createAsyncThunk(
     return response.data;
   }
 );
+
+export const getOneTour = createAsyncThunk(
+  "detail/getOneTour",
+  async (contentid, thunkAPI) => {
+    const response = await axios({
+      url: `http://54.180.152.35:5000/trip/${contentid}`,
+      method: "get",
+    });
+
+    // console.log("get one tour", response.data.tripDetail);
+
+    return response.data.tripDetail;
+  }
+);

@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTourInfo } from "../async/detail";
+import { getTourInfo, getOneTour } from "../async/detail";
 
 const initialState = {
   isLoading: false,
   tourList: [],
   whatElse: [],
+  detailInfo: [],
   trash: [],
   error: null,
 };
@@ -32,6 +33,19 @@ const detailSlice = createSlice({
       state.error = null;
     },
     [getTourInfo.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    },
+    [getOneTour.pending]: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [getOneTour.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.detailInfo = action.payload;
+    },
+    [getOneTour.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     },

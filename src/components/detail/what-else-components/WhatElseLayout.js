@@ -9,7 +9,6 @@ import TourItem from "./TourItem";
 
 const WhatElseLayout = (props) => {
   const { category, setOpenModal, data } = props;
-  console.log(data);
 
   const settings = {
     speed: 500,
