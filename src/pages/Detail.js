@@ -49,7 +49,7 @@ function Detail(props) {
         </MapBox>
 
         <WhatElseContents>
-          <DetailWhatElse whatElse={whatElse} />
+          <DetailWhatElse course={tourList.course} whatElse={whatElse} />
         </WhatElseContents>
 
         <BottomButton>

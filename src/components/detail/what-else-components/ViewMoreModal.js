@@ -1,10 +1,10 @@
 import React, { useCallback, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import styled from "styled-components";
 import parse from "html-react-parser";
 
 const ViewMoreModal = (props) => {
-  const { openModal, setOpenModal, setAddScheduleModal } = props;
+  const { openModal, setOpenModal, setAddScheduleModal, detailData } = props;
 
   const isModal = useRef();
 
@@ -17,7 +17,7 @@ const ViewMoreModal = (props) => {
     }
   });
 
-  const detailData = useSelector((state) => state.detail.detailInfo);
+  // const detailData = useSelector((state) => state.detail.detailInfo);
 
   useEffect(() => {
     document.addEventListener("click", clickOutsideModal);

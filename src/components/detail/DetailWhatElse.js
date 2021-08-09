@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 // components
@@ -8,8 +9,10 @@ import AddScheduleModal from "./what-else-components/AddScheduleModal";
 
 const DetailWhatElse = (props) => {
   // 서버에서 받아온 데이터
-  const { whatElse } = props;
+  const { course, whatElse } = props;
   // console.log("what else", whatElse);
+
+  const detailData = useSelector((state) => state.detail.detailInfo);
 
   // what else 모달 제어하기 위한 변수
   const [openModal, setOpenModal] = useState(false);
@@ -359,22 +362,6 @@ const DetailWhatElse = (props) => {
         )}
       </div>
 
-      {openModal && (
-        <ViewMoreModal
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          setAddScheduleModal={setAddScheduleModal}
-        />
-      )}
-
-      {addScheduleModal && (
-        <AddScheduleModal
-          setOpenModal={setOpenModal}
-          addScheduleModal={addScheduleModal}
-          setAddScheduleModal={setAddScheduleModal}
-        />
-      )}
-
       {entireBtn && (
         <WhatElseLayout category="이런건 어때요?" setOpenModal={setOpenModal} />
       )}
@@ -509,6 +496,26 @@ const DetailWhatElse = (props) => {
           category="맛코스"
           data={tasteCourseData}
           setOpenModal={setOpenModal}
+        />
+      )}
+
+      {/* 모달창 */}
+      {openModal && (
+        <ViewMoreModal
+          detailData={detailData}
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          setAddScheduleModal={setAddScheduleModal}
+        />
+      )}
+
+      {addScheduleModal && (
+        <AddScheduleModal
+          course={course}
+          detailData={detailData}
+          setOpenModal={setOpenModal}
+          addScheduleModal={addScheduleModal}
+          setAddScheduleModal={setAddScheduleModal}
         />
       )}
     </>

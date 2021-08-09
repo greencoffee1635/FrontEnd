@@ -8,8 +8,15 @@ import _ from "lodash";
 import detailSlice from "../../../redux/modules/detailSlice";
 
 const AddScheduleModal = (props) => {
-  const { tourList, setOpenModal, addScheduleModal, setAddScheduleModal } =
-    props;
+  const {
+    course,
+    setOpenModal,
+    addScheduleModal,
+    setAddScheduleModal,
+    detailData,
+  } = props;
+  console.log("add schedule", detailData);
+  console.log("course", course);
 
   const dispatch = useDispatch();
 
@@ -21,11 +28,11 @@ const AddScheduleModal = (props) => {
   const [tourData, setTourData] = useState({
     new: {
       title: "새로운 장소",
-      items: [],
+      items: [detailData],
     },
     currentSchedule: {
       title: "현재 스케줄",
-      items: [...tourList],
+      items: [...course],
     },
     trash: {
       title: "이건 뺄래요",
