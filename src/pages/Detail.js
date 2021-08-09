@@ -26,7 +26,8 @@ function Detail(props) {
   }, []);
 
   const tourList = useSelector((state) => state.detail.tourList);
-  console.log("Detail", tourList);
+  const whatElse = useSelector((state) => state.detail.whatElse);
+  console.log("Detail", tourList, whatElse);
 
   return (
     <>
@@ -40,7 +41,7 @@ function Detail(props) {
         </ContentsBox>
 
         <VideoBox>
-          <DetailVideo tourList={tourList.courseImages} />
+          <DetailVideo images={tourList.courseImages} />
         </VideoBox>
 
         <MapBox>
@@ -48,7 +49,7 @@ function Detail(props) {
         </MapBox>
 
         <WhatElseContents>
-          <DetailWhatElse tourList={tourList} />
+          <DetailWhatElse whatElse={whatElse} />
         </WhatElseContents>
 
         <BottomButton>

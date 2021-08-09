@@ -18,6 +18,8 @@ const DetailMap = (props) => {
   });
 
   const tourList = useSelector((state) => state.detail.tourList);
+  const courseData = tourList && tourList.course;
+  // console.log(courseData);
 
   const location = [
     {
@@ -61,8 +63,8 @@ const DetailMap = (props) => {
     }
 
     // marker
-    tourList &&
-      tourList.forEach((list) => {
+    courseData &&
+      courseData.forEach((data) => {
         // 마커 이미지
         const imageSize = new kakao.maps.Size(48, 48);
 
@@ -71,30 +73,13 @@ const DetailMap = (props) => {
 
         const marker = new kakao.maps.Marker({
           map: map,
-          position: new kakao.maps.LatLng(
-            parseFloat(list.mapy),
-            parseFloat(list.mapx)
-          ),
-          title: list.title,
+          position: new kakao.maps.LatLng(data && data.mapy, data && data.mapx),
+          title: data && data.title,
           image: markerImg,
         });
 
         marker.setMap(map);
       });
-
-    // marker
-    // tourList &&
-    //   tourList.forEach((list) => {
-    //     const marker = new kakao.maps.Marker({
-    //       map: map,
-    //       position: new kakao.maps.LatLng(
-    //         parseFloat(list.mapy),
-    //         parseFloat(list.mapx)
-    //       ),
-    //       title: list.title,
-    //     });
-
-    //     marker.setMap(map);
 
     // const customOverlay = new kakao.maps.CustomOverlay({
     //   position: new kakao.maps.LatLng(
@@ -116,22 +101,14 @@ const DetailMap = (props) => {
           <Schedule>
             <ScheduleTitle>Schedule</ScheduleTitle>
             <ScheduleList>
-              {tourList &&
-                tourList.map((list, idx) => (
+              {courseData &&
+                courseData.map((data, idx) => (
                   <DetailSchedule
                     key={idx}
-                    list={list}
+                    data={data}
                     setViewport={setViewport}
                   />
                 ))}
-              {/* {tourList &&
-                tourList.map((list, idx) => (
-                  <DetailSchedule
-                    key={idx}
-                    list={list}
-                    setViewport={setViewport}
-                  />
-                ))} */}
             </ScheduleList>
           </Schedule>
         </MapContainer>

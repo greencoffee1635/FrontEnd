@@ -10,7 +10,7 @@ export const getTourInfo = createAsyncThunk(
       url: "http://54.180.152.35:5000/trip/search",
       method: "post",
       data: {
-        startDate: "2021-08-04",
+        startDate: "2021-08-01",
         category: ["C0113", "C0114"],
         areaCode: [1, 2],
         lat: "37.6403324",
@@ -21,7 +21,7 @@ export const getTourInfo = createAsyncThunk(
       // method: "get",
     });
 
-    // console.log("detail", response);
+    console.log("detail", response.data);
 
     return response.data;
   }

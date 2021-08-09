@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import _ from "lodash";
 
 // reducer
 import detailSlice from "../../../redux/modules/detailSlice";
@@ -12,10 +13,26 @@ const AddScheduleModal = (props) => {
 
   const dispatch = useDispatch();
 
+  const trashData = useSelector((state) => state.detail.trash);
+  console.log("trash data", trashData);
+
   const isModal = useRef();
 
-  const [tourData, setTourData] = useState(tourList);
-  // console.log("스케줄모달", tourData);
+  const [tourData, setTourData] = useState({
+    new: {
+      title: "새로운 장소",
+      items: [],
+    },
+    currentSchedule: {
+      title: "현재 스케줄",
+      items: [...tourList],
+    },
+    trash: {
+      title: "이건 뺄래요",
+      items: [...trashData],
+    },
+  });
+  console.log("스케줄모달", tourData);
 
   const clickOutsideModal = useCallback((e) => {
     if (
@@ -26,19 +43,6 @@ const AddScheduleModal = (props) => {
     }
   });
 
-  const handleChange = (result) => {
-    if (!result.destination) {
-      return;
-    }
-    console.log(result);
-
-    const items = [...tourData];
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setTourData(items);
-  };
-
   useEffect(() => {
     document.addEventListener("click", clickOutsideModal);
 
@@ -47,40 +51,89 @@ const AddScheduleModal = (props) => {
     };
   });
 
+  const handleDragEnd = (result) => {
+    const { destination, source } = result;
+
+    // 출발지
+    console.log("from (source)", source);
+    // 목적지
+    console.log("to (destination)", destination);
+
+    if (!destination) {
+      console.log("Drop 할 수 없는 공간입니다.");
+      return;
+    }
+
+    if (
+      destination.index === source.index &&
+      destination.droppableId === source.droppableId
+    ) {
+      console.log("같은 장소에 drop합니다.");
+      return;
+    }
+
+    // 마우스로 잡은 아이템
+    const itemCopy = { ...tourData[source.droppableId].items[source.index] };
+
+    setTourData((prev) => {
+      prev = { ...prev };
+      prev[source.droppableId].items.splice(source.index, 1);
+      prev[destination.droppableId].items.splice(
+        destination.index,
+        0,
+        itemCopy
+      );
+
+      return prev;
+    });
+  };
+
   return (
     <>
       <OutArea>
         <Modal ref={isModal}>
           <TourContainer>
-            <DragDropContext onDragEnd={handleChange}>
-              <Droppable droppableId="tour_data">
-                {(provided) => (
-                  <ul
-                    className="tour_data"
-                    {...provided.droppableProps}
-                    ref={provided.innerRef}
-                  >
-                    {tourData.map((data, idx) => (
-                      <Draggable
-                        key={data.contentid}
-                        draggableId={data.contentid}
-                        index={idx}
-                      >
-                        {(provided) => (
-                          <Li
+            <DragDropContext onDragEnd={handleDragEnd}>
+              {_.map(tourData, (data, key) => {
+                return (
+                  <Column key={key}>
+                    <h3>{data.title}</h3>
+                    <Droppable droppableId={key}>
+                      {(provided) => {
+                        return (
+                          <DroppableCol
                             ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
+                            {...provided.droppableProps}
                           >
-                            {data.title}
-                          </Li>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </ul>
-                )}
-              </Droppable>
+                            {data.items.map((element, index) => {
+                              return (
+                                <Draggable
+                                  key={element.contentid}
+                                  index={index}
+                                  draggableId={element.contentid.toString()}
+                                >
+                                  {(provided) => {
+                                    return (
+                                      <Item
+                                        ref={provided.innerRef}
+                                        {...provided.draggableProps}
+                                        {...provided.dragHandleProps}
+                                      >
+                                        {element.title}
+                                      </Item>
+                                    );
+                                  }}
+                                </Draggable>
+                              );
+                            })}
+                            {provided.placeholder}
+                          </DroppableCol>
+                        );
+                      }}
+                    </Droppable>
+                  </Column>
+                );
+              })}
             </DragDropContext>
           </TourContainer>
 
@@ -96,7 +149,12 @@ const AddScheduleModal = (props) => {
             <button
               onClick={() => {
                 setAddScheduleModal(false);
-                dispatch(detailSlice.actions.addTourList(tourData));
+                dispatch(
+                  detailSlice.actions.addTourList(
+                    tourData.currentSchedule.items
+                  )
+                );
+                dispatch(detailSlice.actions.addTrash(tourData.trash.items));
               }}
             >
               추가하기
@@ -136,6 +194,29 @@ const TourContainer = styled.div`
   font-size: 2.5rem;
   padding: 2rem;
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const Column = styled.div`
+  width: 25%;
+`;
+
+const DroppableCol = styled.div`
+  width: 100%;
+  background-color: gray;
+  padding: 10px 10px 0 10px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Item = styled.div`
+  margin-bottom: 10px;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 5px;
+  border-radius: 7px;
 `;
 
 const Li = styled.li`

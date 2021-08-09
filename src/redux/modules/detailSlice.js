@@ -4,6 +4,8 @@ import { getTourInfo } from "../async/detail";
 const initialState = {
   isLoading: false,
   tourList: [],
+  whatElse: [],
+  trash: [],
   error: null,
 };
 
@@ -12,16 +14,22 @@ const detailSlice = createSlice({
   initialState: initialState,
   reducers: {
     addTourList: (state, action) => {
-      state.tourList = action.payload;
+      state.tourList.course = action.payload;
+    },
+    addTrash: (state, action) => {
+      state.trash = action.payload;
     },
   },
   extraReducers: {
     [getTourInfo.pending]: (state, action) => {
       state.isLoading = true;
+      state.error = null;
     },
     [getTourInfo.fulfilled]: (state, action) => {
-      state.tourList = action.payload.data;
+      state.tourList = action.payload.data[0];
+      state.whatElse = action.payload.data[1];
       state.isLoading = false;
+      state.error = null;
     },
     [getTourInfo.rejected]: (state, action) => {
       state.isLoading = false;

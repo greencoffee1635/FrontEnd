@@ -2,104 +2,101 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // components
-import Entire from "./what-else-components/Entire";
-import Nature from "./what-else-components/Nature";
-import Humanities from "./what-else-components/Humanities";
-import Sports from "./what-else-components/Sports";
-import Shopping from "./what-else-components/Shopping";
-import Food from "./what-else-components/Food";
-import Lodgment from "./what-else-components/Lodgment";
-import RecommendedJCourse from "./what-else-components/RecommendedJCourse";
+import WhatElseLayout from "./what-else-components/WhatElseLayout";
 import ViewMoreModal from "./what-else-components/ViewMoreModal";
 import AddScheduleModal from "./what-else-components/AddScheduleModal";
 
 const DetailWhatElse = (props) => {
-  // 서버에서 받아온 데이터
-  const { tourList } = props;
-
   // what else 모달 제어하기 위한 변수
   const [openModal, setOpenModal] = useState(false);
   const [addScheduleModal, setAddScheduleModal] = useState(false);
 
-  // // 여행지 카테고리를 중복되지 않게 하기 위해 Set을 사용
-  // const tourCategory = new Set();
-  // tourList &&
-  //   tourList.map((list, idx) => {
-  //     tourCategory.add(list.cat1);
-  //   });
+  // 서버에서 받아온 데이터
+  const { whatElse } = props;
+  console.log("what else", whatElse);
 
-  // // 여행지 카테고리를 정렬해주기 위해 배열로 바꿔주고 정렬
-  // // Spread Operator를 이용하여 set을 array로 변환
-  // const tourCategoryArr = [...tourCategory].sort();
+  const keys = Object.keys(whatElse);
+  const values = Object.values(whatElse);
+  const entires = Object.entries(whatElse);
+  console.log("keys", keys);
+  console.log("values", values);
+  console.log("entires", entires);
 
-  // // 각 카테고리 별로 데이터 분류
-  // // 자연
-  // const natureData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "A01";
-  //   });
+  // 여행 카테고리별 데이터
+  const natureSpotData = whatElse && whatElse["A0101"];
+  const tourismResourcesData = whatElse && whatElse["A0102"];
 
-  // // 인문
-  // const humanitiesData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "A02";
-  //   });
+  const historyData = whatElse && whatElse["A0201"];
 
-  // // 레포츠
-  // const sportsData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "A03";
-  //   });
+  const vacationSpotData = whatElse && whatElse["A0202"];
 
-  // // 쇼핑
-  // const shoppingData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "A04";
-  //   });
+  const experienceData = whatElse && whatElse["A0203"];
+  const leisureSportIntroData = whatElse && whatElse["A0301"];
+  const athleticsData = whatElse && whatElse["A0302"];
+  const waterData = whatElse && whatElse["A0303"];
+  const airData = whatElse && whatElse["A0304"];
+  const complexData = whatElse && whatElse["A0305"];
 
-  // // 음식
-  // const foodData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "A05";
-  //   });
+  const industrialTouristData = whatElse && whatElse["A0204"];
+  const constructData = whatElse && whatElse["A0205"];
+  const cultureData = whatElse && whatElse["A0206"];
 
-  // // 숙박
-  // const lodgmentData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "B02";
-  //   });
+  const restaurantData = whatElse && whatElse["A0502"];
 
-  // // 추천코스
-  // const recommendedCourseData =
-  //   tourList &&
-  //   tourList.filter((list) => {
-  //     return list.cat1 === "C01";
-  //   });
+  const familyCourseData = whatElse && whatElse["C0112"];
+  const aloneCourseData = whatElse && whatElse["C0113"];
+  const healingCourseData = whatElse && whatElse["C0114"];
+  const roadCourseData = whatElse && whatElse["C0115"];
+  const tasteCourseData = whatElse && whatElse["C0117"];
 
-  // 카테고리 (자연, 인문, 레포츠, 쇼핑, 음식, 숙박, 추천코스 로 구분됨)
-  // const nature = tourCategoryArr.includes("A01");
-  // const humanities = tourCategoryArr.includes("A02");
-  // const sports = tourCategoryArr.includes("A03");
-  // const shopping = tourCategoryArr.includes("A04");
-  // const food = tourCategoryArr.includes("A05");
-  // const lodgment = tourCategoryArr.includes("B02");
-  // const recommendedCourse = tourCategoryArr.includes("C01");
+  // 카테고리 (힐링, 역사, 휴양관광지, 액티비티, 문화예술, 음식점, 가족코스, 나홀로코스, 힐링코스, 도보코스, 맛코스)
+  const _natureSpot = keys.includes("A0101");
+  const _tourismResources = keys.includes("A0102");
+
+  const _history = keys.includes("A0201");
+
+  const _vacationSpot = keys.includes("A0202");
+
+  const _experience = keys.includes("A0203");
+  const _leisureSportIntro = keys.includes("A0301");
+  const _athletics = keys.includes("A0302");
+  const _water = keys.includes("A0303");
+  const _air = keys.includes("A0304");
+  const _complex = keys.includes("A0305");
+
+  const _industrialTourist = keys.includes("A0204");
+  const _construct = keys.includes("A0205");
+  const _culture = keys.includes("A0206");
+
+  const _restaurant = keys.includes("A0502");
+
+  const _familyCourse = keys.includes("C0112");
+  const _aloneCourse = keys.includes("C0113");
+  const _healingCourse = keys.includes("C0114");
+  const _roadCourse = keys.includes("C0115");
+  const _tasteCourse = keys.includes("C0117");
 
   // What else에 카테고리 버튼을 제어하기 위한 변수
   const [entireBtn, setEntireBtn] = useState(true);
-  const [natureBtn, setNatureBtn] = useState(false);
-  const [humanitiesBtn, setHumanitiesBtn] = useState(false);
-  const [sportsBtn, setSportsBtn] = useState(false);
-  const [shoppingBtn, setShoppingBtn] = useState(false);
-  const [foodBtn, setFoodBtn] = useState(false);
-  const [lodgmentBtn, setLodgmentBtn] = useState(false);
-  const [recommendedCourseBtn, setRecommendedCourseBtn] = useState(false);
+  const [natureSpotBtn, setNatureSpotBtn] = useState(false);
+  const [tourismResourcesBtn, setTourismResourcesBtn] = useState(false);
+  const [historyBtn, setHistoryBtn] = useState(false);
+  const [vacationSpotBtn, setVacationSpotBtn] = useState(false);
+  const [experienceBtn, setExperienceBtn] = useState(false);
+  const [leisureSportIntroBtn, setLeisureSportIntroBtn] = useState(false);
+  const [athleticsBtn, setAthleticsBtn] = useState(false);
+  const [waterBtn, setWaterBtn] = useState(false);
+  const [airBtn, setAirBtn] = useState(false);
+  const [complexBtn, setComplexBtn] = useState(false);
+  const [industrialTouristBtn, setIndustrialTouristBtn] = useState(false);
+  const [constructBtn, setConstructBtn] = useState(false);
+  const [cultureBtn, setCultureBtn] = useState(false);
+  const [restaurantBtn, setRestaurantBtn] = useState(false);
+  const [familyCourseBtn, setFamilyCourseBtn] = useState(false);
+  const [aloneCourseBtn, setAloneCourseBtn] = useState(false);
+  const [healingCourseBtn, setHealingCourseBtn] = useState(false);
+  const [roadCourseBtn, setRoadCourseBtn] = useState(false);
+  const [tasteCourseBtn, setTasteCourseBtn] = useState(false);
 
   return (
     <>
@@ -109,106 +106,261 @@ const DetailWhatElse = (props) => {
           isClick={entireBtn}
           onClick={() => {
             setEntireBtn(!entireBtn);
-            setNatureBtn(false);
-            setHumanitiesBtn(false);
-            setSportsBtn(false);
-            setShoppingBtn(false);
-            setFoodBtn(false);
-            setLodgmentBtn(false);
-            setRecommendedCourseBtn(false);
+            setNatureSpotBtn(false);
+            setTourismResourcesBtn(false);
+            setHistoryBtn(false);
+            setVacationSpotBtn(false);
+            setExperienceBtn(false);
+            setLeisureSportIntroBtn(false);
+            setAthleticsBtn(false);
+            setWaterBtn(false);
+            setAirBtn(false);
+            setComplexBtn(false);
+            setIndustrialTouristBtn(false);
+            setConstructBtn(false);
+            setCultureBtn(false);
+            setRestaurantBtn(false);
+            setFamilyCourseBtn(false);
+            setAloneCourseBtn(false);
+            setHealingCourseBtn(false);
+            setRoadCourseBtn(false);
+            setTasteCourseBtn(false);
           }}
         >
           전체
         </Button>
 
-        {/* {nature && (
+        {_natureSpot && (
           <Button
-            isClick={natureBtn}
+            isClick={natureSpotBtn}
             onClick={() => {
               setEntireBtn(false);
-              setNatureBtn(!natureBtn);
+              setNatureSpotBtn(!natureSpotBtn);
             }}
           >
-            자연
+            자연관광지
           </Button>
         )}
 
-        {humanities && (
+        {_tourismResources && (
           <Button
-            isClick={humanitiesBtn}
+            isClick={tourismResourcesBtn}
             onClick={() => {
               setEntireBtn(false);
-              setHumanitiesBtn(!humanitiesBtn);
+              setTourismResourcesBtn(!tourismResourcesBtn);
             }}
           >
-            인문
+            관광자원
           </Button>
         )}
 
-        {sports && (
+        {_history && (
           <Button
-            isClick={sportsBtn}
+            isClick={historyBtn}
             onClick={() => {
               setEntireBtn(false);
-              setSportsBtn(!sportsBtn);
+              setHistoryBtn(!historyBtn);
             }}
           >
-            레포츠
+            역사
           </Button>
         )}
 
-        {shopping && (
+        {_vacationSpot && (
           <Button
-            isClick={shoppingBtn}
+            isClick={vacationSpotBtn}
             onClick={() => {
               setEntireBtn(false);
-              setShoppingBtn(!shoppingBtn);
+              setVacationSpotBtn(!vacationSpotBtn);
             }}
           >
-            쇼핑
+            휴양
           </Button>
         )}
 
-        {food && (
+        {_experience && (
           <Button
-            isClick={foodBtn}
+            isClick={experienceBtn}
             onClick={() => {
               setEntireBtn(false);
-              setFoodBtn(!foodBtn);
+              setExperienceBtn(!experienceBtn);
             }}
           >
-            음식
+            체험
           </Button>
         )}
 
-        {lodgment && (
+        {_leisureSportIntro && (
           <Button
-            isClick={lodgmentBtn}
+            isClick={leisureSportIntroBtn}
             onClick={() => {
               setEntireBtn(false);
-              setLodgmentBtn(!lodgmentBtn);
+              setLeisureSportIntroBtn(!leisureSportIntroBtn);
             }}
           >
-            숙박
+            레포츠소개
           </Button>
         )}
 
-        {recommendedCourse && (
+        {_athletics && (
           <Button
-            isClick={recommendedCourseBtn}
+            isClick={athleticsBtn}
             onClick={() => {
               setEntireBtn(false);
-              setRecommendedCourseBtn(!recommendedCourseBtn);
+              setAthleticsBtn(!athleticsBtn);
             }}
           >
-            추천코스
+            육상레포츠
           </Button>
-        )} */}
+        )}
+
+        {_water && (
+          <Button
+            isClick={waterBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setWaterBtn(!waterBtn);
+            }}
+          >
+            수상레포츠
+          </Button>
+        )}
+
+        {_air && (
+          <Button
+            isClick={airBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setAirBtn(!airBtn);
+            }}
+          >
+            항공레포츠
+          </Button>
+        )}
+
+        {_complex && (
+          <Button
+            isClick={complexBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setComplexBtn(!complexBtn);
+            }}
+          >
+            복합레포츠
+          </Button>
+        )}
+
+        {_industrialTourist && (
+          <Button
+            isClick={industrialTouristBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setIndustrialTouristBtn(!industrialTouristBtn);
+            }}
+          >
+            산업관광지
+          </Button>
+        )}
+
+        {_construct && (
+          <Button
+            isClick={constructBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setConstructBtn(!constructBtn);
+            }}
+          >
+            건축/조형물
+          </Button>
+        )}
+
+        {_culture && (
+          <Button
+            isClick={cultureBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setCultureBtn(!cultureBtn);
+            }}
+          >
+            문화시설
+          </Button>
+        )}
+
+        {_restaurant && (
+          <Button
+            isClick={restaurantBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setRestaurantBtn(!restaurantBtn);
+            }}
+          >
+            음식점
+          </Button>
+        )}
+
+        {_familyCourse && (
+          <Button
+            isClick={familyCourseBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setFamilyCourseBtn(!familyCourseBtn);
+            }}
+          >
+            가족코스
+          </Button>
+        )}
+
+        {_aloneCourse && (
+          <Button
+            isClick={aloneCourseBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setAloneCourseBtn(!aloneCourseBtn);
+            }}
+          >
+            나홀로코스
+          </Button>
+        )}
+
+        {_healingCourse && (
+          <Button
+            isClick={healingCourseBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setHealingCourseBtn(!healingCourseBtn);
+            }}
+          >
+            힐링코스
+          </Button>
+        )}
+
+        {_roadCourse && (
+          <Button
+            isClick={roadCourseBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setRoadCourseBtn(!roadCourseBtn);
+            }}
+          >
+            도보코스
+          </Button>
+        )}
+
+        {_tasteCourse && (
+          <Button
+            isClick={tasteCourseBtn}
+            onClick={() => {
+              setEntireBtn(false);
+              setTasteCourseBtn(!tasteCourseBtn);
+            }}
+          >
+            맛코스
+          </Button>
+        )}
       </div>
 
       {openModal && (
         <ViewMoreModal
-          tourList={tourList}
           openModal={openModal}
           setOpenModal={setOpenModal}
           setAddScheduleModal={setAddScheduleModal}
@@ -217,23 +369,64 @@ const DetailWhatElse = (props) => {
 
       {addScheduleModal && (
         <AddScheduleModal
-          tourList={tourList}
           setOpenModal={setOpenModal}
           addScheduleModal={addScheduleModal}
           setAddScheduleModal={setAddScheduleModal}
         />
       )}
 
-      {entireBtn && <Entire tourData={tourList} setOpenModal={setOpenModal} />}
-      {/* {natureBtn && <Nature tourData={natureData} />}
-      {humanitiesBtn && <Humanities tourData={humanitiesData} />}
-      {sportsBtn && <Sports tourData={sportsData} />}
-      {shoppingBtn && <Shopping tourData={shoppingData} />}
-      {foodBtn && <Food tourData={foodData} />}
-      {lodgmentBtn && <Lodgment tourData={lodgmentData} />}
-      {recommendedCourseBtn && (
-        <RecommendedJCourse tourData={recommendedCourseData} />
-      )} */}
+      {entireBtn && (
+        <WhatElseLayout category="이런건 어때요?" setOpenModal={setOpenModal} />
+      )}
+      {natureSpotBtn && (
+        <WhatElseLayout category="자연관광지" data={natureSpotData} />
+      )}
+      {tourismResourcesBtn && (
+        <WhatElseLayout category="관광자원" data={tourismResourcesData} />
+      )}
+      {historyBtn && <WhatElseLayout category="역사" data={historyData} />}
+      {vacationSpotBtn && (
+        <WhatElseLayout category="휴양" data={vacationSpotData} />
+      )}
+      {experienceBtn && (
+        <WhatElseLayout category="체험" data={experienceData} />
+      )}
+      {leisureSportIntroBtn && (
+        <WhatElseLayout category="레포츠소개" data={leisureSportIntroData} />
+      )}
+      {athleticsBtn && (
+        <WhatElseLayout category="육상레포츠" data={athleticsData} />
+      )}
+      {waterBtn && <WhatElseLayout category="수상레포츠" data={waterData} />}
+      {airBtn && <WhatElseLayout category="항공레포츠" data={airData} />}
+      {complexBtn && (
+        <WhatElseLayout category="복합레포츠" data={complexData} />
+      )}
+      {industrialTouristBtn && (
+        <WhatElseLayout category="산업관광지" data={industrialTouristData} />
+      )}
+      {constructBtn && (
+        <WhatElseLayout category="건축/조형물" data={constructData} />
+      )}
+      {cultureBtn && <WhatElseLayout category="문화시설" data={cultureData} />}
+      {restaurantBtn && (
+        <WhatElseLayout category="음식점" data={restaurantData} />
+      )}
+      {familyCourseBtn && (
+        <WhatElseLayout category="가족코스" data={familyCourseData} />
+      )}
+      {aloneCourseBtn && (
+        <WhatElseLayout category="나홀로코스" data={aloneCourseData} />
+      )}
+      {healingCourseBtn && (
+        <WhatElseLayout category="힐링코스" data={healingCourseData} />
+      )}
+      {roadCourseBtn && (
+        <WhatElseLayout category="도보코스" data={roadCourseData} />
+      )}
+      {tasteCourseBtn && (
+        <WhatElseLayout category="맛코스" data={tasteCourseData} />
+      )}
     </>
   );
 };

@@ -5,12 +5,12 @@ const TourItem = ({ data, setOpenModal }) => {
   return (
     <>
       <Div>
-        <TourImage src={data.firstimage}>
+        <TourImage src={data && data.firstimage}>
           <Gradation />
 
           <TourItemTitle id="title">
             <Left>
-              <h1>{data.title}</h1>
+              <h1>{data && data.title}</h1>
               <span>subtitle</span>
             </Left>
             {/* <Right>
@@ -25,7 +25,7 @@ const TourItem = ({ data, setOpenModal }) => {
           <HoverMenu id="hoverMenu">
             <HoverMenuTitle>
               <Left>
-                <h1>{data.title}</h1>
+                <h1>{data && data.title}</h1>
                 <span>subtitle</span>
               </Left>
               {/* <Right>
@@ -38,7 +38,7 @@ const TourItem = ({ data, setOpenModal }) => {
             </HoverMenuTitle>
 
             <Explain>
-              {data.overview} <a href="#123">더보기</a>
+              {data && data.overview} <a href="#123">더보기</a>
             </Explain>
 
             {/* <Address>

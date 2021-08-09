@@ -2,7 +2,7 @@ import React from "react";
 import parse from "html-react-parser";
 import styled from "styled-components";
 
-const DetailModal = ({ list, closeModal }) => {
+const DetailModal = ({ data, closeModal }) => {
   return (
     <>
       <ModalContainer onClick={closeModal}>
@@ -11,11 +11,11 @@ const DetailModal = ({ list, closeModal }) => {
             src={require("../../images/background_img.jpg").default}
             alt=""
           /> */}
-          <Image src={list.firstimage} alt="" />
+          <Image src={data.firstimage} alt="" />
           <ModalContents>
             {/* <TopContents> */}
             <PlaceTitle>
-              <h1>{list.title}</h1>
+              <h1>{data.title}</h1>
               <span>카테고리</span>
             </PlaceTitle>
             {/* <Grade>
@@ -25,7 +25,7 @@ const DetailModal = ({ list, closeModal }) => {
               </Grade> */}
             {/* </TopContents> */}
             <BottomContents>
-              <div>주소</div>
+              <div>{data.addr1}</div>
               {/* <div>운영시간</div> */}
             </BottomContents>
           </ModalContents>
