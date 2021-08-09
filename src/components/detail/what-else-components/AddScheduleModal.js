@@ -227,13 +227,14 @@ const Modal = styled.div`
   overflow: auto;
 
   &::-webkit-scrollbar {
-    background-color: #f2f2f2;
+    background-color: none;
     width: 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #1dc6d1;
+    /* background-color: #1dc6d1; */
+    background-color: none;
     border-radius: 5px;
   }
 `;

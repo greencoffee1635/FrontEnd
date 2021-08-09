@@ -130,6 +130,18 @@ const DetailInfo = styled.div`
   padding: 2rem 6.4rem 2rem;
   box-sizing: border-box;
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    background-color: none;
+    width: 10px;
+    /* border-radius: 5px; */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    /* background-color: #1dc6d1; */
+    background-color: none;
+    border-radius: 5px;
+  }
 `;
 
 const Title = styled.div`
