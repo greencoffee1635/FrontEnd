@@ -33,7 +33,7 @@ const ViewMoreModal = (props) => {
         <Modal ref={isModal}>
           <Image src={detailData && detailData.firstimage} alt="" />
           <Container>
-            <InfoTab>기본정보</InfoTab>
+            {/* <InfoTab>기본정보</InfoTab> */}
             <DetailInfo>
               <Title>
                 <h1>{detailData && detailData.title}</h1>
@@ -58,14 +58,16 @@ const ViewMoreModal = (props) => {
               </Intro>
             </DetailInfo>
             <AddContainer>
-              <AddScheduleBtn
-                onClick={() => {
-                  setOpenModal(false);
-                  setAddScheduleModal(true);
-                }}
-              >
-                일정 추가하기
-              </AddScheduleBtn>
+              <div>
+                <AddScheduleBtn
+                  onClick={() => {
+                    setOpenModal(false);
+                    setAddScheduleModal(true);
+                  }}
+                >
+                  일정 추가하기
+                </AddScheduleBtn>
+              </div>
             </AddContainer>
           </Container>
         </Modal>
@@ -124,7 +126,7 @@ const InfoTab = styled.div`
 
 const DetailInfo = styled.div`
   width: 100%;
-  height: 47rem;
+  height: 100%;
   padding: 2rem 6.4rem 2rem;
   box-sizing: border-box;
   overflow: auto;
@@ -136,7 +138,7 @@ const Title = styled.div`
   & h1 {
     font-size: 5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    margin: 6rem 0 1rem 0;
   }
 
   & span {
@@ -166,6 +168,7 @@ const Intro = styled.div`
     font-size: 1.8rem;
     font-weight: 500;
     margin-bottom: 8rem;
+    line-height: 3rem;
   }
 `;
 
@@ -177,11 +180,24 @@ const AddContainer = styled.div`
   position: absolute;
   top: 47rem;
   left: 0;
+
+  & div {
+    width: 100%;
+    height: 8rem;
+    text-align: center;
+    border-radius: 0rem 0rem 2rem 2rem;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 0.6) 65%,
+      rgba(255, 255, 255, 0.8) 100%
+    );
+  }
 `;
 
 const AddScheduleBtn = styled.button`
-  width: 50rem;
-  height: 7rem;
+  width: 55.5rem;
+  height: 5.8rem;
   background-color: #1dc6d1;
   border: none;
   border-radius: 4.9rem;
