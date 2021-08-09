@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -13,7 +13,7 @@ import { LocationCodeData } from "./LocationList";
 // shared
 import Header from "../../shared/Header";
 
-import { setAreaCode } from "../../redux/modules/option";
+import { setStartAreaCode } from "../../redux/modules/option";
 
 function Option04(props) {
   const [startPoint, setStartPoint] = useState("");
@@ -71,7 +71,7 @@ function Option04(props) {
                           if (location.includes(locationcode)) {
                             // console.log(LocationCodeData[locationcode]);
                             dispatch(
-                              setAreaCode(LocationCodeData[locationcode])
+                              setStartAreaCode(LocationCodeData[locationcode])
                             );
                             break;
                           }
@@ -118,9 +118,21 @@ function Option04(props) {
   );
 }
 
-const StartPointResult = styled.span``;
+const StartPointResult = styled.span`
+  display: flex;
+  padding: 18px 0 18px 20px;
+  position: absolute;
+  font-size: 2rem;
+  color: #1dc6d1;
+  font-weight: 600;
+`;
 
-const DeleteButton = styled.button``;
+const DeleteButton = styled.button`
+  margin: 0 0 0 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
 
 const Container = styled.div`
   width: 72rem;

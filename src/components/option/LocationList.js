@@ -1,5 +1,3 @@
-import React from "react";
-
 const LocationList = [
   "강원도 강릉시",
   "강원도 고성군",
@@ -262,7 +260,7 @@ export const LocationCodeData = {
   경상남도: 36,
   전라북도: 37,
   전라남도: 38,
-  제주자치도: 39,
+  제주특별자치도: 39,
 };
 
 export default LocationList;
