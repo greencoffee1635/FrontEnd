@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const TourItem = ({ data, setOpenModal }) => {
+const TourItem = (props) => {
+  const { data, setOpenModal, setItem } = props;
+
   return (
     <>
       <Div>

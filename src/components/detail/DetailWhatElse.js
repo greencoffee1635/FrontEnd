@@ -7,13 +7,13 @@ import ViewMoreModal from "./what-else-components/ViewMoreModal";
 import AddScheduleModal from "./what-else-components/AddScheduleModal";
 
 const DetailWhatElse = (props) => {
-  // what else 모달 제어하기 위한 변수
-  const [openModal, setOpenModal] = useState(false);
-  const [addScheduleModal, setAddScheduleModal] = useState(false);
-
   // 서버에서 받아온 데이터
   const { whatElse } = props;
   console.log("what else", whatElse);
+
+  // what else 모달 제어하기 위한 변수
+  const [openModal, setOpenModal] = useState(false);
+  const [addScheduleModal, setAddScheduleModal] = useState(false);
 
   const keys = Object.keys(whatElse);
   const values = Object.values(whatElse);
@@ -379,53 +379,137 @@ const DetailWhatElse = (props) => {
         <WhatElseLayout category="이런건 어때요?" setOpenModal={setOpenModal} />
       )}
       {natureSpotBtn && (
-        <WhatElseLayout category="자연관광지" data={natureSpotData} />
+        <WhatElseLayout
+          category="자연관광지"
+          data={natureSpotData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {tourismResourcesBtn && (
-        <WhatElseLayout category="관광자원" data={tourismResourcesData} />
+        <WhatElseLayout
+          category="관광자원"
+          data={tourismResourcesData}
+          setOpenModal={setOpenModal}
+        />
       )}
-      {historyBtn && <WhatElseLayout category="역사" data={historyData} />}
+      {historyBtn && (
+        <WhatElseLayout
+          category="역사"
+          data={historyData}
+          setOpenModal={setOpenModal}
+        />
+      )}
       {vacationSpotBtn && (
-        <WhatElseLayout category="휴양" data={vacationSpotData} />
+        <WhatElseLayout
+          category="휴양"
+          data={vacationSpotData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {experienceBtn && (
-        <WhatElseLayout category="체험" data={experienceData} />
+        <WhatElseLayout
+          category="체험"
+          data={experienceData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {leisureSportIntroBtn && (
-        <WhatElseLayout category="레포츠소개" data={leisureSportIntroData} />
+        <WhatElseLayout
+          category="레포츠소개"
+          data={leisureSportIntroData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {athleticsBtn && (
-        <WhatElseLayout category="육상레포츠" data={athleticsData} />
+        <WhatElseLayout
+          category="육상레포츠"
+          data={athleticsData}
+          setOpenModal={setOpenModal}
+        />
       )}
-      {waterBtn && <WhatElseLayout category="수상레포츠" data={waterData} />}
-      {airBtn && <WhatElseLayout category="항공레포츠" data={airData} />}
+      {waterBtn && (
+        <WhatElseLayout
+          category="수상레포츠"
+          data={waterData}
+          setOpenModal={setOpenModal}
+        />
+      )}
+      {airBtn && (
+        <WhatElseLayout
+          category="항공레포츠"
+          data={airData}
+          setOpenModal={setOpenModal}
+        />
+      )}
       {complexBtn && (
-        <WhatElseLayout category="복합레포츠" data={complexData} />
+        <WhatElseLayout
+          category="복합레포츠"
+          data={complexData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {industrialTouristBtn && (
-        <WhatElseLayout category="산업관광지" data={industrialTouristData} />
+        <WhatElseLayout
+          category="산업관광지"
+          data={industrialTouristData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {constructBtn && (
-        <WhatElseLayout category="건축/조형물" data={constructData} />
+        <WhatElseLayout
+          category="건축/조형물"
+          data={constructData}
+          setOpenModal={setOpenModal}
+        />
       )}
-      {cultureBtn && <WhatElseLayout category="문화시설" data={cultureData} />}
+      {cultureBtn && (
+        <WhatElseLayout
+          category="문화시설"
+          data={cultureData}
+          setOpenModal={setOpenModal}
+        />
+      )}
       {restaurantBtn && (
-        <WhatElseLayout category="음식점" data={restaurantData} />
+        <WhatElseLayout
+          category="음식점"
+          data={restaurantData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {familyCourseBtn && (
-        <WhatElseLayout category="가족코스" data={familyCourseData} />
+        <WhatElseLayout
+          category="가족코스"
+          data={familyCourseData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {aloneCourseBtn && (
-        <WhatElseLayout category="나홀로코스" data={aloneCourseData} />
+        <WhatElseLayout
+          category="나홀로코스"
+          data={aloneCourseData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {healingCourseBtn && (
-        <WhatElseLayout category="힐링코스" data={healingCourseData} />
+        <WhatElseLayout
+          category="힐링코스"
+          data={healingCourseData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {roadCourseBtn && (
-        <WhatElseLayout category="도보코스" data={roadCourseData} />
+        <WhatElseLayout
+          category="도보코스"
+          data={roadCourseData}
+          setOpenModal={setOpenModal}
+        />
       )}
       {tasteCourseBtn && (
-        <WhatElseLayout category="맛코스" data={tasteCourseData} />
+        <WhatElseLayout
+          category="맛코스"
+          data={tasteCourseData}
+          setOpenModal={setOpenModal}
+        />
       )}
     </>
   );
