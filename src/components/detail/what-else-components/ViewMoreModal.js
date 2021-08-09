@@ -2,7 +2,13 @@ import React, { useCallback, useRef, useEffect } from "react";
 // import { useSelector } from "react-redux";
 import styled from "styled-components";
 import parse from "html-react-parser";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { BsClock } from "react-icons/bs";
+import { BiPhone, BiHomeAlt } from "react-icons/bi";
 
+toast.configure();
 const ViewMoreModal = (props) => {
   const { openModal, setOpenModal, setAddScheduleModal, detailData, course } =
     props;
@@ -25,6 +31,14 @@ const ViewMoreModal = (props) => {
       setOpenModal(false);
     }
   });
+
+  const notify = () => {
+    toast.error("이미 추가한 여행지에요!", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+      style: { fontSize: "17px" },
+    });
+  };
 
   // const detailData = useSelector((state) => state.detail.detailInfo);
 
@@ -49,17 +63,38 @@ const ViewMoreModal = (props) => {
                 <span>subtitle</span>
               </Title>
               <Ul>
-                <li>
-                  {detailData && detailData.opentime
-                    ? parse(detailData.opentime)
-                    : ""}
-                </li>
-                <li>{detailData && detailData.infocenter}</li>
-                <li>
-                  {detailData && detailData.homepage
-                    ? parse(detailData.homepage)
-                    : ""}
-                </li>
+                <Li>
+                  <FaMapMarkerAlt color="#1DC6D1" />
+                  <div>
+                    {detailData && detailData.addr1
+                      ? detailData.addr1
+                      : "정보없음"}
+                  </div>
+                </Li>
+                <Li>
+                  <BsClock color="#1DC6D1" />
+                  <div>
+                    {detailData && detailData.opentime
+                      ? parse(detailData.opentime)
+                      : "정보없음"}
+                  </div>
+                </Li>
+                <Li>
+                  <BiPhone color="#1DC6D1" />
+                  <div>
+                    {detailData && detailData.infocenter
+                      ? detailData.infocenter
+                      : "정보없음"}
+                  </div>
+                </Li>
+                <Li>
+                  <BiHomeAlt color="#1DC6D1" />
+                  <div>
+                    {detailData && detailData.homepage
+                      ? parse(detailData.homepage)
+                      : "정보없음"}
+                  </div>
+                </Li>
               </Ul>
               <Intro>
                 <h2>장소 소개</h2>
@@ -70,9 +105,9 @@ const ViewMoreModal = (props) => {
               <div>
                 <AddScheduleBtn
                   onClick={() => {
-                    setOpenModal(false);
                     if (titleList.includes(detailData.title)) {
-                      window.alert("이미 추가된 항목입니다.");
+                      // window.alert("이미 추가된 여행지에요!");
+                      notify();
                     } else {
                       setAddScheduleModal(true);
                     }
@@ -179,6 +214,14 @@ const Ul = styled.ul`
 
   & li {
     margin-bottom: 1.1rem;
+  }
+`;
+
+const Li = styled.li`
+  display: flex;
+
+  & div {
+    margin-left: 2.5rem;
   }
 `;
 
