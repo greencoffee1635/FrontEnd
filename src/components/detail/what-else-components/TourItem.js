@@ -45,14 +45,7 @@ const TourItem = (props) => {
               </Right> */}
             </HoverMenuTitle>
 
-            <Explain>
-              {data && data.overview} <a href="#123">더보기</a>
-            </Explain>
-
-            {/* <Address>
-              <p>경상북도 경주시 진현동 15-1</p>
-              <p>평일 09:00 - 18:00</p>
-            </Address> */}
+            <Explain>{data && data.overview}</Explain>
 
             <AddScheduleBtn>
               <button
@@ -202,16 +195,6 @@ const Explain = styled.div`
 
   & a {
     color: #fff;
-  }
-`;
-
-const Address = styled.div`
-  font-size: 15px;
-  font-weight: 500;
-  color: #e2e2e2;
-
-  & p {
-    margin-bottom: 8px;
   }
 `;
 

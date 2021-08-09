@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import _ from "lodash";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { CgArrowsVAlt } from "react-icons/cg";
+import { BiRestaurant } from "react-icons/bi";
+import { FiActivity } from "react-icons/fi";
 
 // reducer
 import detailSlice from "../../../redux/modules/detailSlice";
@@ -27,15 +31,15 @@ const AddScheduleModal = (props) => {
 
   const [tourData, setTourData] = useState({
     new: {
-      title: "새로운 장소",
+      title: "NEW",
       items: [detailData],
     },
     currentSchedule: {
-      title: "현재 스케줄",
+      title: "CURRENT",
       items: [...course],
     },
     trash: {
-      title: "이건 뺄래요",
+      title: "TRASH",
       items: [...trashData],
     },
   });
@@ -101,72 +105,98 @@ const AddScheduleModal = (props) => {
         <Modal ref={isModal}>
           <TourContainer>
             <DragDropContext onDragEnd={handleDragEnd}>
-              {_.map(tourData, (data, key) => {
-                return (
-                  <Column key={key}>
-                    <h3>{data.title}</h3>
-                    <Droppable droppableId={key}>
-                      {(provided) => {
-                        return (
-                          <DroppableCol
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                          >
-                            {data.items.map((element, index) => {
-                              return (
-                                <Draggable
-                                  key={element.contentid}
-                                  index={index}
-                                  draggableId={element.contentid.toString()}
-                                >
-                                  {(provided) => {
-                                    return (
-                                      <Item
-                                        ref={provided.innerRef}
-                                        {...provided.draggableProps}
-                                        {...provided.dragHandleProps}
-                                      >
-                                        {element.title}
-                                      </Item>
-                                    );
-                                  }}
-                                </Draggable>
-                              );
-                            })}
-                            {provided.placeholder}
-                          </DroppableCol>
-                        );
-                      }}
-                    </Droppable>
-                  </Column>
-                );
-              })}
+              <Div>
+                <AddBtnBox>
+                  <Button
+                    onClick={() => {
+                      setAddScheduleModal(false);
+                      setOpenModal(true);
+                    }}
+                  >
+                    취소
+                  </Button>
+                  <Button
+                    isApply
+                    onClick={() => {
+                      setAddScheduleModal(false);
+                      dispatch(
+                        detailSlice.actions.addTourList(
+                          tourData.currentSchedule.items
+                        )
+                      );
+                      dispatch(
+                        detailSlice.actions.addTrash(tourData.trash.items)
+                      );
+                    }}
+                  >
+                    적용
+                  </Button>
+                </AddBtnBox>
+                <Title>
+                  <h1>Schedule</h1>
+                  <span>드래그해서 일정을 원하는 위치에 추가해보세요</span>
+                </Title>
+                {_.map(tourData, (data, key) => {
+                  return (
+                    <>
+                      <Column key={key}>
+                        <H3>{data.title}</H3>
+                        <Droppable droppableId={key}>
+                          {(provided) => {
+                            return (
+                              <DroppableCol
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                              >
+                                {data.items.map((element, index) => {
+                                  return (
+                                    <Draggable
+                                      key={element.contentid}
+                                      index={index}
+                                      draggableId={element.contentid.toString()}
+                                    >
+                                      {(provided) => {
+                                        return (
+                                          <Item
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                          >
+                                            <Circle>
+                                              {element.cat2 === "A0502" ? (
+                                                <BiRestaurant />
+                                              ) : element.cat2 === "A0203" ||
+                                                element.cat2 === "A0301" ||
+                                                element.cat2 === "A0302" ||
+                                                element.cat2 === "A0303" ||
+                                                element.cat2 === "A0304" ||
+                                                element.cat2 === "A0305" ? (
+                                                <FiActivity />
+                                              ) : (
+                                                <FaMapMarkerAlt />
+                                              )}
+                                            </Circle>
+                                            <span>{element.title}</span>
+                                            <span {...provided.dragHandleProps}>
+                                              <CgArrowsVAlt />
+                                            </span>
+                                          </Item>
+                                        );
+                                      }}
+                                    </Draggable>
+                                  );
+                                })}
+                                {provided.placeholder}
+                              </DroppableCol>
+                            );
+                          }}
+                        </Droppable>
+                      </Column>
+                    </>
+                  );
+                })}
+              </Div>
             </DragDropContext>
           </TourContainer>
-
-          <AddBtnBox>
-            <button
-              onClick={() => {
-                setAddScheduleModal(false);
-                setOpenModal(true);
-              }}
-            >
-              뒤로가기
-            </button>
-            <button
-              onClick={() => {
-                setAddScheduleModal(false);
-                dispatch(
-                  detailSlice.actions.addTourList(
-                    tourData.currentSchedule.items
-                  )
-                );
-                dispatch(detailSlice.actions.addTrash(tourData.trash.items));
-              }}
-            >
-              추가하기
-            </button>
-          </AddBtnBox>
         </Modal>
       </OutArea>
     </>
@@ -194,6 +224,18 @@ const Modal = styled.div`
   border-radius: 2rem;
   z-index: 99;
   background-color: #fff;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    background-color: #f2f2f2;
+    width: 10px;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #1dc6d1;
+    border-radius: 5px;
+  }
 `;
 
 const TourContainer = styled.div`
@@ -205,41 +247,101 @@ const TourContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Column = styled.div`
-  width: 25%;
-`;
-
-const DroppableCol = styled.div`
+const Div = styled.div`
   width: 100%;
-  background-color: gray;
-  padding: 10px 10px 0 10px;
-  border-radius: 7px;
   display: flex;
   flex-direction: column;
 `;
 
-const Item = styled.div`
-  margin-bottom: 10px;
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 5px;
-  border-radius: 7px;
+const Column = styled.div`
+  width: 100%;
 `;
 
-const Li = styled.li`
-  border: 1px solid #000;
-  margin: 5px 0px;
-  padding: 5px;
+const DroppableCol = styled.div`
+  width: 100%;
+  border: 1px solid #1dc6d1;
+  /* background-color: gray; */
+  padding: 10px 10px 0 10px;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: right;
+`;
+
+const Item = styled.div`
+  margin-bottom: 10px;
+  color: #000;
+  background-color: #f2f2f2;
+  /* border: 1px solid #000; */
+  padding: 20px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  & span:nth-child(2) {
+    margin-left: 5rem;
+  }
+`;
+
+const Circle = styled.div`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  left: -8px;
+  box-shadow: 0px 0px 15px -4px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AddBtnBox = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 
   & button {
     margin: 0 0.5rem 0;
   }
+`;
+
+const Button = styled.button`
+  width: 10.6rem;
+  height: 3.7rem;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  border-radius: 1rem;
+  ${(props) =>
+    props.isApply ? "background-color: #1DC6D1;" : "background-color: #909090;"}
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Title = styled.div`
+  & h1 {
+    font-size: 3.6rem;
+    font-weight: 700;
+  }
+
+  & span {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+`;
+
+const H3 = styled.h3`
+  margin: 2rem 0 0.4rem 0;
 `;
 
 export default AddScheduleModal;
