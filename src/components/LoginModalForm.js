@@ -1,5 +1,5 @@
 import React from "react";
-import { KAKAO_AUTH_URL } from "../shared/OAuth";
+import { KAKAO_AUTH_URL, NAVER_AUTH_URL } from "../shared/OAuth";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/User_module";
 import { history } from "../redux/configureStore";
@@ -27,7 +27,13 @@ const LoginModal = (props) => {
             <SocialLogo src={kakao} />
             <LogoText className="kakaoText">카카오 로그인하기</LogoText>
           </LinkBtn>
-          <LinkBtn className="naverBtn" href="">
+          <LinkBtn
+            className="naverBtn"
+            onClick={() => {
+              console.log(NAVER_AUTH_URL);
+              window.location.href = `${NAVER_AUTH_URL}`;
+            }}
+          >
             <SocialLogo src={naver} />
             <LogoText>네이버 로그인하기</LogoText>
           </LinkBtn>

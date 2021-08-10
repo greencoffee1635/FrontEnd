@@ -134,7 +134,7 @@ const loginDB = (email, pwd) => {
   };
 };
 
-// 카카로 로그인
+// 카카오로 로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState) {
     axios({
@@ -160,6 +160,57 @@ const kakaoLogin = (code) => {
         headers: {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
           "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+        },
+      }).then(async (response) => {
+        console.log(response);
+      });
+
+      // sessionStorage.setItem("token", ACCESS_TOKEN);
+      // const token = sessionStorage.getItem("token");
+
+      // axios({
+      //   method: "POST",
+      //   url: `${config.api}/user/login`,
+      //   data: {
+      //     email,
+      //     pwd,
+      //   },
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     withCredentials: true,
+      //   }.then((response) => {
+      //     console.log(response);
+      //   }),
+      // });
+    });
+  };
+};
+
+// 네이버로 로그인
+const naverLogin = (code) => {
+  return function (dispatch, getState) {
+    axios({
+      method: "POST",
+      // url: `${REDIRECT_URI}?code=${code}`,
+      url: "https://nid.naver.com/oauth2.0/token",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+      params: {
+        grant_type: "authorization_code",
+        client_id: "COz_jZPTrucNpJ32nyzf",
+        client_secret: "R_OGTUwXwE",
+        code: `${code}`,
+      },
+    }).then(async (response) => {
+      const ACCESS_TOKEN = response.data.access_token;
+      console.log(ACCESS_TOKEN);
+      axios({
+        method: "POST",
+        // url: `${REDIRECT_URI}?code=${code}`,
+        url: "https://openapi.naver.com/v1/nid/me",
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
         },
       }).then(async (response) => {
         console.log(response);
@@ -318,6 +369,7 @@ export const actionCreators = {
   signupDB,
   loginDB,
   kakaoLogin,
+  naverLogin,
   nickNameConfirm,
   emailConfirm,
   phoneAuthRequest,
