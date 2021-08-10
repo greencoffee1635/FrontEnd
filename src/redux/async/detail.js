@@ -21,7 +21,7 @@ export const getTourInfo = createAsyncThunk(
       // method: "get",
     });
 
-    console.log("detail", response.data);
+    // console.log("detail", response.data);
 
     return response.data;
   }

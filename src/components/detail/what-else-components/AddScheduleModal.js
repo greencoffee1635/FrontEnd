@@ -307,6 +307,7 @@ const AddBtnBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 
   & button {
     margin: 0 0.5rem 0;
@@ -324,6 +325,12 @@ const Button = styled.button`
   ${(props) =>
     props.isApply ? "background-color: #1DC6D1;" : "background-color: #909090;"}
 
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const Trash = styled.div`
   &:hover {
     cursor: pointer;
   }

@@ -6,6 +6,9 @@ import { AiOutlineArrowUp } from "react-icons/ai";
 // async
 import { getTourInfo } from "../redux/async/detail";
 
+// reducer
+import detailSlice from "../redux/modules/detailSlice";
+
 // shared
 import Header from "../shared/Header";
 import Layout from "../shared/Layout";
@@ -23,11 +26,12 @@ function Detail(props) {
 
   useEffect(() => {
     dispatch(getTourInfo());
+    dispatch(detailSlice.actions.emptyTrash());
   }, []);
 
   const tourList = useSelector((state) => state.detail.tourList);
   const whatElse = useSelector((state) => state.detail.whatElse);
-  console.log("Detail", tourList, whatElse);
+  // console.log("Detail", tourList, whatElse);
 
   return (
     <>

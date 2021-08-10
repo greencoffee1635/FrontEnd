@@ -20,6 +20,9 @@ const detailSlice = createSlice({
     addTrash: (state, action) => {
       state.trash = action.payload;
     },
+    emptyTrash: (state, action) => {
+      state.trash = [];
+    },
   },
   extraReducers: {
     [getTourInfo.pending]: (state, action) => {
@@ -36,6 +39,7 @@ const detailSlice = createSlice({
       state.isLoading = false;
       state.error = action.error.message;
     },
+
     [getOneTour.pending]: (state, action) => {
       state.isLoading = true;
       state.error = null;
