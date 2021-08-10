@@ -8,15 +8,19 @@ import styled from "styled-components";
 import naver from "../images/naver.png";
 import kakao from "../images/kakao.png";
 import email from "../images/email.png";
+import login_close from "../images/login_close.png";
 
 const LoginModal = (props) => {
   return (
     <Container>
       <FormWrap>
+        <BtnWrap>
+          <CloseBtn src={login_close} />
+        </BtnWrap>
         <TitleWrap>
-          <MainTitle>내일 당장 떠나요!(로고예정)</MainTitle>
-          <SubTitle>일상이 여행인 당신을 위해~!</SubTitle>
+          <MainTitle>로그인</MainTitle>
         </TitleWrap>
+
         <BtnWrap>
           <LinkBtn
             className="kakaoBtn"
@@ -25,7 +29,7 @@ const LoginModal = (props) => {
             }}
           >
             <SocialLogo src={kakao} />
-            <LogoText className="kakaoText">카카오 로그인하기</LogoText>
+            <LogoText className="kakaoText">카카오 로그인</LogoText>
           </LinkBtn>
           <LinkBtn
             className="naverBtn"
@@ -35,7 +39,7 @@ const LoginModal = (props) => {
             }}
           >
             <SocialLogo src={naver} />
-            <LogoText>네이버 로그인하기</LogoText>
+            <LogoText>네이버 로그인</LogoText>
           </LinkBtn>
           <LinkBtn
             className="emailBtn"
@@ -44,9 +48,11 @@ const LoginModal = (props) => {
             }}
           >
             <SocialLogo className="Email" src={email} />
-            <LogoText>이메일 로그인하기</LogoText>
+            <LogoText>이메일 로그인</LogoText>
           </LinkBtn>
+          <SearchUserBtn>아이디/비밀번호 찾기</SearchUserBtn>
         </BtnWrap>
+
         <LoginSignUpWrap>
           <p>아직 회원이 아니신가요?</p>
           <LoginSignUpBtn
@@ -65,26 +71,33 @@ const LoginModal = (props) => {
 const Container = styled.div`
   position: fixed;
   box-sizing: border-box;
-  display: block;
-  outline: 0px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1000;
-  /* transform: translate(-50%, -50%); */
-  right: 3%;
-  top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CloseBtn = styled.img`
+  width: 24px;
+  cursor: pointer;
 `;
 
 const FormWrap = styled.div`
   position: relative;
   box-sizing: border-box;
   border-radius: 10px;
-  height: 400px;
-  width: 400px;
+  width: 550px;
+  height: 650px;
   background-color: #fff;
   opacity: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
   @media (max-width: 500px) {
     width: 280px;
   }
@@ -97,18 +110,9 @@ const TitleWrap = styled.section`
 `;
 
 const MainTitle = styled.p`
-  font-size: 24px;
-  line-height: 20px;
-  letter-spacing: -0.015em;
+  font-size: 35px;
+  font-weight: 700;
   color: black;
-  margin: 20px 0;
-`;
-
-const SubTitle = styled.p`
-  font-size: 18px;
-  line-height: 8px;
-  letter-spacing: -0.015em;
-  color: var(--main-color);
 `;
 
 const BtnWrap = styled.section`
@@ -118,70 +122,74 @@ const BtnWrap = styled.section`
   justify-content: center;
   align-items: center;
   line-height: 15px;
+  :first-child {
+    align-self: flex-end;
+  }
 `;
 
 const LinkBtn = styled.a`
+  width: 450px;
+  height: 62px;
+  border-radius: 35px;
   display: flex;
-  justify-content: space-between;
-  font-style: none;
-  max-width: 282px;
-  height: 40px;
+  justify-content: center;
   align-items: center;
-  border-radius: 20px;
-  margin: 0 auto 16px;
+  margin: 0 auto 15px;
   cursor: pointer;
-  padding: 0 30px 0 16px;
-  text-decoration: none;
   &.kakaoBtn {
-    background-color: #fce000;
+    background-color: #fee500;
   }
   &.naverBtn {
-    background-color: #00c63b;
+    background-color: #03c75a;
   }
   &.emailBtn {
-    background-color: #dc4e41;
+    background-color: #1dc6d1;
   }
 `;
 
 const SocialLogo = styled.img`
   position: relative;
-  top: -2px;
-  width: 30px;
-  height: 30px;
+  margin-right: 20px;
+  width: 22px;
   &.Email {
-    width: 20px;
-    height: 20px;
-    margin: 5px;
+    width: 24px;
+    margin-right: 20px;
   }
 `;
 const LogoText = styled.p`
-  font-size: 15px;
-  font-weight: 400;
+  font-size: 21px;
+  font-weight: 600;
   color: var(--white);
   &.kakaoText {
     color: black;
   }
 `;
 
+const SearchUserBtn = styled.button`
+  font-size: 16px;
+  font-weight: 500px;
+  color: #909090;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
 const LoginSignUpWrap = styled.section`
-  font-size: 12px;
-  color: #393939;
-  margin-top: 12px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14.63px;
-  width: 100%;
+  color: #909090;
+  font-weight: 500;
+  font-size: 18px;
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 70px;
 `;
 
 const LoginSignUpBtn = styled.p`
   text-decoration: underline;
+  color: #1dc6d1;
+  font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  margin-left: 4px;
 `;
 
 export default LoginModal;
