@@ -1,35 +1,29 @@
 import React, { useState,useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import moment from "moment";
 
 import whiteArrowLeft from "../../images/whiteArrowLeft.png";
 import whiteArrowRight from "../../images/whiteArrowRight.png";
+import leftArrow from "../../images/leftArrow.png";
+import rightArrow from "../../images/rightArrow.png";
+
 import ToggleButton from "./ToggleButton";
+import Slider from "./Slider";
 
 // shared
 import Header from "../../shared/Header";
-
+//redux
 import { setStartDate } from "../../redux/modules/option";
 
-// components
-
-
-import moment from "moment";
-
-
-
-import leftArrow from "../../images/leftArrow.png";
-import rightArrow from "../../images/rightArrow.png";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
-
-
 function Option03(props) {
+  
   const dispatch = useDispatch();
 
   const [getMoment, setMoment] = useState(moment());
 
   const today = getMoment;
-  const firstWeek = today.clone().startOf("month").week();
+  const firstWeek = today.clone().startOf("mont h").week();
   const lastWeek = today.clone().endOf("month").week() === 1 ? 53 : today.clone().endOf('month').week();
 
   const startDate = (index) => {
@@ -129,6 +123,11 @@ function Option03(props) {
         <div style={{display:"flex"}}>
           <SubQuestion>아직 미정이신가요?</SubQuestion>
           <ToggleButton />
+        </div>
+
+        <div>
+          <SubQuestion style={{fontSize:"16px"}}>출발 일정을 대략적으로 알려주세요</SubQuestion>
+          <Slider/>
         </div>
         <PageMoveBox>
           <PastButton
@@ -330,7 +329,7 @@ const Today = styled.button`
     background-color: #1DC6D1;
     opacity: 0.8; 
   }
-  &:focus{
+  &:active{
     background-color: #1DC6D1;
     border-radius: 30px; 
   }

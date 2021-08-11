@@ -7,19 +7,19 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 
 // shared
 import Header from "../../shared/Header";
-
-import { setCategory } from "../../redux/modules/option";
+//redux
+import { setCourseOptions } from "../../redux/modules/option";
 
 function Option02(props) {
 
-  const [combine, setCombine] = useState([]);
-
   const dispatch = useDispatch();
+  
+  const [combine, setCombine] = useState([]);
 
   const changeSolo = (e) => {
     setCombine(["C0113", "C0114", "C0115"]);
   };
-
+   
   const changeCouple = (e) => {
     setCombine(["C0114", "C0115"]);
   };
@@ -52,11 +52,7 @@ function Option02(props) {
         </ButtonBox>
 
         <PageMoveBox>
-          <PastButton
-            onClick={() => {
-              props.history.push("/Option01");
-            }}
-          >
+          <PastButton onClick={() => {props.history.push("/Option01");}}>
             <img src={whiteArrowLeft} alt="" width="35px" />
           </PastButton>
 
@@ -64,7 +60,7 @@ function Option02(props) {
             onClick={() => {
               props.history.push("/Option03");
               dispatch(
-                setCategory(
+                setCourseOptions(
                   combine
                 )
               );

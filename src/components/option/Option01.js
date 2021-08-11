@@ -9,17 +9,15 @@ import Header from "../../shared/Header";
 // components
 
 function Option01(props) {
-  // const [genderCliked, setGenderCliked] = useState();
-  // const [ageCliked, setAgeCliked] = useState();
 
+  const [genderClicked, setGenderClicked] = useState(0);
+  const [ageClicked, setAgeClicked] = useState(0);
   
-  // const handle
-
-  // const
 
   return (
     <>
       <Header {...props} />
+
       <Container>
         <Box>
           <Number>1/7</Number>
@@ -28,8 +26,8 @@ function Option01(props) {
 
         <div>
           <GenderBox>
-            <GenderButton />
-            <GenderButton />
+            <GenderButton gender={genderClicked} value={2} onClick={()=>{setGenderClicked(2)}}/>
+            <GenderButton gender={genderClicked} value={1} onClick={()=>{setGenderClicked(1)}}/>
             {/* <TextBox> */}
             <GenderText>여성</GenderText>
             <GenderText>남성</GenderText>
@@ -37,14 +35,14 @@ function Option01(props) {
           </GenderBox>
 
           <ButtonBox>
-            <AgeButton>10대</AgeButton>
-            <AgeButton>20대</AgeButton>
-            <AgeButton>30대</AgeButton>
+            <AgeButton age ={ageClicked} value={10} onClick={()=>{setAgeClicked(10)}}>10대</AgeButton>
+            <AgeButton age ={ageClicked} value={20} onClick={()=>{setAgeClicked(20)}}>20대</AgeButton>
+            <AgeButton age ={ageClicked} value={30} onClick={()=>{setAgeClicked(30)}}>30대</AgeButton>
             {/* </ButtonBox>
           <ButtonBox> */}
-            <AgeButton>40대</AgeButton>
-            <AgeButton>50대</AgeButton>
-            <AgeButton>60대+</AgeButton>
+            <AgeButton  age ={ageClicked} value={40} onClick={()=>{setAgeClicked(40)}}>40대</AgeButton>
+            <AgeButton  age ={ageClicked} value={50} onClick={()=>{setAgeClicked(50)}}>50대</AgeButton>
+            <AgeButton  age ={ageClicked} value={60} onClick={()=>{setAgeClicked(60)}}>60대+</AgeButton>
           </ButtonBox>
 
           <NextButton
@@ -112,31 +110,18 @@ const GenderBox = styled.div`
 const GenderButton = styled.button`
   width: 80px;
   height: 80px;
-  background-color: #bbbbbb;
+  background-color: ${props=>props.gender === props.value ? "#1DC6D1" : "#bbbbbb"};
   border: none;
-  border-radius: 12px;
+  border-radius: ${props=>props.gender === props.value ? "30px" : "12px"};
   margin: 15px 40px;
   justify-content: center;
   cursor: pointer;
   &:hover {
     background-color: rgba(29, 198, 209, 0.3);
-    color: #1dc6d1;
+    color: "#1DC6D1"
   }
-  &:focus{
-    background-color: #1DC6D1;
-    border-radius: 30px; 
-  }
-`;
 
-// const TextBox = styled.div`
-//   width: 21.5vw;
-//   height: 4vh;
-//   display: block;
-//   just
-//   margin: auto;
-//   text-align: center;
-//   border: 1px solid black;
-// `;
+`;
 
 const GenderText = styled.span`
   margin: auto 65px;
@@ -158,7 +143,8 @@ const AgeButton = styled.button`
   height: 57px;
   font-size: 15px;
   font-weight: bold;
-  color: #bbbbbb;
+  background-color: ${props=>props.age === props.value ? "#1DC6D1" : "#E2E2E2"};
+  color:  ${props=>props.age === props.value ? "#fff" : "#bbbbbb"};
   border: none;
   border-radius: 5px;
   margin: 2px 2px;

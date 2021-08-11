@@ -40,6 +40,7 @@ function App() {
           <Route exact path="/option06_1" component={Option06_1} />
           {/* <Route exact path="/option04" component={Option06_} /> */}
           <Route exact path="/option07" component={Option07} />
+
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/join" component={SignUp} />
           <Route exact path="/login" component={Login} />

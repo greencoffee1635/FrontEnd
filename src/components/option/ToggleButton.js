@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-function ToggleButton() {
+function ToggleButton(optionLabels) {
   const [isToggleOn, setToggleOn] = useState(false);
 
   return (
@@ -17,7 +17,13 @@ function ToggleButton() {
   );
 }
 
+ToggleButton.defaultProps = {
+  optionLabels: ["Yes", "No"],
+};
+
 export default ToggleButton;
+
+
 
 const Switch = styled.label`
   position: relative;
