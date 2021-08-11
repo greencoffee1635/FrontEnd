@@ -69,7 +69,6 @@ function Option04(props) {
                         setStartPoint(location);
                         for (const locationcode in LocationCodeData) {
                           if (location.includes(locationcode)) {
-                            // console.log(LocationCodeData[locationcode]);
                             dispatch(
                               setStartAreaCode(LocationCodeData[locationcode])
                             );
@@ -120,7 +119,8 @@ function Option04(props) {
 
 const StartPointResult = styled.span`
   display: flex;
-  padding: 18px 0 18px 20px;
+  margin: 18px 0 18px 20px;
+  background-color: #fff;
   position: absolute;
   font-size: 2rem;
   color: #1dc6d1;
