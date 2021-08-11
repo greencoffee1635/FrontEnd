@@ -5,12 +5,12 @@ import "../css/signup.scss";
 
 //component
 import LoginForm from "../components/LoginForm";
-import DetailHeader from "../shared/DetailHeader";
+import Header from "../shared/Header";
 
 function SignUp(props) {
   return (
     <React.Fragment>
-      <DetailHeader {...props} />
+      <Header page="main" />
       <LoginForm />
     </React.Fragment>
   );

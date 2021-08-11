@@ -34,7 +34,6 @@ const LoginModal = (props) => {
           <LinkBtn
             className="naverBtn"
             onClick={() => {
-              console.log(NAVER_AUTH_URL);
               window.location.href = `${NAVER_AUTH_URL}`;
             }}
           >
@@ -50,7 +49,10 @@ const LoginModal = (props) => {
             <SocialLogo className="Email" src={email} />
             <LogoText>이메일 로그인</LogoText>
           </LinkBtn>
-          <SearchUserBtn>아이디/비밀번호 찾기</SearchUserBtn>
+
+          <FindPwWrap>
+            <TextLink>비밀번호 찾기</TextLink>
+          </FindPwWrap>
         </BtnWrap>
 
         <LoginSignUpWrap>
@@ -83,6 +85,7 @@ const Container = styled.div`
 const CloseBtn = styled.img`
   width: 24px;
   cursor: pointer;
+  margin-top: -10px;
 `;
 
 const FormWrap = styled.div`
@@ -98,15 +101,12 @@ const FormWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  @media (max-width: 500px) {
-    width: 280px;
-  }
 `;
 
 const TitleWrap = styled.section`
   display: inline-block;
   text-align: center;
-  margin-bottom: 20px;
+  margin: -10px 0 15px 0;
 `;
 
 const MainTitle = styled.p`
@@ -165,31 +165,35 @@ const LogoText = styled.p`
   }
 `;
 
-const SearchUserBtn = styled.button`
+const FindPwWrap = styled.button`
   font-size: 16px;
-  font-weight: 500px;
+  font-weight: 500;
   color: #909090;
   background-color: transparent;
   border: none;
+`;
+
+const TextLink = styled.span`
   cursor: pointer;
 `;
 
 const LoginSignUpWrap = styled.section`
   color: #909090;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 `;
 
 const LoginSignUpBtn = styled.p`
   text-decoration: underline;
   color: #1dc6d1;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
+  margin-left: 5px;
 `;
 
 export default LoginModal;
