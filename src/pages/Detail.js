@@ -50,6 +50,7 @@ function Detail(props) {
 
         <MapBox>
           <DetailMap />
+          <Blank />
         </MapBox>
 
         <WhatElseContents>
@@ -91,7 +92,7 @@ const UpBtn = styled.button`
 
 const ContentsBox = styled.div`
   width: 108rem;
-  margin-top: 29rem;
+  margin-top: 37rem;
 `;
 
 const VideoBox = styled.div`
@@ -104,10 +105,17 @@ const MapBox = styled.div`
   margin-top: 141px;
 `;
 
+const Blank = styled.div`
+  width: 100%;
+  height: 185px;
+  border-top-right-radius: 70px;
+  box-shadow: 0px -10px 15px -12px gray;
+`;
+
 const WhatElseContents = styled.div`
   width: 149rem;
   /* width: 108rem; */
-  margin: 185px 0px 0px auto;
+  margin: 0px 0px 0px auto;
 `;
 
 const HeadImage = styled.div`

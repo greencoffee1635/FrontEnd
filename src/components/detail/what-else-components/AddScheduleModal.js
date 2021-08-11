@@ -3,15 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import _ from "lodash";
-import { FaMapMarkerAlt } from "react-icons/fa";
-import { CgArrowsVAlt } from "react-icons/cg";
+import { FaMapMarkerAlt, FaTrashAlt, FaCheckCircle } from "react-icons/fa";
 import { BiRestaurant } from "react-icons/bi";
 import { FiActivity } from "react-icons/fi";
+import { BsList } from "react-icons/bs";
 
 // reducer
 import detailSlice from "../../../redux/modules/detailSlice";
 
 const AddScheduleModal = (props) => {
+  const dispatch = useDispatch();
+  const trashData = useSelector((state) => state.detail.trash);
+  const isModal = useRef();
+
   const {
     course,
     setOpenModal,
@@ -21,13 +25,7 @@ const AddScheduleModal = (props) => {
   } = props;
   console.log("add schedule", detailData);
   console.log("course", course);
-
-  const dispatch = useDispatch();
-
-  const trashData = useSelector((state) => state.detail.trash);
   console.log("trash data", trashData);
-
-  const isModal = useRef();
 
   const [tourData, setTourData] = useState({
     new: {
@@ -35,7 +33,7 @@ const AddScheduleModal = (props) => {
       items: [detailData],
     },
     currentSchedule: {
-      title: "CURRENT",
+      title: "MY SCHEDULE",
       items: [...course],
     },
     trash: {
@@ -44,6 +42,26 @@ const AddScheduleModal = (props) => {
     },
   });
   console.log("스케줄모달", tourData);
+  const [isDelete, setIsDelete] = useState(false);
+  const [checkedItem, setCheckedItem] = useState([]);
+  console.log("checked item", checkedItem);
+
+  useEffect(() => {
+    document.addEventListener("click", clickOutsideModal);
+
+    return () => {
+      document.removeEventListener("click", clickOutsideModal);
+    };
+  });
+
+  const checkedItemHandler = (isChecked, contentid) => {
+    console.log("id, isChecked", isChecked, contentid);
+    if (isChecked) {
+      setCheckedItem([...checkedItem, contentid]);
+    } else {
+      setCheckedItem(checkedItem.filter((item) => item !== contentid));
+    }
+  };
 
   const clickOutsideModal = useCallback((e) => {
     if (
@@ -52,14 +70,6 @@ const AddScheduleModal = (props) => {
     ) {
       setAddScheduleModal(false);
     }
-  });
-
-  useEffect(() => {
-    document.addEventListener("click", clickOutsideModal);
-
-    return () => {
-      document.removeEventListener("click", clickOutsideModal);
-    };
   });
 
   const handleDragEnd = (result) => {
@@ -107,35 +117,19 @@ const AddScheduleModal = (props) => {
             <DragDropContext onDragEnd={handleDragEnd}>
               <Div>
                 <AddBtnBox>
-                  <Button
+                  {/* <FaTrashAlt
+                    color="#BBBBBB"
                     onClick={() => {
-                      setAddScheduleModal(false);
-                      setOpenModal(true);
+                      setIsDelete(!isDelete);
                     }}
-                  >
-                    취소
-                  </Button>
-                  <Button
-                    isApply
-                    onClick={() => {
-                      setAddScheduleModal(false);
-                      dispatch(
-                        detailSlice.actions.addTourList(
-                          tourData.currentSchedule.items
-                        )
-                      );
-                      dispatch(
-                        detailSlice.actions.addTrash(tourData.trash.items)
-                      );
-                    }}
-                  >
-                    적용
-                  </Button>
+                  /> */}
                 </AddBtnBox>
+
                 <Title>
                   <h1>Schedule</h1>
                   <span>드래그해서 일정을 원하는 위치에 추가해보세요</span>
                 </Title>
+
                 {_.map(tourData, (data, key) => {
                   return (
                     <>
@@ -157,29 +151,62 @@ const AddScheduleModal = (props) => {
                                     >
                                       {(provided) => {
                                         return (
-                                          <Item
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                          >
-                                            <Circle>
-                                              {element.cat2 === "A0502" ? (
-                                                <BiRestaurant />
-                                              ) : element.cat2 === "A0203" ||
-                                                element.cat2 === "A0301" ||
-                                                element.cat2 === "A0302" ||
-                                                element.cat2 === "A0303" ||
-                                                element.cat2 === "A0304" ||
-                                                element.cat2 === "A0305" ? (
-                                                <FiActivity />
-                                              ) : (
-                                                <FaMapMarkerAlt />
-                                              )}
-                                            </Circle>
-                                            <span>{element.title}</span>
-                                            <span {...provided.dragHandleProps}>
-                                              <CgArrowsVAlt />
-                                            </span>
-                                          </Item>
+                                          <>
+                                            <Item
+                                              ref={provided.innerRef}
+                                              {...provided.draggableProps}
+                                            >
+                                              <Circle>
+                                                {element.cat2 === "A0502" ? (
+                                                  <BiRestaurant />
+                                                ) : element.cat2 === "A0203" ||
+                                                  element.cat2 === "A0301" ||
+                                                  element.cat2 === "A0302" ||
+                                                  element.cat2 === "A0303" ||
+                                                  element.cat2 === "A0304" ||
+                                                  element.cat2 === "A0305" ? (
+                                                  <FiActivity />
+                                                ) : (
+                                                  <FaMapMarkerAlt />
+                                                )}
+                                              </Circle>
+                                              <ItemInfo>
+                                                <InfoDiv>
+                                                  <Img
+                                                    src={element.firstimage}
+                                                    alt=""
+                                                  />
+                                                  <span>{element.title}</span>
+                                                </InfoDiv>
+                                                <span
+                                                  {...provided.dragHandleProps}
+                                                >
+                                                  <BsList />
+                                                </span>
+                                              </ItemInfo>
+                                              <CheckBox>
+                                                {isDelete && (
+                                                  <input
+                                                    type="checkbox"
+                                                    onChange={(e) =>
+                                                      checkedItemHandler(
+                                                        e.target.checked,
+                                                        element.contentid
+                                                      )
+                                                    }
+                                                    checked={
+                                                      checkedItem.includes(
+                                                        element.contentid
+                                                      )
+                                                        ? true
+                                                        : false
+                                                    }
+                                                  />
+                                                  // <FaCheckCircle color="#E2E2E2" />
+                                                )}
+                                              </CheckBox>
+                                            </Item>
+                                          </>
                                         );
                                       }}
                                     </Draggable>
@@ -194,9 +221,47 @@ const AddScheduleModal = (props) => {
                     </>
                   );
                 })}
+                <div style={{ width: "100%", height: "95px" }}></div>
               </Div>
             </DragDropContext>
           </TourContainer>
+
+          <BottomDiv>
+            <Button
+              fontColor="#909090"
+              onClick={() => {
+                setAddScheduleModal(false);
+                setOpenModal(true);
+              }}
+            >
+              취소
+            </Button>
+            {isDelete ? (
+              <Button
+                fontColor="#fc6b6b"
+                onClick={() => {
+                  dispatch(detailSlice.actions.deleteTrash(checkedItem));
+                }}
+              >
+                삭제
+              </Button>
+            ) : (
+              <Button
+                fontColor="#1DC6D1"
+                onClick={() => {
+                  setAddScheduleModal(false);
+                  dispatch(
+                    detailSlice.actions.addTourList(
+                      tourData.currentSchedule.items
+                    )
+                  );
+                  dispatch(detailSlice.actions.addTrash(tourData.trash.items));
+                }}
+              >
+                적용
+              </Button>
+            )}
+          </BottomDiv>
         </Modal>
       </OutArea>
     </>
@@ -227,25 +292,33 @@ const Modal = styled.div`
   overflow: auto;
 
   &::-webkit-scrollbar {
-    background-color: none;
-    width: 10px;
-    /* border-radius: 5px; */
-  }
-
-  &::-webkit-scrollbar-thumb {
-    /* background-color: #1dc6d1; */
-    background-color: none;
-    border-radius: 5px;
+    display: none;
   }
 `;
 
 const TourContainer = styled.div`
   width: 100%;
   font-size: 2.5rem;
-  padding: 2rem;
+  padding: 4rem;
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
+`;
+
+const BottomDiv = styled.div`
+  width: 79rem;
+  height: 95px;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  bottom: 0.4rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 0 0 7px 7px;
+  box-shadow: 0px 0px 15px -3px gray;
 `;
 
 const Div = styled.div`
@@ -260,47 +333,14 @@ const Column = styled.div`
 
 const DroppableCol = styled.div`
   width: 100%;
-  border: 1px solid #1dc6d1;
+  border-bottom: 1px solid #e2e2e2;
   /* background-color: gray; */
-  padding: 10px 10px 0 10px;
-  border-radius: 7px;
+  padding: 10px;
+  /* border-radius: 7px; */
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   text-align: right;
-`;
-
-const Item = styled.div`
-  margin-bottom: 10px;
-  color: #000;
-  background-color: #f2f2f2;
-  /* border: 1px solid #000; */
-  padding: 20px;
-  border-radius: 7px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-
-  & span:nth-child(2) {
-    margin-left: 5rem;
-  }
-`;
-
-const Circle = styled.div`
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  background-color: #fff;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  left: -8px;
-  box-shadow: 0px 0px 15px -4px gray;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const AddBtnBox = styled.div`
@@ -309,28 +349,91 @@ const AddBtnBox = styled.div`
   justify-content: flex-end;
   align-items: center;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   & button {
     margin: 0 0.5rem 0;
   }
 `;
 
-const Button = styled.button`
-  width: 10.6rem;
-  height: 3.7rem;
-  border: none;
-  color: #fff;
-  font-weight: 700;
-  font-size: 1.4rem;
-  border-radius: 1rem;
-  ${(props) =>
-    props.isApply ? "background-color: #1DC6D1;" : "background-color: #909090;"}
+const Circle = styled.div`
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 2px solid #1dc6d1;
+  margin-right: 4.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-  &:hover {
-    cursor: pointer;
+const Item = styled.div`
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #000;
+  /* background-color: wheat; */
+  /* padding: 20px; */
+  border-radius: 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* box-shadow: 0px 0px 15px -4px gray; */
+  box-sizing: border-box;
+`;
+
+const ItemInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 49rem;
+  /* background-color: green; */
+  padding: 20px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 15px -4px gray;
+  background-color: #fff;
+`;
+
+const CheckBox = styled.div`
+  width: 20px;
+  height: 100%;
+`;
+
+const InfoDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & span {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+    margin-left: 20px;
   }
 `;
 
-const Trash = styled.div`
+const Img = styled.img`
+  width: 67px;
+  height: 67px;
+  border-radius: 7px;
+`;
+
+const Button = styled.button`
+  /* width: 10.6rem;
+  height: 3.7rem; */
+  border: none;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 1rem;
+  background-color: #fff;
+  margin: 0 5rem;
+  color: ${(props) => props.fontColor};
+  /* ${(props) => (props.isDelete ? "color: #fc6b6b;" : props.fontColor)} */
+
   &:hover {
     cursor: pointer;
   }
