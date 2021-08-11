@@ -109,6 +109,7 @@ const ViewMoreModal = (props) => {
                       // window.alert("이미 추가된 여행지에요!");
                       notify();
                     } else {
+                      setOpenModal(false);
                       setAddScheduleModal(true);
                     }
                   }}
