@@ -188,18 +188,17 @@ const kakaoLogin = (code) => {
 
 // 네이버로 로그인
 const naverLogin = (code) => {
-  return function (dispatch, getState) {
+  return function (dispatch, getState, { history }) {
     axios({
       method: "POST",
-      // url: `${REDIRECT_URI}?code=${code}`,
       url: "https://nid.naver.com/oauth2.0/token",
       headers: {
         "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
       },
       params: {
         grant_type: "authorization_code",
-        client_id: "COz_jZPTrucNpJ32nyzf",
-        client_secret: "R_OGTUwXwE",
+        client_id: "",
+        client_secret: "",
         code: `${code}`,
       },
     }).then(async (response) => {
@@ -207,32 +206,21 @@ const naverLogin = (code) => {
       console.log(ACCESS_TOKEN);
       axios({
         method: "POST",
-        // url: `${REDIRECT_URI}?code=${code}`,
         url: "https://openapi.naver.com/v1/nid/me",
         headers: {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
+          "Content-type": "application/xml",
         },
-      }).then(async (response) => {
-        console.log(response);
-      });
-
-      // sessionStorage.setItem("token", ACCESS_TOKEN);
-      // const token = sessionStorage.getItem("token");
-
-      // axios({
-      //   method: "POST",
-      //   url: `${config.api}/user/login`,
-      //   data: {
-      //     email,
-      //     pwd,
-      //   },
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     withCredentials: true,
-      //   }.then((response) => {
-      //     console.log(response);
-      //   }),
-      // });
+      })
+        .then(async (response) => {
+          console.log(response);
+          history.replace("/");
+        })
+        .catch((err) => {
+          console.log("소셜로그인 에러", err);
+          window.alert("로그인에 실패하였습니다.");
+          history.replace("/");
+        });
     });
   };
 };

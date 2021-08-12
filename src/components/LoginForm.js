@@ -107,7 +107,7 @@ const LoginInformWrap = styled.div`
 const LoginMainTitle = styled.h1`
   font-size: 35px;
   font-weight: 700;
-  color: black;
+  color: #121212;
   text-align: center;
 `;
 
@@ -173,7 +173,7 @@ const LoginBtn = styled.button`
   border: none;
   font-size: 21px;
   font-weight: 600;
-  border-radius: 30px;
+  border-radius: 35px;
   background-color: #e2e2e2;
   color: var(--white);
 `;
@@ -199,6 +199,9 @@ const SignupTextBtn = styled.div`
 
 const TextLink = styled.span`
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default LoginForm;

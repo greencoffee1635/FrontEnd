@@ -51,7 +51,13 @@ const LoginModal = (props) => {
           </LinkBtn>
 
           <FindPwWrap>
-            <TextLink>비밀번호 찾기</TextLink>
+            <TextLink
+            // onClick={() => {
+            //   window.location.href = "/findpw";
+            // }}
+            >
+              비밀번호 찾기
+            </TextLink>
           </FindPwWrap>
         </BtnWrap>
 
@@ -112,7 +118,7 @@ const TitleWrap = styled.section`
 const MainTitle = styled.p`
   font-size: 35px;
   font-weight: 700;
-  color: black;
+  color: #121212;
 `;
 
 const BtnWrap = styled.section`
@@ -161,7 +167,7 @@ const LogoText = styled.p`
   font-weight: 600;
   color: var(--white);
   &.kakaoText {
-    color: black;
+    color: #121212;
   }
 `;
 
@@ -175,6 +181,9 @@ const FindPwWrap = styled.button`
 
 const TextLink = styled.span`
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const LoginSignUpWrap = styled.section`
