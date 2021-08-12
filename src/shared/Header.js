@@ -6,7 +6,7 @@ import LoginModal from "../components/LoginModalForm";
 
 function Header(props) {
   const is_close = useRef();
-  const { history, bgColor } = props;
+  const { history } = props;
   const [loginModal, setLoginModal] = useState(false);
 
   const onClickOutside = useCallback((e) => {
@@ -18,7 +18,6 @@ function Header(props) {
     }
   });
 
-
   useEffect(() => {
     document.addEventListener("click", onClickOutside);
     return () => {
@@ -26,44 +25,41 @@ function Header(props) {
     };
   });
 
-
   return (
     <>
-      <HeaderLayout bgColor={bgColor} id="header-layout">
-        <Container>
-          <HeaderLogo
-            page={props.page}
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            내일 어디가?
-          </HeaderLogo>
-          <HeaderMenu page={props.page}>
-            <HeaderMenuItem>
-              <div></div>
-              <span>Home</span>
-            </HeaderMenuItem>
-            <HeaderMenuItem>
-              <div></div>
-              <span>Explore</span>
-            </HeaderMenuItem>
-            <HeaderMenuItem>
-              <div></div>
+      <Container>
+        <HeaderLogo
+          page={props.page}
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          내일 어디가?
+        </HeaderLogo>
+        <HeaderMenu page={props.page}>
+          <HeaderMenuItem>
+            <div></div>
+            <span>Home</span>
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <div></div>
+            <span>Explore</span>
+          </HeaderMenuItem>
+          <HeaderMenuItem>
+            <div></div>
 
-              <span
-                onClick={() => {
-                  setLoginModal(true);
-                }}
-              >
-                Login
-              </span>
+            <span
+              onClick={() => {
+                setLoginModal(true);
+              }}
+            >
+              Login
+            </span>
 
-              {loginModal && <LoginModal ref={is_close} />}
-            </HeaderMenuItem>
-          </HeaderMenu>
-        </Container>
-      </HeaderLayout>
+            {loginModal && <LoginModal ref={is_close} />}
+          </HeaderMenuItem>
+        </HeaderMenu>
+      </Container>
     </>
   );
 }
@@ -78,8 +74,13 @@ const HeaderLayout = styled.div`
 `;
 
 const Container = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 69%;
   margin: 0 auto;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;

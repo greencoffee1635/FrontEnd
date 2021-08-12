@@ -1,16 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 
-const TourItem = ({ data, category, setOpenModal }) => {
+// async
+import { getOneTour } from "../../../redux/async/detail";
+
+const TourItem = (props) => {
+  const { data, setOpenModal } = props;
+
+  const dispatch = useDispatch();
+
   return (
     <>
       <Div>
-        <TourImage src={data.img}>
+        <TourImage src={data && data.firstimage}>
           <Gradation />
 
           <TourItemTitle id="title">
             <Left>
-              <h1>{data.name}</h1>
+              <h1>{data && data.title}</h1>
               <span>subtitle</span>
             </Left>
             {/* <Right>
@@ -25,7 +33,7 @@ const TourItem = ({ data, category, setOpenModal }) => {
           <HoverMenu id="hoverMenu">
             <HoverMenuTitle>
               <Left>
-                <h1>{data.name}</h1>
+                <h1>{data && data.title}</h1>
                 <span>subtitle</span>
               </Left>
               {/* <Right>
@@ -37,25 +45,17 @@ const TourItem = ({ data, category, setOpenModal }) => {
               </Right> */}
             </HoverMenuTitle>
 
-            <Explain>
-              {data.overview}{" "}
-              <a
-                href="#123"
-                onClick={() => {
-                  setOpenModal(true);
-                }}
-              >
-                더보기
-              </a>
-            </Explain>
-
-            {/* <Address>
-              <p>경상북도 경주시 진현동 15-1</p>
-              <p>평일 09:00 - 18:00</p>
-            </Address> */}
+            <Explain>{data && data.overview}</Explain>
 
             <AddScheduleBtn>
-              <button>일정추가</button>
+              <button
+                onClick={() => {
+                  setOpenModal(true);
+                  dispatch(getOneTour(data.contentid));
+                }}
+              >
+                일정추가
+              </button>
             </AddScheduleBtn>
           </HoverMenu>
         </TourImage>
@@ -195,16 +195,6 @@ const Explain = styled.div`
 
   & a {
     color: #fff;
-  }
-`;
-
-const Address = styled.div`
-  font-size: 15px;
-  font-weight: 500;
-  color: #e2e2e2;
-
-  & p {
-    margin-bottom: 8px;
   }
 `;
 
