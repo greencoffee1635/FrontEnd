@@ -8,7 +8,7 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 // shared
 import Header from "../../shared/Header";
 
-import { init } from "../../redux/modules/option";
+import { setCategory } from "../../redux/modules/option";
 
 function Option02(props) {
   const [category, setCategory] = useState([]);
@@ -63,7 +63,7 @@ function Option02(props) {
             onClick={() => {
               props.history.push("/Option03");
               dispatch(
-                init({
+                setCategory({
                   category: category,
                 })
               );

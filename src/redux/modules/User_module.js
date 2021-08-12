@@ -134,7 +134,7 @@ const loginDB = (email, pwd) => {
   };
 };
 
-// 카카로 로그인
+// 카카오로 로그인
 const kakaoLogin = (code) => {
   return function (dispatch, getState) {
     axios({
@@ -182,6 +182,45 @@ const kakaoLogin = (code) => {
       //     console.log(response);
       //   }),
       // });
+    });
+  };
+};
+
+// 네이버로 로그인
+const naverLogin = (code) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: "POST",
+      url: "https://nid.naver.com/oauth2.0/token",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+      params: {
+        grant_type: "authorization_code",
+        client_id: "",
+        client_secret: "",
+        code: `${code}`,
+      },
+    }).then(async (response) => {
+      const ACCESS_TOKEN = response.data.access_token;
+      console.log(ACCESS_TOKEN);
+      axios({
+        method: "POST",
+        url: "https://openapi.naver.com/v1/nid/me",
+        headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
+          "Content-type": "application/xml",
+        },
+      })
+        .then(async (response) => {
+          console.log(response);
+          history.replace("/");
+        })
+        .catch((err) => {
+          console.log("소셜로그인 에러", err);
+          window.alert("로그인에 실패하였습니다.");
+          history.replace("/");
+        });
     });
   };
 };
@@ -318,6 +357,7 @@ export const actionCreators = {
   signupDB,
   loginDB,
   kakaoLogin,
+  naverLogin,
   nickNameConfirm,
   emailConfirm,
   phoneAuthRequest,
