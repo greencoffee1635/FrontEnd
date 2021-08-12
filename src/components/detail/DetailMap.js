@@ -21,33 +21,6 @@ const DetailMap = (props) => {
   const courseData = tourList && tourList.course;
   // console.log(courseData);
 
-  const location = [
-    {
-      name: "은평역사한옥박물관",
-      latitude: 37.6403324,
-      longitude: 126.9380102,
-      address: "서울 은평구 연서로50길 8 은평역사한옥박물관",
-    },
-    {
-      name: "금성당",
-      latitude: 37.6351354,
-      longitude: 126.9253799,
-      address: "서울특별시 은평구 진관2로 57-23",
-    },
-    {
-      name: "김광석거리",
-      latitude: 35.860332,
-      longitude: 128.6044187,
-      address: "대구 중구 대봉동 6-11",
-    },
-    {
-      name: "해운대",
-      latitude: 35.1587142,
-      longitude: 129.1516294,
-      address: "부산 해운대구 우동",
-    },
-  ];
-
   useEffect(() => {
     if (!tourList) {
       return;
@@ -140,6 +113,7 @@ const Schedule = styled.div`
 `;
 
 const ScheduleTitle = styled.h1`
+  width: 55%;
   font-size: 55px;
   font-weight: 600;
   margin: 0px 0px 60px 0px;
@@ -150,15 +124,16 @@ const ScheduleList = styled.ul`
   display: flex;
   flex-direction: column;
   overflow: auto;
+  width: 55%;
 
   &::-webkit-scrollbar {
-    background-color: #f2f2f2;
-    width: 10px;
+    background-color: #fff;
+    width: 5px;
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #1dc6d1;
+    background-color: #f2f2f2;
     border-radius: 5px;
   }
   /* &::-webkit-scrollbar-track {
