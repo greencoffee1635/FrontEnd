@@ -1,37 +1,31 @@
 import { createAction, handleActions } from "redux-actions";
 
-const CATEGORY = "option/CATEGORY";
-const START_DATE = "option/START_DATE";
-const WISH_WEEK = "option/WISH_WEEK"; //
-const START_AREA_CODE = "option/START_AREA_CODE"; // 출발지역 코드
-const LAT = "option/LAT";
-const LNG = "option/LNG";
-const WIDE_AREA_CODE = "option/WIDE_AREA_CODE"; // 가고싶은 여행지 큰지역 코드
-const SMALL_AREA_CODE = "option/SMALL_AREA_CODE"; // 가고싶은 여행지 시군구 코드
-const STYLE = "option/STYLE"; // 여행 스타일
-const CONTENT_TYPE_ID = "option/CONTENT_TYPE_ID"; //여행 테마
 
-const setCategory = createAction(CATEGORY, (category) => ({ category }));
+const COURSE_OPTIONS = "option/COURSE_OPTIONS";
+const START_DATE = "option/START_DATE";
+const WISH_WEEK = "option/WISH_WEEK";  // 
+const START_AREA_CODE = "option/START_AREA_CODE"; // 출발지역 코드
+const LAT = "option/LAT"; 
+const LNG = "option/LNG";
+const WIDE_AREA_CODE = "option/WIDE_AREA_CODE"; // 가고싶은 여행지 큰지역 코드 
+const SMALL_AREA_CODE = "option/SMALL_AREA_CODE"// 가고싶은 여행지 시군구 코드 
+const STYLE = "option/STYLE"; // 여행 스타일
+const LOCATION_OPTIONS = "option/LOCATION_OPTIONS"; //여행 테마
+
+const setCourseOptions = createAction(COURSE_OPTIONS, (courseOptions) => ({ courseOptions }));
 const setStartDate = createAction(START_DATE, (startDate) => ({ startDate }));
-const setWishWeek = createAction(WISH_WEEK, (wishweek) => ({ wishweek }));
-const setStartAreaCode = createAction(START_AREA_CODE, (startAreaCode) => ({
-  startAreaCode,
-}));
+const setWishWeek = createAction(WISH_WEEK, (wishWeek) => ({ wishWeek }));
+const setStartAreaCode = createAction(START_AREA_CODE, (startAreaCode) => ({ startAreaCode }));
 const setLat = createAction(LAT, (lat) => ({ lat }));
 const setLng = createAction(LNG, (lng) => ({ lng }));
-const setWideAreaCode = createAction(WIDE_AREA_CODE, (wideAreaCode) => ({
-  wideAreaCode,
-}));
-const setSmallAreaCode = createAction(SMALL_AREA_CODE, (smallAreaCode) => ({
-  smallAreaCode,
-}));
+const setWideAreaCode = createAction(WIDE_AREA_CODE, (wideAreaCode) => ({ wideAreaCode }));
+const setSmallAreaCode = createAction(SMALL_AREA_CODE, (smallAreaCode) => ({ smallAreaCode }));
 const setStyle = createAction(STYLE, (style) => ({ style }));
-const setContentTypeId = createAction(CONTENT_TYPE_ID, (contentTypeId) => ({
-  contentTypeId,
-}));
+const setLocationOptions = createAction(LOCATION_OPTIONS, (locationOptions) => ({ locationOptions }));
+
 
 const optionState = {
-  category: "",
+  courseOptions: "",
   startDate: "",
   wishWeek: "",
   startAreaCode: "",
@@ -40,13 +34,16 @@ const optionState = {
   wideAreaCode: "",
   smallAreaCode: "",
   style: "",
-  contentTypeId: "",
+  locationOptions: "",
+
 };
 
 const option = handleActions(
   {
-    [CATEGORY]: (state, action) => {
-      return { ...state, category: action.payload.category };
+
+    [COURSE_OPTIONS]: (state, action) => {
+      return { ...state, courseOptions: action.payload.courseOptions };
+
     },
     [START_DATE]: (state, action) => {
       return { ...state, startDate: action.payload.startDate };
@@ -72,15 +69,19 @@ const option = handleActions(
     [STYLE]: (state, action) => {
       return { ...state, style: action.payload.style };
     },
-    [CONTENT_TYPE_ID]: (state, action) => {
-      return { ...state, contentTypeId: action.payload.contentTypeId };
+
+    [LOCATION_OPTIONS]: (state, action) => {
+      return { ...state, locationOptions: action.payload.locationOptions };
+
     },
   },
   optionState
 );
 
 export {
-  setCategory,
+
+  setCourseOptions,
+
   setStartDate,
   setWishWeek,
   setStartAreaCode,
@@ -89,7 +90,8 @@ export {
   setWideAreaCode,
   setSmallAreaCode,
   setStyle,
-  setContentTypeId,
+  setLocationOptions,
 };
 
 export default option;
+

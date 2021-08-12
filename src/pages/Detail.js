@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
-import { AiOutlineArrowUp } from "react-icons/ai";
+// import { AiOutlineArrowUp } from "react-icons/ai";
 
 // async
 import { getTourInfo } from "../redux/async/detail";
@@ -67,7 +67,7 @@ function Detail(props) {
           window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
         }}
       >
-        <AiOutlineArrowUp />
+        {/* <AiOutlineArrowUp /> */}
       </UpBtn>
     </>
   );

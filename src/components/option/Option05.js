@@ -22,8 +22,15 @@ function Option05(props) {
         </Box>
 
         <AnswerBox>
-          <AnswerButton>네! 결정했어요.</AnswerButton>
-          <AnswerButton>아니요. 결정하지 못했어요.</AnswerButton>
+          <AnswerButton
+            onClick={() => {props.history.push("/Option06_0");}}
+          >
+            네! 결정했어요.
+          </AnswerButton>
+          <AnswerButton
+            onClick={() => {props.history.push("/Option06_1");}}
+          >아니요. 결정하지 못했어요.
+          </AnswerButton>
         </AnswerBox>
 
         <PageMoveBox>
@@ -54,81 +61,82 @@ const Container = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
-  width: 26.26vw;
-  height: 75%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 560px;
   // border: 1px solid black;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
 `;
 
-const Box = styled.div`
-`;
+const Box = styled.div``;
 
 const Number = styled.p`
-  font-size: 1.5rem;
+  font-size: 21px;
   font-weight: bold;
-  color: #BBBBBB;
+  color: #bbbbbb;
   margin: 10px auto;
 `;
 
 const Question = styled.p`
   font-weight: bolder;
-  font-size: 2.5rem;
-  width: 22vw;
-  height: 8vh;
+  font-size: 25px;
+  width: 450px;
+  height: 60px;
+  // border: 1px solid black;
 `;
 
 const AnswerBox = styled.div`
-  width: 22vw;
-  height: 6vh;
-  margin: 20px auto;
+  width: 395px;
+  height: 140px;
+  margin: 15px auto;
+  // border: 1px solid black;
 `;
 
 const AnswerButton = styled.button`
-  width: 22vw;
-  height: 6vh;
+  width: 340px;
+  height: 52px;
   border: none;
   border-radius: 125px;
   color: #909090;
   font-size: 1.5rem;
   // dispaly: block;
-  margin: 9px auto;
+  margin: 8px 27px;
   cursor: pointer;
   &:hover{
     background-color: rgba(29,198,209,0.3);
     color: #1DC6D1;
     opacity: 0.8;
   }
+  &:focus {
+    background-color: #1dc6d1;
+    color: #fff;
+  }
 `;
 
 const PageMoveBox = styled.div`
-  width: 22vw;
-  height: 7vh;
-  margin: 349px auto ;
+  width: 340px;
+  height: 55px;
+  margin: 246px auto;
   // border: 1px solid black;
 `;
 
 const PastButton = styled.button`
-  width: 4vw;
-  height: 7.5vh;
-  background-color: #BBBBBB;
+  width: 60px;
+  height: 55px;
+  background-color: #bbbbbb;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   padding: 11px;
   cursor: pointer;
 `;
 
 const NextButton = styled.button`
-  width: 16.5vw;
-  height: 7.5vh;
+  width: 250px;
+  height: 55px;
   float: right;
   border: none;
   border-radius: 30px;
-  background-color: #1DC6D1;
-  font-size: 2rem;
+  background-color: #1dc6d1;
+  font-size: 20px;
   color: #fff;
   cursor: pointer;
   &:hover {
@@ -137,7 +145,7 @@ const NextButton = styled.button`
 `;
 
 const Text = styled.text`
-  margin: 1vh 0 0 4vw;
+  margin: 8px 0 0 65px;
   display: flex;
 `;
 

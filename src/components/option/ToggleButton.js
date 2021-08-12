@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-function ToggleButton() {
+function ToggleButton(optionLabels) {
   const [isToggleOn, setToggleOn] = useState(false);
 
   return (
     <Switch>
       <Input
         type="checkbox"
+        value= "false"
         checked={isToggleOn}
         onChange={() => setToggleOn(!isToggleOn)}
       />
@@ -16,7 +17,13 @@ function ToggleButton() {
   );
 }
 
+ToggleButton.defaultProps = {
+  optionLabels: ["Yes", "No"],
+};
+
 export default ToggleButton;
+
+
 
 const Switch = styled.label`
   position: relative;
@@ -50,21 +57,21 @@ const Slider = styled.span`
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: .4s;
+    transition: .1s;
   }
 `;
 
 const Input = styled.input`
-  &:checked + ${Slider} {
-    background-color: #1dc6d1;
-  }
-  &:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
-  }
-  &:checked + ${Slider}:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
+    &:checked + ${Slider} {
+      background-color: #1DC6D1;
+    }
+    &:focus + .slider {
+     box-shadow: 0 0 1px #2196F3;
+    }
+    &:checked + ${Slider}:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
 `;
