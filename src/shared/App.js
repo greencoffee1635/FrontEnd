@@ -22,10 +22,14 @@ import Option07 from "../components/option/Option07";
 import Detail from "../pages/Detail";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import MyTrip from "../pages/MyTrip";
+import KakaoRedirection from "../shared/socialRedirection";
+
 import {
   KakaoRedirection,
   NaverRedirection,
 } from "../shared/socialRedirection";
+
 
 function App() {
   return (
@@ -47,6 +51,7 @@ function App() {
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/join" component={SignUp} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/mytrip" component={MyTrip} />
           <Route
             path="/login/kakao/callback"
             exact
