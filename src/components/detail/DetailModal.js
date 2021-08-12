@@ -1,7 +1,8 @@
 import React from "react";
+import parse from "html-react-parser";
 import styled from "styled-components";
 
-const DetailModal = ({ list, closeModal }) => {
+const DetailModal = ({ data, closeModal }) => {
   return (
     <>
       <ModalContainer onClick={closeModal}>
@@ -10,21 +11,21 @@ const DetailModal = ({ list, closeModal }) => {
             src={require("../../images/background_img.jpg").default}
             alt=""
           /> */}
-          <Image src={list.img} alt="" />
+          <Image src={data.firstimage} alt="" />
           <ModalContents>
-            <TopContents>
-              <PlaceTitle>
-                <h1>{list.name}</h1>
-                <span>카테고리?</span>
-              </PlaceTitle>
-              {/* <Grade>
+            {/* <TopContents> */}
+            <PlaceTitle>
+              <h1>{data.title}</h1>
+              <span>카테고리</span>
+            </PlaceTitle>
+            {/* <Grade>
                 <span>4.5</span>
                 <span>구글 (11,611)</span>
                 <div>별점</div>
               </Grade> */}
-            </TopContents>
+            {/* </TopContents> */}
             <BottomContents>
-              <div>주소 : {list.addr1}</div>
+              <div>{data.addr1}</div>
               {/* <div>운영시간</div> */}
             </BottomContents>
           </ModalContents>
@@ -78,7 +79,7 @@ const TopContents = styled.div`
 `;
 
 const PlaceTitle = styled.div`
-  width: 198px;
+  width: 100%;
 
   & h1 {
     font-size: 26px;

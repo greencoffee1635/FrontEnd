@@ -7,8 +7,10 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 
 // shared
 import Header from "../../shared/Header";
+
 //redux
 import { setCourseOptions } from "../../redux/modules/option";
+
 
 function Option02(props) {
 
@@ -60,9 +62,11 @@ function Option02(props) {
             onClick={() => {
               props.history.push("/Option03");
               dispatch(
+
                 setCourseOptions(
                   combine
                 )
+
               );
             }}
           >

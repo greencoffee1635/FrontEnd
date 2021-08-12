@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 
+
 const COURSE_OPTIONS = "option/COURSE_OPTIONS";
 const START_DATE = "option/START_DATE";
 const WISH_WEEK = "option/WISH_WEEK";  // 
@@ -22,6 +23,7 @@ const setSmallAreaCode = createAction(SMALL_AREA_CODE, (smallAreaCode) => ({ sma
 const setStyle = createAction(STYLE, (style) => ({ style }));
 const setLocationOptions = createAction(LOCATION_OPTIONS, (locationOptions) => ({ locationOptions }));
 
+
 const optionState = {
   courseOptions: "",
   startDate: "",
@@ -33,12 +35,15 @@ const optionState = {
   smallAreaCode: "",
   style: "",
   locationOptions: "",
+
 };
 
 const option = handleActions(
   {
+
     [COURSE_OPTIONS]: (state, action) => {
       return { ...state, courseOptions: action.payload.courseOptions };
+
     },
     [START_DATE]: (state, action) => {
       return { ...state, startDate: action.payload.startDate };
@@ -64,15 +69,19 @@ const option = handleActions(
     [STYLE]: (state, action) => {
       return { ...state, style: action.payload.style };
     },
+
     [LOCATION_OPTIONS]: (state, action) => {
       return { ...state, locationOptions: action.payload.locationOptions };
+
     },
   },
   optionState
 );
 
 export {
+
   setCourseOptions,
+
   setStartDate,
   setWishWeek,
   setStartAreaCode,
@@ -85,3 +94,4 @@ export {
 };
 
 export default option;
+

@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 // import { AiOutlineArrowUp } from "react-icons/ai";
 
 // async
 import { getTourInfo } from "../redux/async/detail";
+
+// reducer
+import detailSlice from "../redux/modules/detailSlice";
 
 // shared
 import Header from "../shared/Header";
@@ -20,34 +23,19 @@ import SaveButton from "../components/detail/SaveButton";
 
 function Detail(props) {
   const dispatch = useDispatch();
-  const [navBar, setNavBar] = useState(false);
-
-  const changeHeaderBackground = () => {
-    if (window.scrollY >= 400) {
-      setNavBar(true);
-    } else {
-      setNavBar(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", changeHeaderBackground);
-
-    return () => {
-      window.removeEventListener("scroll", changeHeaderBackground);
-    };
-  }, []);
 
   useEffect(() => {
     dispatch(getTourInfo());
+    dispatch(detailSlice.actions.emptyTrash());
   }, []);
 
   const tourList = useSelector((state) => state.detail.tourList);
-  // console.log("Detail", tourList);
+  const whatElse = useSelector((state) => state.detail.whatElse);
+  // console.log("Detail", tourList, whatElse);
 
   return (
     <>
-      <Header page="main" bgColor={navBar ? "gray" : ""} {...props} />
+      <Header page="main" {...props} />
       <HeadImage></HeadImage>
 
       <Layout>
@@ -57,19 +45,20 @@ function Detail(props) {
         </ContentsBox>
 
         <VideoBox>
-          <DetailVideo tourList={tourList.courseImages} />
+          <DetailVideo images={tourList.courseImages} />
         </VideoBox>
 
         <MapBox>
           <DetailMap />
+          <Blank />
         </MapBox>
 
         <WhatElseContents>
-          <DetailWhatElse tourList={tourList} />
+          <DetailWhatElse course={tourList.course} whatElse={whatElse} />
         </WhatElseContents>
 
         <BottomButton>
-          <SaveButton />
+          <SaveButton tourList={tourList} />
         </BottomButton>
       </Layout>
 
@@ -88,19 +77,22 @@ const UpBtn = styled.button`
   width: 65px;
   height: 65px;
   position: fixed;
-  left: 92%;
-  top: 855px;
+  left: 95%;
+  top: 90%;
   background: rgba(29, 198, 209, 0.3);
   border: 1px solid rgba(29, 198, 209, 0.6);
   border-radius: 32px;
   z-index: 98;
   font-size: 50px;
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ContentsBox = styled.div`
   width: 108rem;
-  margin-top: 29rem;
+  margin-top: 37rem;
 `;
 
 const VideoBox = styled.div`
@@ -113,10 +105,17 @@ const MapBox = styled.div`
   margin-top: 141px;
 `;
 
+const Blank = styled.div`
+  width: 100%;
+  height: 185px;
+  border-top-right-radius: 70px;
+  box-shadow: 0px -10px 15px -12px gray;
+`;
+
 const WhatElseContents = styled.div`
   width: 149rem;
   /* width: 108rem; */
-  margin: 185px 0px 0px auto;
+  margin: 0px 0px 0px auto;
 `;
 
 const HeadImage = styled.div`

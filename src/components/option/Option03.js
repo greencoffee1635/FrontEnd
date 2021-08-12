@@ -13,8 +13,10 @@ import Slider from "./Slider";
 
 // shared
 import Header from "../../shared/Header";
+
 //redux
 import { setStartDate } from "../../redux/modules/option";
+
 
 function Option03(props) {
   
@@ -141,6 +143,7 @@ function Option03(props) {
           <NextButton
             onClick={() => {
               props.history.push("/Option04");
+
             }}
           >
             <div>

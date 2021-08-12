@@ -1,4 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
 import { combineReducers } from "redux";
 import { connectRouter } from "connected-react-router";
 
@@ -26,7 +27,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middlewares = [];
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 const env = process.env.NODE_ENV;
 

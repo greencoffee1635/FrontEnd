@@ -2,10 +2,19 @@ import React from "react";
 import styled from "styled-components";
 
 const SaveButton = (props) => {
+  const { tourList } = props;
+
   return (
     <>
       <Button kind="reset">다시하기</Button>
-      <Button kind="save">저장하기</Button>
+      <Button
+        kind="save"
+        onClick={() => {
+          console.log("저장하기", tourList);
+        }}
+      >
+        저장하기
+      </Button>
     </>
   );
 };

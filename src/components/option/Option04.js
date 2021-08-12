@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import left_arrow from "../../images/left_arrow.png";
@@ -6,13 +7,20 @@ import right_arrow from "../../images/right_arrow.png";
 import search from "../../images/search.png";
 import deleteImg from "../../images/deleteImg.png";
 
+import LocationList from "./LocationList";
+import { LocationCodeData } from "./LocationList";
+
 // shared
 import Header from "../../shared/Header";
+
+import { setStartAreaCode } from "../../redux/modules/option";
 
 function Option04(props) {
   const [startPoint, setStartPoint] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [filteredList, setFilteredList] = useState([]);
+
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -28,7 +36,7 @@ function Option04(props) {
               placeholder="시/구까지 입력하세요"
               onChange={(e) => {
                 setSearchValue(e.target.value);
-                const filtered = locationList.filter((location) => {
+                const filtered = LocationList.filter((location) => {
                   return location.includes(e.target.value);
                 });
                 setFilteredList(filtered);
@@ -51,23 +59,31 @@ function Option04(props) {
               </StartPointResult>
             ) : null}
           </SearchBox>
-          {searchValue !== "" ? (
-            <SearchList>
-              {filteredList.map((location, idx) => {
-                return (
-                  <SearchItem
-                    key={idx}
-                    onClick={() => {
-                      setStartPoint(location);
-                      setSearchValue("");
-                    }}
-                  >
-                    {location}
-                  </SearchItem>
-                );
-              })}
-            </SearchList>
-          ) : null}
+          <SearchList>
+            {searchValue !== ""
+              ? filteredList.map((location, idx) => {
+                  return (
+                    <SearchItem
+                      key={idx}
+                      onClick={() => {
+                        setStartPoint(location);
+                        for (const locationcode in LocationCodeData) {
+                          if (location.includes(locationcode)) {
+                            dispatch(
+                              setStartAreaCode(LocationCodeData[locationcode])
+                            );
+                            break;
+                          }
+                        }
+                        setSearchValue("");
+                      }}
+                    >
+                      {location}
+                    </SearchItem>
+                  );
+                })
+              : null}
+          </SearchList>
         </QuestionBox>
 
         <PageMoveBox>
@@ -101,27 +117,22 @@ function Option04(props) {
   );
 }
 
-const locationList = [
-  "서울특별시 강남구",
-  "서울특별시 강동구",
-  "서울특별시 강북구",
-  "서울특별시 강서구",
-  "서울특별시 관악구",
-  "서울특별시 광진구",
-  "서울특별시 금천구",
-  "서울특별시 동대문구",
-  "서울특별시 동작구",
-  "서울특별시 서대문구",
-  "서울특별시 서초구",
-  "서울특별시 송파구",
-  "서울특별시 영등포구",
-  "서울특별시 은평구",
-  "서울특별시 중구",
-];
+const StartPointResult = styled.span`
+  display: flex;
+  margin: 18px 0 18px 20px;
+  background-color: #fff;
+  position: absolute;
+  font-size: 2rem;
+  color: #1dc6d1;
+  font-weight: 600;
+`;
 
-const StartPointResult = styled.span``;
-
-const DeleteButton = styled.button``;
+const DeleteButton = styled.button`
+  margin: 0 0 0 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
 
 const Container = styled.div`
   width: 72rem;
@@ -212,7 +223,7 @@ const SearchItem = styled.li`
 
 const PageMoveBox = styled.div`
   width: 50%;
-  margin-top: 23rem;
+  margin-top: 8rem;
   z-index: 10;
 `;
 
