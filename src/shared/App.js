@@ -23,13 +23,10 @@ import Detail from "../pages/Detail";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import MyTrip from "../pages/MyTrip";
-import KakaoRedirection from "../shared/socialRedirection";
-
 import {
   KakaoRedirection,
   NaverRedirection,
 } from "../shared/socialRedirection";
-
 
 function App() {
   return (
@@ -57,11 +54,11 @@ function App() {
             exact
             component={KakaoRedirection}
           />
-          <Route
+          {/* <Route
             path="/login/naver/callback"
             exact
             component={NaverRedirection}
-          />
+          /> */}
         </BrowserRouter>
       </ConnectedRouter>
     </>

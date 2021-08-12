@@ -13,7 +13,7 @@ function Header(props) {
   const is_login = getCookie("is_login") ? true : false;
 
   const is_close = useRef();
-  const { history } = props;
+  const { history, bgColor } = props;
   const [loginModal, setLoginModal] = useState(false);
 
   const onClickOutside = useCallback((e) => {
@@ -31,7 +31,6 @@ function Header(props) {
       document.removeEventListener("click", onClickOutside);
     };
   });
-
 
   if (is_login === true) {
     return (
@@ -114,7 +113,6 @@ function Header(props) {
       </>
     );
   }
-
 }
 const HeaderLayout = styled.div`
   position: fixed;

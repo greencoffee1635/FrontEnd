@@ -139,7 +139,6 @@ const loginDB = (email, pwd) => {
   };
 };
 
-
 // const extensionToken = (state) => {
 //   return function (dispatch, getState) {
 //     const accessToken = localStorage.getItem("token");
