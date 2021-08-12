@@ -22,6 +22,7 @@ import Calendar from "../components/option/Calendar";
 import Detail from "../pages/Detail";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import MyTrip from "../pages/MyTrip";
 import KakaoRedirection from "../shared/socialRedirection";
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/join" component={SignUp} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/mytrip" component={MyTrip} />
           <Route
             path="/login/kakao/callback"
             exact

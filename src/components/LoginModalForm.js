@@ -1,8 +1,6 @@
 import React from "react";
 import { KAKAO_AUTH_URL } from "../shared/OAuth";
-import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/User_module";
-import { history } from "../redux/configureStore";
 
 import styled from "styled-components";
 import naver from "../images/naver.png";
@@ -10,6 +8,7 @@ import kakao from "../images/kakao.png";
 import email from "../images/email.png";
 
 const LoginModal = (props) => {
+  console.log(props);
   return (
     <Container>
       <FormWrap>
@@ -63,8 +62,8 @@ const Container = styled.div`
   outline: 0px;
   z-index: 1000;
   /* transform: translate(-50%, -50%); */
-  right: 3%;
-  top: 10%;
+  right: 30%;
+  top: 25%;
 `;
 
 const FormWrap = styled.div`
