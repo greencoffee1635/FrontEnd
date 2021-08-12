@@ -8,28 +8,31 @@ import whiteArrowRight from "../../images/whiteArrowRight.png";
 // shared
 import Header from "../../shared/Header";
 
-import { init } from "../../redux/modules/option";
+//redux
+import { setCourseOptions } from "../../redux/modules/option";
+
 
 function Option02(props) {
-  const [category, setCategory] = useState([]);
 
   const dispatch = useDispatch();
+  
+  const [combine, setCombine] = useState([]);
 
   const changeSolo = (e) => {
-    setCategory(["C0113", "C0114", "C0115"]);
+    setCombine(["C0113", "C0114", "C0115"]);
   };
-
+   
   const changeCouple = (e) => {
-    setCategory(["C0114", "C0115"]);
+    setCombine(["C0114", "C0115"]);
   };
 
   const changeFamily = (e) => {
-    setCategory(["C0112", "C0114", "C0115"]);
+    setCombine(["C0112", "C0114", "C0115"]);
   };
 
   useEffect(() => {
-    console.log(category);
-  }, [category]);
+    console.log(combine);
+  }, [combine]);
 
   return (
     <>
@@ -51,11 +54,7 @@ function Option02(props) {
         </ButtonBox>
 
         <PageMoveBox>
-          <PastButton
-            onClick={() => {
-              props.history.push("/Option01");
-            }}
-          >
+          <PastButton onClick={() => {props.history.push("/Option01");}}>
             <img src={whiteArrowLeft} alt="" width="35px" />
           </PastButton>
 
@@ -63,9 +62,11 @@ function Option02(props) {
             onClick={() => {
               props.history.push("/Option03");
               dispatch(
-                init({
-                  category: category,
-                })
+
+                setCourseOptions(
+                  combine
+                )
+
               );
             }}
           >
@@ -92,19 +93,15 @@ const Container = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 26.26vw;
-  height: 75%;
+  width: 450px;
+  height: 560px;
   // border: 1px solid black;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
 `;
 
 const Box = styled.div``;
 
 const Number = styled.p`
-  font-size: 1.5rem;
+  font-size: 21px;
   font-weight: bold;
   color: #bbbbbb;
   margin: 10px auto;
@@ -112,23 +109,25 @@ const Number = styled.p`
 
 const Question = styled.p`
   font-weight: bolder;
-  font-size: 2.5rem;
-  width: 22vw;
-  height: 8vh;
+  font-size: 25px;
+  width: 394px;
+  height: 60px;
+  // border: 1px solid black;
 `;
 
+
 const ButtonBox = styled.div`
-  width: 19.5vw;
-  height: 20vh;
+  width: 300px;
+  height: 145px;
   display: block;
   margin: auto;
   // border: 1px solid black;
 `;
 
 const WithButton = styled.button`
-  width: 8.4vw;
-  height: 17vh;
-  font-size: 1.5rem;
+  width: 130px;
+  height: 125px;
+  font-size: 15px;
   font-weight: bold;
   border: none;
   border-radius: 30px;
@@ -144,30 +143,30 @@ const WithButton = styled.button`
 `;
 
 const PageMoveBox = styled.div`
-  width: 22vw;
-  height: 7vh;
-  margin: 113px auto;
+  width: 340px;
+  height: 55px;
+  margin: 114px auto;
   // border: 1px solid black;
 `;
 
 const PastButton = styled.button`
-  width: 4vw;
-  height: 7.5vh;
+  width: 60px;
+  height: 55px;
   background-color: #bbbbbb;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   padding: 11px;
   cursor: pointer;
 `;
 
 const NextButton = styled.button`
-  width: 16.5vw;
-  height: 7.5vh;
+  width: 250px;
+  height: 55px;
   float: right;
   border: none;
   border-radius: 30px;
   background-color: #1dc6d1;
-  font-size: 2rem;
+  font-size: 20px;
   color: #fff;
   cursor: pointer;
   &:hover {
@@ -176,7 +175,7 @@ const NextButton = styled.button`
 `;
 
 const Text = styled.text`
-  margin: 1vh 0 0 4vw;
+  margin: 8px 0 0 65px;
   display: flex;
 `;
 

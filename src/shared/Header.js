@@ -13,7 +13,7 @@ function Header(props) {
   const is_login = getCookie("is_login") ? true : false;
 
   const is_close = useRef();
-  const { history, bgColor } = props;
+  const { history } = props;
   const [loginModal, setLoginModal] = useState(false);
 
   const onClickOutside = useCallback((e) => {
@@ -31,6 +31,7 @@ function Header(props) {
       document.removeEventListener("click", onClickOutside);
     };
   });
+
 
   if (is_login === true) {
     return (
@@ -113,6 +114,7 @@ function Header(props) {
       </>
     );
   }
+
 }
 const HeaderLayout = styled.div`
   position: fixed;
@@ -125,8 +127,13 @@ const HeaderLayout = styled.div`
 `;
 
 const Container = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 69%;
   margin: 0 auto;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;

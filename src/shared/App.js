@@ -17,13 +17,19 @@ import Option06_0 from "../components/option/Option06_0";
 import Option06_1 from "../components/option/Option06_1";
 import Option07 from "../components/option/Option07";
 
-import Calendar from "../components/option/Calendar";
+// import Calendar from "../components/option/Calendar";
 
 import Detail from "../pages/Detail";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import MyTrip from "../pages/MyTrip";
 import KakaoRedirection from "../shared/socialRedirection";
+
+import {
+  KakaoRedirection,
+  NaverRedirection,
+} from "../shared/socialRedirection";
+
 
 function App() {
   return (
@@ -36,6 +42,12 @@ function App() {
           <Route exact path="/option02" component={Option02} />
           <Route exact path="/option03" component={Option03} />
           <Route exact path="/option04" component={Option04} />
+          <Route exact path="/option05" component={Option05} />
+          <Route exact path="/option06_0" component={Option06_0} />
+          <Route exact path="/option06_1" component={Option06_1} />
+          {/* <Route exact path="/option04" component={Option06_} /> */}
+          <Route exact path="/option07" component={Option07} />
+
           <Route exact path="/detail" component={Detail} />
           <Route exact path="/join" component={SignUp} />
           <Route exact path="/login" component={Login} />
@@ -44,6 +56,11 @@ function App() {
             path="/login/kakao/callback"
             exact
             component={KakaoRedirection}
+          />
+          <Route
+            path="/login/naver/callback"
+            exact
+            component={NaverRedirection}
           />
         </BrowserRouter>
       </ConnectedRouter>

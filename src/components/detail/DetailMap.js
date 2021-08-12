@@ -5,6 +5,9 @@ import styled from "styled-components";
 // components
 import DetailSchedule from "./DetailSchedule";
 
+// images
+import Marker from "../../images/marker.png";
+
 const { kakao } = window;
 
 const DetailMap = (props) => {
@@ -15,33 +18,8 @@ const DetailMap = (props) => {
   });
 
   const tourList = useSelector((state) => state.detail.tourList);
-
-  const location = [
-    {
-      name: "은평역사한옥박물관",
-      latitude: 37.6403324,
-      longitude: 126.9380102,
-      address: "서울 은평구 연서로50길 8 은평역사한옥박물관",
-    },
-    {
-      name: "금성당",
-      latitude: 37.6351354,
-      longitude: 126.9253799,
-      address: "서울특별시 은평구 진관2로 57-23",
-    },
-    {
-      name: "김광석거리",
-      latitude: 35.860332,
-      longitude: 128.6044187,
-      address: "대구 중구 대봉동 6-11",
-    },
-    {
-      name: "해운대",
-      latitude: 35.1587142,
-      longitude: 129.1516294,
-      address: "부산 해운대구 우동",
-    },
-  ];
+  const courseData = tourList && tourList.course;
+  // console.log(courseData);
 
   useEffect(() => {
     if (!tourList) {
@@ -58,33 +36,23 @@ const DetailMap = (props) => {
     }
 
     // marker
-    tourList.course &&
-      tourList.course.forEach((list) => {
+    courseData &&
+      courseData.forEach((data) => {
+        // 마커 이미지
+        const imageSize = new kakao.maps.Size(48, 48);
+
+        // 마커 이미지 생성
+        const markerImg = new kakao.maps.MarkerImage(Marker, imageSize);
+
         const marker = new kakao.maps.Marker({
           map: map,
-          position: new kakao.maps.LatLng(
-            parseFloat(list.mapy),
-            parseFloat(list.mapx)
-          ),
-          title: list.title,
+          position: new kakao.maps.LatLng(data && data.mapy, data && data.mapx),
+          title: data && data.title,
+          image: markerImg,
         });
 
         marker.setMap(map);
       });
-
-    // marker
-    // tourList &&
-    //   tourList.forEach((list) => {
-    //     const marker = new kakao.maps.Marker({
-    //       map: map,
-    //       position: new kakao.maps.LatLng(
-    //         parseFloat(list.mapy),
-    //         parseFloat(list.mapx)
-    //       ),
-    //       title: list.title,
-    //     });
-
-    //     marker.setMap(map);
 
     // const customOverlay = new kakao.maps.CustomOverlay({
     //   position: new kakao.maps.LatLng(
@@ -106,22 +74,14 @@ const DetailMap = (props) => {
           <Schedule>
             <ScheduleTitle>Schedule</ScheduleTitle>
             <ScheduleList>
-              {tourList.course &&
-                tourList.course.map((list, idx) => (
+              {courseData &&
+                courseData.map((data, idx) => (
                   <DetailSchedule
                     key={idx}
-                    list={list}
+                    data={data}
                     setViewport={setViewport}
                   />
                 ))}
-              {/* {tourList &&
-                tourList.map((list, idx) => (
-                  <DetailSchedule
-                    key={idx}
-                    list={list}
-                    setViewport={setViewport}
-                  />
-                ))} */}
             </ScheduleList>
           </Schedule>
         </MapContainer>
@@ -153,6 +113,7 @@ const Schedule = styled.div`
 `;
 
 const ScheduleTitle = styled.h1`
+  width: 55%;
   font-size: 55px;
   font-weight: 600;
   margin: 0px 0px 60px 0px;
@@ -163,15 +124,16 @@ const ScheduleList = styled.ul`
   display: flex;
   flex-direction: column;
   overflow: auto;
+  width: 55%;
 
   &::-webkit-scrollbar {
-    background-color: #f2f2f2;
-    width: 10px;
+    background-color: #fff;
+    width: 5px;
     border-radius: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #1dc6d1;
+    background-color: #f2f2f2;
     border-radius: 5px;
   }
   /* &::-webkit-scrollbar-track {

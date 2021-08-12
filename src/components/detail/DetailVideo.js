@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const DetailVideo = (props) => {
-  const { tourList } = props;
+  const { images } = props;
 
   // const images = [
   //   {
@@ -40,12 +40,12 @@ const DetailVideo = (props) => {
     <>
       <SliderContainer>
         <Slider {...settings}>
-          {tourList &&
-            tourList.map((list, idx) => {
-              if (list) {
+          {images &&
+            images.map((image, idx) => {
+              if (image) {
                 return (
                   <Div key={idx}>
-                    <SlideImage src={list} />
+                    <SlideImage src={image} />
                   </Div>
                 );
               }
