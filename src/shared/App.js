@@ -55,11 +55,11 @@ function App() {
             exact
             component={KakaoRedirection}
           />
-          <Route
+          {/* <Route
             path="/login/naver/callback"
             exact
             component={NaverRedirection}
-          />
+          /> */}
         </BrowserRouter>
       </ConnectedRouter>
     </>

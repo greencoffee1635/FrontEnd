@@ -92,6 +92,9 @@ const CloseBtn = styled.img`
   width: 24px;
   cursor: pointer;
   margin-top: -10px;
+  /* transform: translate(-50%, -50%); */
+  right: 30%;
+  top: 25%;
 `;
 
 const FormWrap = styled.div`
