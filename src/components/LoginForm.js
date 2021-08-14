@@ -176,6 +176,10 @@ const LoginBtn = styled.button`
   border-radius: 35px;
   background-color: #e2e2e2;
   color: var(--white);
+  &:hover {
+    cursor: pointer;
+    background-color: var(--main-color);
+  }
 `;
 
 const SignupTextWrap = styled.div`
